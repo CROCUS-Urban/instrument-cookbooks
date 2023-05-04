@@ -18,18 +18,34 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 import act
 import glob
 import matplotlib.pyplot as plt
+import matplotlib
 
-files = glob.glob('../../data/ceilometer/*')
+files = glob.glob('../../data/ceilometer/sgp*')
 
 ds = act.io.read_netcdf(files)
 
-ds.attrs['datastream'] = 'anl.ceilometer.a1'
+# apply range correction
+ds = act.corrections.correct_ceil(ds)
 
-variables=['p_pol', 'x_pol', 'linear_depol_ratio']
+ds.attrs['datastream'] = 'ceilometer.b1'
+
+# variables=['p_pol', 'x_pol', 'linear_depol_ratio']
+
+variables = ['backscatter', 'first_cbh']
 
 for variable in variables:
     display = act.plotting.TimeSeriesDisplay(ds, figsize=(8,4))
-    display.plot(variable, cmap='Spectral_r')
+    if variable == 'backscatter':
+        display.plot(variable,
+                     cmap='rainbow',
+                     vmin=0,
+                     vmax=4,
+                     y_rng=(0, ds.range.max().values))
+    else:
+        display.plot(variable,
+                     cmap='rainbow',
+                     y_rng=(0, ds.range.max().values))
+
     plt.show()
     plt.close()
 ------------------
