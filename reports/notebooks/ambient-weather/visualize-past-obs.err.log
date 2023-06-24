@@ -52,13 +52,14 @@ File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/s
 [1;32m   1078[0m     )
 
 File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/combine.py:986[0m, in [0;36mcombine_by_coords[0;34m(data_objects, compat, data_vars, coords, fill_value, join, combine_attrs, datasets)[0m
-[1;32m    975[0m         concatenated [38;5;241m=[39m _combine_single_variable_hypercube(
-[1;32m    976[0m             [38;5;28mlist[39m(datasets_with_same_vars),
-[1;32m    977[0m             fill_value[38;5;241m=[39mfill_value,
+[1;32m    971[0m     [38;5;66;03m# Perform the multidimensional combine on each group of data variables[39;00m
+[1;32m    972[0m     [38;5;66;03m# before merging back together[39;00m
+[1;32m    973[0m     concatenated_grouped_by_data_vars [38;5;241m=[39m [38;5;28mtuple[39m(
+[1;32m    974[0m         _combine_single_variable_hypercube(
+[1;32m    975[0m             [38;5;28mtuple[39m(datasets_with_same_vars),
 [0;32m   (...)[0m
-[1;32m    982[0m             combine_attrs[38;5;241m=[39mcombine_attrs,
-[1;32m    983[0m         )
-[1;32m    984[0m         concatenated_grouped_by_data_vars[38;5;241m.[39mappend(concatenated)
+[1;32m    983[0m         [38;5;28;01mfor[39;00m [38;5;28mvars[39m, datasets_with_same_vars [38;5;129;01min[39;00m grouped_by_vars
+[1;32m    984[0m     )
 [0;32m--> 986[0m [38;5;28;01mreturn[39;00m [43mmerge[49m[43m([49m
 [1;32m    987[0m [43m    [49m[43mconcatenated_grouped_by_data_vars[49m[43m,[49m
 [1;32m    988[0m [43m    [49m[43mcompat[49m[38;5;241;43m=[39;49m[43mcompat[49m[43m,[49m
@@ -67,26 +68,26 @@ File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/s
 [1;32m    991[0m [43m    [49m[43mcombine_attrs[49m[38;5;241;43m=[39;49m[43mcombine_attrs[49m[43m,[49m
 [1;32m    992[0m [43m[49m[43m)[49m
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/merge.py:1014[0m, in [0;36mmerge[0;34m(objects, compat, join, fill_value, combine_attrs)[0m
-[1;32m   1011[0m     obj [38;5;241m=[39m obj[38;5;241m.[39mto_dataset(promote_attrs[38;5;241m=[39m[38;5;28;01mTrue[39;00m) [38;5;28;01mif[39;00m [38;5;28misinstance[39m(obj, DataArray) [38;5;28;01melse[39;00m obj
-[1;32m   1012[0m     dict_like_objects[38;5;241m.[39mappend(obj)
-[0;32m-> 1014[0m merge_result [38;5;241m=[39m [43mmerge_core[49m[43m([49m
-[1;32m   1015[0m [43m    [49m[43mdict_like_objects[49m[43m,[49m
-[1;32m   1016[0m [43m    [49m[43mcompat[49m[43m,[49m
-[1;32m   1017[0m [43m    [49m[43mjoin[49m[43m,[49m
-[1;32m   1018[0m [43m    [49m[43mcombine_attrs[49m[38;5;241;43m=[39;49m[43mcombine_attrs[49m[43m,[49m
-[1;32m   1019[0m [43m    [49m[43mfill_value[49m[38;5;241;43m=[39;49m[43mfill_value[49m[43m,[49m
-[1;32m   1020[0m [43m[49m[43m)[49m
-[1;32m   1021[0m [38;5;28;01mreturn[39;00m Dataset[38;5;241m.[39m_construct_direct([38;5;241m*[39m[38;5;241m*[39mmerge_result[38;5;241m.[39m_asdict())
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/merge.py:1025[0m, in [0;36mmerge[0;34m(objects, compat, join, fill_value, combine_attrs)[0m
+[1;32m   1022[0m     obj [38;5;241m=[39m obj[38;5;241m.[39mto_dataset(promote_attrs[38;5;241m=[39m[38;5;28;01mTrue[39;00m) [38;5;28;01mif[39;00m [38;5;28misinstance[39m(obj, DataArray) [38;5;28;01melse[39;00m obj
+[1;32m   1023[0m     dict_like_objects[38;5;241m.[39mappend(obj)
+[0;32m-> 1025[0m merge_result [38;5;241m=[39m [43mmerge_core[49m[43m([49m
+[1;32m   1026[0m [43m    [49m[43mdict_like_objects[49m[43m,[49m
+[1;32m   1027[0m [43m    [49m[43mcompat[49m[43m,[49m
+[1;32m   1028[0m [43m    [49m[43mjoin[49m[43m,[49m
+[1;32m   1029[0m [43m    [49m[43mcombine_attrs[49m[38;5;241;43m=[39;49m[43mcombine_attrs[49m[43m,[49m
+[1;32m   1030[0m [43m    [49m[43mfill_value[49m[38;5;241;43m=[39;49m[43mfill_value[49m[43m,[49m
+[1;32m   1031[0m [43m[49m[43m)[49m
+[1;32m   1032[0m [38;5;28;01mreturn[39;00m Dataset[38;5;241m.[39m_construct_direct([38;5;241m*[39m[38;5;241m*[39mmerge_result[38;5;241m.[39m_asdict())
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/merge.py:746[0m, in [0;36mmerge_core[0;34m(objects, compat, join, combine_attrs, priority_arg, explicit_coords, indexes, fill_value)[0m
-[1;32m    744[0m collected [38;5;241m=[39m collect_variables_and_indexes(aligned, indexes[38;5;241m=[39mindexes)
-[1;32m    745[0m prioritized [38;5;241m=[39m _get_priority_vars_and_indexes(aligned, priority_arg, compat[38;5;241m=[39mcompat)
-[0;32m--> 746[0m variables, out_indexes [38;5;241m=[39m [43mmerge_collected[49m[43m([49m
-[1;32m    747[0m [43m    [49m[43mcollected[49m[43m,[49m[43m [49m[43mprioritized[49m[43m,[49m[43m [49m[43mcompat[49m[38;5;241;43m=[39;49m[43mcompat[49m[43m,[49m[43m [49m[43mcombine_attrs[49m[38;5;241;43m=[39;49m[43mcombine_attrs[49m
-[1;32m    748[0m [43m[49m[43m)[49m
-[1;32m    750[0m dims [38;5;241m=[39m calculate_dimensions(variables)
-[1;32m    752[0m coord_names, noncoord_names [38;5;241m=[39m determine_coords(coerced)
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/merge.py:757[0m, in [0;36mmerge_core[0;34m(objects, compat, join, combine_attrs, priority_arg, explicit_coords, indexes, fill_value)[0m
+[1;32m    755[0m collected [38;5;241m=[39m collect_variables_and_indexes(aligned, indexes[38;5;241m=[39mindexes)
+[1;32m    756[0m prioritized [38;5;241m=[39m _get_priority_vars_and_indexes(aligned, priority_arg, compat[38;5;241m=[39mcompat)
+[0;32m--> 757[0m variables, out_indexes [38;5;241m=[39m [43mmerge_collected[49m[43m([49m
+[1;32m    758[0m [43m    [49m[43mcollected[49m[43m,[49m[43m [49m[43mprioritized[49m[43m,[49m[43m [49m[43mcompat[49m[38;5;241;43m=[39;49m[43mcompat[49m[43m,[49m[43m [49m[43mcombine_attrs[49m[38;5;241;43m=[39;49m[43mcombine_attrs[49m
+[1;32m    759[0m [43m[49m[43m)[49m
+[1;32m    761[0m dims [38;5;241m=[39m calculate_dimensions(variables)
+[1;32m    763[0m coord_names, noncoord_names [38;5;241m=[39m determine_coords(coerced)
 
 File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/merge.py:291[0m, in [0;36mmerge_collected[0;34m(grouped, prioritized, compat, combine_attrs, equals)[0m
 [1;32m    289[0m variables [38;5;241m=[39m [variable [38;5;28;01mfor[39;00m variable, _ [38;5;129;01min[39;00m elements_list]
