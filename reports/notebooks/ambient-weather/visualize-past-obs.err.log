@@ -20,9 +20,6 @@ files = sorted(glob.glob('../../data/surface-meteorology/*/*/*/*.nc'))
 ds = xr.open_mfdataset(files[-60:])
 ------------------
 
------ stderr -----
-Matplotlib is building the font cache; this may take a moment.
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mMergeError[0m                                Traceback (most recent call last)
