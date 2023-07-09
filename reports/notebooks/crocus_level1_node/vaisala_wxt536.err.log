@@ -15,14 +15,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Query the SAGE data client to access the data
-# Note: We need to know the time period we are interested in
-no_data_df = sage_data_client.query(start="2099-04-10T12:00:00Z",
-                                    end="2099-04-10T15:00:00Z", 
+# Query the SAGE data client to access the data; use 'name' filter
+
+df_temp = sage_data_client.query(start="2023-04-09T00:00:00Z",
+                                 end="2023-04-10T00:00:00Z", 
                                     filter={
-                                        "plugin": "10.31.81.1:5000/local/waggle-wxt536",
-                                        "vsn": "W057",
-                                        "sensor": "vaisala-wxt536"
+                                        "name" : 'wxt.env.temp',
+                                        "vsn" : "W057",
+                                        "sensor" : "vaisala-wxt536"
                                     }
 )
 ------------------
@@ -30,15 +30,14 @@ no_data_df = sage_data_client.query(start="2099-04-10T12:00:00Z",
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mHTTPError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[7], line 3[0m
-[1;32m      1[0m [38;5;66;03m# Query the SAGE data client to access the data[39;00m
-[1;32m      2[0m [38;5;66;03m# Note: We need to know the time period we are interested in[39;00m
-[0;32m----> 3[0m no_data_df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m[43mstart[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2099-04-10T12:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m      4[0m [43m                                    [49m[43mend[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2099-04-10T15:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m
+Cell [0;32mIn[12], line 3[0m
+[1;32m      1[0m [38;5;66;03m# Query the SAGE data client to access the data; use 'name' filter[39;00m
+[0;32m----> 3[0m df_temp [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m[43mstart[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-04-09T00:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      4[0m [43m                                 [49m[43mend[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-04-10T00:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m
 [1;32m      5[0m [43m                                    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
-[1;32m      6[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43mplugin[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43m10.31.81.1:5000/local/waggle-wxt536[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m      7[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43mvsn[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mW057[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m      8[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m
+[1;32m      6[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m [49m[43m:[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mwxt.env.temp[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m      7[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43mvsn[39;49m[38;5;124;43m"[39;49m[43m [49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mW057[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      8[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m [49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m
 [1;32m      9[0m [43m                                    [49m[43m}[49m
 [1;32m     10[0m [43m)[49m
 
