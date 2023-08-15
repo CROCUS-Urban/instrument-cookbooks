@@ -382,7 +382,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interact-with-wxt-536-data">Interact with WXT-536 Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#investigate-the-dataset">Investigate the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-the-data">Searching for the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#investigate-the-dataset">Investigate the Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-temperature">Plot the Temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-rainfall-accumulation">Plot the Rainfall Accumulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-wind-speed-wind-direction">Plot the Wind Speed/Wind Direction</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-diurnal-temperature-cycle">Display Diurnal Temperature Cycle</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-your-selected-dataset">Save Your Selected Dataset</a></li>
 </ul>
@@ -398,24 +405,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="read-data-from-a-vaisala-wxt536">
 <h1>Read Data from a Vaisala WXT536<a class="headerlink" href="#read-data-from-a-vaisala-wxt536" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sage_data_client</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="kn">from</span> <span class="nn">matplotlib.dates</span> <span class="kn">import</span> <span class="n">DateFormatter</span>
-</pre></div>
-</div>
-</div>
-</div>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../_images/Vaisala_WXT536.jpeg"><img alt="Vaisala_WXT536" src="../../_images/Vaisala_WXT536.jpeg" style="width: 250px;" /></a></img></p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>The Vaisala WXT536 is an multi-parameter weather sensor that measures atmospheric temperatures, pressure, humdity, wind speed and direction, and precipitation.</p>
 <p>High quality atmospheric observations allow for understanding of the environmental conditions at the location of the instrument, and allow us to estimate transport of gas and particles through the atmosphere.</p>
-<p>In combination with additional sensors attached to a CROCUS Level 1 Node, we are then able to evaluate the concentration of pollutants at the node, the transport of these pollutants into and out of the area of the node, and estimate removal of these pollutants from the atmosphere from preciptiation.</p>
+<p>In combination with additional sensors attached to a CROCUS Level 3 Node, we are then able to evaluate the concentration of pollutants at the node, the transport of these pollutants into and out of the area of the node, and estimate removal of these pollutants from the atmosphere from preciptiation.</p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
@@ -449,27 +445,43 @@ document.write(`
 </section>
 <section id="interact-with-wxt-536-data">
 <h2>Interact with WXT-536 Data<a class="headerlink" href="#interact-with-wxt-536-data" title="Permalink to this heading">#</a></h2>
-<p>We will be accessing data from a CROCUS Level 1 Node (W057), which is located at the Argonne Testbed for Multiscale Observational Science (ATMOS)</p>
+<p>We will be accessing data from a CROCUS Level 3 Node (W08D), which is located at Northeastern Illinois University, which has the same WXT sensor as the one deployed at the Argonne Testbed for Multiscale Observational Science (ATMOS), shown below.</p>
 <p><a class="reference internal" href="../../_images/CROCUS_Level1_Node_WXT.jpeg"><img alt="CROCUS Level 1 Node (W057)" src="../../_images/CROCUS_Level1_Node_WXT.jpeg" style="width: 250px;" /></a></img></p>
-<p>ATMOS serves as a long term observational site and allows for testing equipment before deployment across the CROCUS domain</p>
-<p>Please check the <a class="reference external" href="https://portal.sagecontinuum.org/node/000048B02D3AE336">Waggle Node 57 User Interface</a> to determine if the <em>vaisala-wxt536</em> plugin is working</p>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
+<p>We need some core packages to work with the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sage_data_client</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.dates</span> <span class="kn">import</span> <span class="n">DateFormatter</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="searching-for-the-data">
+<h2>Searching for the Data<a class="headerlink" href="#searching-for-the-data" title="Permalink to this heading">#</a></h2>
+<p>Please check the <a class="reference external" href="https://crocus.sagecontinuum.org/node/W08D">Waggle Node W08D User Interface</a> to determine if the <em>vaisala-wxt536</em> plugin is working</p>
 <p>The <a class="reference external" href="https://github.com/jrobrien91/waggle-wxt536">vaisala-wxt536 plugin</a> allows for the Waggle Sensor to interpret data sent from the instrument to the Waggle Node and transit this data to cloud storage for investigation.</p>
 <p>To Query data from a Waggle Sensor, we will need:</p>
 <ol class="arabic simple">
 <li><p>Start of time period we are interested in (YYYY-MM-DDTHH:MM:SSZ format)</p></li>
 <li><p>End of time period we are interested in (YYYY-MM-DDTHH:MM:SSZ format)</p></li>
-<li><p>Plugin Name (e.g. waggle-wxt536)</p></li>
-<li><p>Waggle Node Number (e.g. W057)</p></li>
+<li><p>Waggle Node Number (e.g. W08D)</p></li>
 <li><p>Sensor Name (e.g. ‘vaisala-wxt536’)</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the SAGE data client to access the data</span>
 <span class="c1"># Note: We need to know the time period we are interested in</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-04-10T12:00:00Z&quot;</span><span class="p">,</span>
-                            <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-04-10T13:00:00Z&quot;</span><span class="p">,</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-07-02T12:00:00Z&quot;</span><span class="p">,</span>
+                            <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-07-02T13:00:00Z&quot;</span><span class="p">,</span> 
                             <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
-                                <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W057&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W08D&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
                             <span class="p">}</span>
 <span class="p">)</span>
@@ -479,225 +491,10 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>timestamp</th>
-      <th>name</th>
-      <th>value</th>
-      <th>meta.host</th>
-      <th>meta.job</th>
-      <th>meta.missing</th>
-      <th>meta.node</th>
-      <th>meta.plugin</th>
-      <th>meta.sensor</th>
-      <th>meta.task</th>
-      <th>meta.units</th>
-      <th>meta.vsn</th>
-      <th>meta.zone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2023-04-10 12:00:00.030623851+00:00</td>
-      <td>wxt.env.humidity</td>
-      <td>48.8</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>percent</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2023-04-10 12:00:00.110927910+00:00</td>
-      <td>wxt.env.humidity</td>
-      <td>48.8</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>percent</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2023-04-10 12:00:00.185660209+00:00</td>
-      <td>wxt.env.humidity</td>
-      <td>48.8</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>percent</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2023-04-10 12:00:00.259648308+00:00</td>
-      <td>wxt.env.humidity</td>
-      <td>48.8</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>percent</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2023-04-10 12:00:00.339504875+00:00</td>
-      <td>wxt.env.humidity</td>
-      <td>48.8</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>percent</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>381107</th>
-      <td>2023-04-10 12:59:59.699540132+00:00</td>
-      <td>wxt.wind.speed</td>
-      <td>1.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>meters per second</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>381108</th>
-      <td>2023-04-10 12:59:59.774177079+00:00</td>
-      <td>wxt.wind.speed</td>
-      <td>1.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>meters per second</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>381109</th>
-      <td>2023-04-10 12:59:59.848843626+00:00</td>
-      <td>wxt.wind.speed</td>
-      <td>1.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>meters per second</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>381110</th>
-      <td>2023-04-10 12:59:59.922973433+00:00</td>
-      <td>wxt.wind.speed</td>
-      <td>1.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>meters per second</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>381111</th>
-      <td>2023-04-10 12:59:59.996916134+00:00</td>
-      <td>wxt.wind.speed</td>
-      <td>1.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
-      <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
-      <td>meters per second</td>
-      <td>W057</td>
-      <td>core</td>
-    </tr>
-  </tbody>
-</table>
-<p>381112 rows × 13 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -707,7 +504,28 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=381112, step=1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2023-07-02 12:00:00.029156535+00:00&#39;,
+               &#39;2023-07-02 12:00:00.107252119+00:00&#39;,
+               &#39;2023-07-02 12:00:00.206164123+00:00&#39;,
+               &#39;2023-07-02 12:00:00.283311181+00:00&#39;,
+               &#39;2023-07-02 12:00:00.364271449+00:00&#39;,
+               &#39;2023-07-02 12:00:00.442495483+00:00&#39;,
+               &#39;2023-07-02 12:00:00.525232643+00:00&#39;,
+               &#39;2023-07-02 12:00:00.610763159+00:00&#39;,
+               &#39;2023-07-02 12:00:00.697874627+00:00&#39;,
+               &#39;2023-07-02 12:00:00.778449770+00:00&#39;,
+               ...
+               &#39;2023-07-02 12:59:59.200688231+00:00&#39;,
+               &#39;2023-07-02 12:59:59.280641431+00:00&#39;,
+               &#39;2023-07-02 12:59:59.361137582+00:00&#39;,
+               &#39;2023-07-02 12:59:59.441958059+00:00&#39;,
+               &#39;2023-07-02 12:59:59.520813355+00:00&#39;,
+               &#39;2023-07-02 12:59:59.600882716+00:00&#39;,
+               &#39;2023-07-02 12:59:59.684669667+00:00&#39;,
+               &#39;2023-07-02 12:59:59.760763484+00:00&#39;,
+               &#39;2023-07-02 12:59:59.841247667+00:00&#39;,
+               &#39;2023-07-02 12:59:59.920791677+00:00&#39;],
+              dtype=&#39;datetime64[ns, UTC]&#39;, name=&#39;timestamp&#39;, length=350864, freq=None)
 </pre></div>
 </div>
 </div>
@@ -720,9 +538,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;timestamp&#39;, &#39;name&#39;, &#39;value&#39;, &#39;meta.host&#39;, &#39;meta.job&#39;, &#39;meta.missing&#39;,
-       &#39;meta.node&#39;, &#39;meta.plugin&#39;, &#39;meta.sensor&#39;, &#39;meta.task&#39;, &#39;meta.units&#39;,
-       &#39;meta.vsn&#39;, &#39;meta.zone&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;name&#39;, &#39;value&#39;, &#39;meta.host&#39;, &#39;meta.job&#39;, &#39;meta.missing&#39;, &#39;meta.node&#39;,
+       &#39;meta.plugin&#39;, &#39;meta.sensor&#39;, &#39;meta.task&#39;, &#39;meta.units&#39;, &#39;meta.vsn&#39;,
+       &#39;meta.zone&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -736,7 +554,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;wxt.env.temp&#39;, &#39;wxt.heater.temp&#39;, &#39;wxt.env.pressure&#39;, &#39;wxt.heater.volt&#39;, &#39;wxt.wind.speed&#39;, &#39;wxt.rain.accumulation&#39;, &#39;wxt.env.humidity&#39;, &#39;wxt.wind.direction&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;wxt.env.humidity&#39;, &#39;wxt.env.temp&#39;, &#39;wxt.heater.volt&#39;, &#39;wxt.rain.accumulation&#39;, &#39;wxt.env.pressure&#39;, &#39;wxt.wind.direction&#39;, &#39;wxt.heater.temp&#39;, &#39;wxt.wind.speed&#39;}
 </pre></div>
 </div>
 </div>
@@ -752,8 +570,7 @@ document.write(`
 <span class="n">no_data_df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2099-04-10T12:00:00Z&quot;</span><span class="p">,</span>
                                     <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2099-04-10T15:00:00Z&quot;</span><span class="p">,</span> 
                                     <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
-                                        <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;10.31.81.1:5000/local/waggle-wxt536&quot;</span><span class="p">,</span>
-                                        <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W057&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W08D&quot;</span><span class="p">,</span>
                                         <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
                                     <span class="p">}</span>
 <span class="p">)</span>
@@ -827,7 +644,6 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>timestamp</th>
       <th>name</th>
       <th>value</th>
       <th>meta.host</th>
@@ -841,86 +657,96 @@ document.write(`
       <th>meta.vsn</th>
       <th>meta.zone</th>
     </tr>
+    <tr>
+      <th>timestamp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>95278</th>
-      <td>2023-04-10 12:00:00.030623851+00:00</td>
+      <th>2023-07-02 12:00:00.029156535+00:00</th>
       <td>wxt.env.temp</td>
-      <td>8.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>95279</th>
-      <td>2023-04-10 12:00:00.110927910+00:00</td>
+      <th>2023-07-02 12:00:00.107252119+00:00</th>
       <td>wxt.env.temp</td>
-      <td>8.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>95280</th>
-      <td>2023-04-10 12:00:00.185660209+00:00</td>
+      <th>2023-07-02 12:00:00.206164123+00:00</th>
       <td>wxt.env.temp</td>
-      <td>8.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>95281</th>
-      <td>2023-04-10 12:00:00.259648308+00:00</td>
+      <th>2023-07-02 12:00:00.283311181+00:00</th>
       <td>wxt.env.temp</td>
-      <td>8.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>95282</th>
-      <td>2023-04-10 12:00:00.339504875+00:00</td>
+      <th>2023-07-02 12:00:00.364271449+00:00</th>
       <td>wxt.env.temp</td>
-      <td>8.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
@@ -937,93 +763,90 @@ document.write(`
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
-      <th>142912</th>
-      <td>2023-04-10 12:59:59.699540132+00:00</td>
+      <th>2023-07-02 12:59:59.600882716+00:00</th>
       <td>wxt.env.temp</td>
-      <td>11.1</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>142913</th>
-      <td>2023-04-10 12:59:59.774177079+00:00</td>
+      <th>2023-07-02 12:59:59.684669667+00:00</th>
       <td>wxt.env.temp</td>
-      <td>11.1</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>142914</th>
-      <td>2023-04-10 12:59:59.848843626+00:00</td>
+      <th>2023-07-02 12:59:59.760763484+00:00</th>
       <td>wxt.env.temp</td>
-      <td>11.1</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>142915</th>
-      <td>2023-04-10 12:59:59.922973433+00:00</td>
+      <th>2023-07-02 12:59:59.841247667+00:00</th>
       <td>wxt.env.temp</td>
-      <td>11.1</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>142916</th>
-      <td>2023-04-10 12:59:59.996916134+00:00</td>
+      <th>2023-07-02 12:59:59.920791677+00:00</th>
       <td>wxt.env.temp</td>
-      <td>11.1</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
   </tbody>
 </table>
-<p>47639 rows × 13 columns</p>
+<p>43858 rows × 12 columns</p>
 </div></div></div>
 </div>
+<section id="plot-the-temperature">
+<h3>Plot the Temperature<a class="headerlink" href="#plot-the-temperature" title="Permalink to this heading">#</a></h3>
+<p>Let’s start by plotting the temperature. This is stored as the <code class="docutils literal notranslate"><span class="pre">wxt.env.temp</span></code> variable, with units of degrees Celsius. We use Pandas directly here, calling <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> with some extra parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1032,12 +855,12 @@ document.write(`
 <span class="n">date_form</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
 
 <span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the ambient temp</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wxt.env.temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-                                           <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
-                                           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Ambient Temperature </span><span class="se">\n</span><span class="s1"> [Degree Celsius]&#39;</span><span class="p">,</span>
-                                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 1 Node (W057) - Vaisala WXT536&#39;</span><span class="p">,</span>
-                                           <span class="n">ax</span><span class="o">=</span><span class="n">axs</span>
-                                          <span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wxt.env.temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
+                                   <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Ambient Temperature </span><span class="se">\n</span><span class="s1"> [Degree Celsius]&#39;</span><span class="p">,</span>
+                                   <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 3 Node (W08D) - Vaisala WXT536&#39;</span><span class="p">,</span>
+                                   <span class="n">ax</span><span class="o">=</span><span class="n">axs</span>
+                                  <span class="p">)</span>
 
 <span class="n">axs</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">date_form</span><span class="p">)</span>
 <span class="n">axs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -1045,9 +868,30 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a21a533e6f01d387ddea9bedf506d01dd6fec637b4ac255d787519494e1f7dba.png" src="../../_images/a21a533e6f01d387ddea9bedf506d01dd6fec637b4ac255d787519494e1f7dba.png" />
+<img alt="../../_images/c5411e1888cbe1f26da61785763b522da396adad687934c12d66451d0c4454c2.png" src="../../_images/c5411e1888cbe1f26da61785763b522da396adad687934c12d66451d0c4454c2.png" />
 </div>
 </div>
+</section>
+<section id="plot-the-rainfall-accumulation">
+<h3>Plot the Rainfall Accumulation<a class="headerlink" href="#plot-the-rainfall-accumulation" title="Permalink to this heading">#</a></h3>
+<p>One of the variables in the dataset is <code class="docutils literal notranslate"><span class="pre">wxt.rain.accumulation</span></code>. This is a total of the rainfall since the instrument was first configured. We can use this to determine the <strong>event total</strong> using an additional calculation. The total rainfall can be calculated by subtracting the total by the first value of the event period.</p>
+<p>We start by subsetting our accumulation variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accumulation</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wxt.rain.accumulation&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After subsetting our field, we calculate the event total, as described in the previous section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">single_event_total</span> <span class="o">=</span> <span class="n">accumulation</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">accumulation</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can plot the results! Adding in proper units and labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1055,34 +899,61 @@ document.write(`
 <span class="c1"># Define Format of how the date is displayed</span>
 <span class="n">date_form</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
 
-<span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the ambient temp</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wxt.wind.speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="c1"># Note: Since we already subset the data, we use our processed single_event_total variable</span>
+<span class="n">single_event_total</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
+                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Precipitation Accumulation </span><span class="se">\n</span><span class="s1"> [mm]&#39;</span><span class="p">,</span>
+                        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 3 Node (W08D) - Vaisala WXT536&#39;</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">axs</span>
+                       <span class="p">)</span>
+
+<span class="n">axs</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">date_form</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/596259190f26800fad428c865ec1441d5f80ff93288745757cda26a4b7a8acf0.png" src="../../_images/596259190f26800fad428c865ec1441d5f80ff93288745757cda26a4b7a8acf0.png" />
+</div>
+</div>
+</section>
+<section id="plot-the-wind-speed-wind-direction">
+<h3>Plot the Wind Speed/Wind Direction<a class="headerlink" href="#plot-the-wind-speed-wind-direction" title="Permalink to this heading">#</a></h3>
+<p>Wind speed and direction are important meteorological variables. We can plot two variables on a single plot, with different y-axes, allowing us to see how wind speed and direction vary across time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Define Format of how the date is displayed</span>
+<span class="n">date_form</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+
+<span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the wind speed</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wxt.wind.speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
                                            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
                                            <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Wind Speed </span><span class="se">\n</span><span class="s1"> [meters per second]&#39;</span><span class="p">,</span>
-                                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 1 Node (W057) - Vaisala WXT536&#39;</span><span class="p">,</span>
+                                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 3 Node (W08D) - Vaisala WXT536&#39;</span><span class="p">,</span>
                                            <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span>
                                            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span>
                                           <span class="p">)</span>
 <span class="c1"># Set the left hand y-axis label and color to match variable displayed</span>
 <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed </span><span class="se">\n</span><span class="s1"> [meters per second]&#39;</span><span class="p">,</span> 
-               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span>
+               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span>
                <span class="p">)</span>
 <span class="c1"># Change left hand y-axis tick colors to match variable displayed</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>  <span class="c1"># instantiate a second axes that shares the same x-axis</span>
 
-<span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the ambient temp</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wxt.wind.direction&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the wind direction</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wxt.wind.direction&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
                                                 <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
-                                                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 1 Node (W057) - Vaisala WXT536&#39;</span><span class="p">,</span>
+                                                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 3 Node (W08D) - Vaisala WXT536&#39;</span><span class="p">,</span>
                                                 <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span>
                                                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span>
                                                <span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Direction </span><span class="se">\n</span><span class="s1"> [Degrees from North]&#39;</span><span class="p">,</span> 
-               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span>
+               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span>
                <span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">)</span>
 
 <span class="n">axs</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">date_form</span><span class="p">)</span>
 <span class="n">axs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -1090,9 +961,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/12a4aeefd6a651e3f7ec193d5ec3df105dc3ece623abe2ea433983900dd151e0.png" src="../../_images/12a4aeefd6a651e3f7ec193d5ec3df105dc3ece623abe2ea433983900dd151e0.png" />
+<img alt="../../_images/0a04c8764d772a8a1d24ab549faebd533685cad715cf4328cb770b2469e049de.png" src="../../_images/0a04c8764d772a8a1d24ab549faebd533685cad715cf4328cb770b2469e049de.png" />
 </div>
 </div>
+</section>
 </section>
 <section id="display-diurnal-temperature-cycle">
 <h2>Display Diurnal Temperature Cycle<a class="headerlink" href="#display-diurnal-temperature-cycle" title="Permalink to this heading">#</a></h2>
@@ -1106,12 +978,12 @@ you can also query specific variables using the ‘name’ filter</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the SAGE data client to access the data; use &#39;name&#39; filter</span>
 
-<span class="n">df_temp</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-04-09T00:00:00Z&quot;</span><span class="p">,</span>
-                                 <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-04-10T00:00:00Z&quot;</span><span class="p">,</span> 
+<span class="n">df_temp</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-07-02T00:00:00Z&quot;</span><span class="p">,</span>
+                                 <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-07-03T00:00:00Z&quot;</span><span class="p">,</span> 
                                     <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
                                         <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s1">&#39;wxt.env.temp&#39;</span><span class="p">,</span>
-                                        <span class="s2">&quot;vsn&quot;</span> <span class="p">:</span> <span class="s2">&quot;W057&quot;</span><span class="p">,</span>
-                                        <span class="s2">&quot;sensor&quot;</span> <span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
+                                        <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W08D&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
                                     <span class="p">}</span>
 <span class="p">)</span>
 </pre></div>
@@ -1161,82 +1033,82 @@ you can also query specific variables using the ‘name’ filter</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2023-04-09 00:00:00.067928914+00:00</td>
+      <td>2023-07-02 00:00:00.045553673+00:00</td>
       <td>wxt.env.temp</td>
-      <td>14.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>23.1</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2023-04-09 00:00:00.141564285+00:00</td>
+      <td>2023-07-02 00:00:00.139277863+00:00</td>
       <td>wxt.env.temp</td>
-      <td>14.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>23.1</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2023-04-09 00:00:00.220146207+00:00</td>
+      <td>2023-07-02 00:00:00.247003531+00:00</td>
       <td>wxt.env.temp</td>
-      <td>14.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>23.1</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2023-04-09 00:00:00.300329683+00:00</td>
+      <td>2023-07-02 00:00:00.333327344+00:00</td>
       <td>wxt.env.temp</td>
-      <td>14.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>23.1</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2023-04-09 00:00:00.374312322+00:00</td>
+      <td>2023-07-02 00:00:00.413374638+00:00</td>
       <td>wxt.env.temp</td>
-      <td>14.4</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>23.1</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
@@ -1256,88 +1128,88 @@ you can also query specific variables using the ‘name’ filter</p>
       <td>...</td>
     </tr>
     <tr>
-      <th>1143683</th>
-      <td>2023-04-09 23:59:59.694080255+00:00</td>
+      <th>1052501</th>
+      <td>2023-07-02 23:59:59.631203637+00:00</td>
       <td>wxt.env.temp</td>
-      <td>16.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>17.9</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>1143684</th>
-      <td>2023-04-09 23:59:59.768710002+00:00</td>
+      <th>1052502</th>
+      <td>2023-07-02 23:59:59.713241159+00:00</td>
       <td>wxt.env.temp</td>
-      <td>16.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>17.9</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>1143685</th>
-      <td>2023-04-09 23:59:59.843372677+00:00</td>
+      <th>1052503</th>
+      <td>2023-07-02 23:59:59.790870013+00:00</td>
       <td>wxt.env.temp</td>
-      <td>16.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>17.9</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>1143686</th>
-      <td>2023-04-09 23:59:59.924947588+00:00</td>
+      <th>1052504</th>
+      <td>2023-07-02 23:59:59.872975312+00:00</td>
       <td>wxt.env.temp</td>
-      <td>16.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>17.9</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
     <tr>
-      <th>1143687</th>
-      <td>2023-04-09 23:59:59.999351284+00:00</td>
+      <th>1052505</th>
+      <td>2023-07-02 23:59:59.951280016+00:00</td>
       <td>wxt.env.temp</td>
-      <td>16.6</td>
-      <td>000048b02d3ae336.ws-nxcore</td>
-      <td>Pluginctl</td>
+      <td>17.9</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
       <td>-9999.9</td>
-      <td>000048b02d3ae336</td>
-      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
       <td>vaisala-wxt536</td>
-      <td>wxt-536</td>
+      <td>waggle-wxt536</td>
       <td>degree Celsius</td>
-      <td>W057</td>
+      <td>W08D</td>
       <td>core</td>
     </tr>
   </tbody>
 </table>
-<p>1143688 rows × 13 columns</p>
+<p>1052506 rows × 13 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1350,7 +1222,7 @@ you can also query specific variables using the ‘name’ filter</p>
 <span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the ambient temp</span>
 <span class="n">df_temp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
                                           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Ambient Temperature </span><span class="se">\n</span><span class="s1"> [Degree Celsius]&#39;</span><span class="p">,</span>
-                                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 1 Node (W057) - Vaisala WXT536&#39;</span><span class="p">,</span>
+                                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Level 3 Node (W08D) - Vaisala WXT536&#39;</span><span class="p">,</span>
                                           <span class="n">ax</span><span class="o">=</span><span class="n">axs</span>
                                           <span class="p">)</span>
 
@@ -1360,7 +1232,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04f9198db1887eab67ca1145d63d0ad595934bf528a7baa60269a2b0395f8611.png" src="../../_images/04f9198db1887eab67ca1145d63d0ad595934bf528a7baa60269a2b0395f8611.png" />
+<img alt="../../_images/d5a949d7c38fb2d37b4b701c5c03aa93796f441db5e7041c0c5459faefc15bf2.png" src="../../_images/d5a949d7c38fb2d37b4b701c5c03aa93796f441db5e7041c0c5459faefc15bf2.png" />
 </div>
 </div>
 </section>
@@ -1374,7 +1246,7 @@ you can also query specific variables using the ‘name’ filter</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instead of saving every value explored previously, I am just going to save the variable I am interested in (i.e. temperature)</span>
 <span class="c1"># Comma Separated Values (CSV) files are common text files that can be read with any text editor (or Microsoft Excel / Mac Numbers)</span>
-<span class="n">df_temp</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;wxt536_W057_ambient_temp.csv&#39;</span><span class="p">)</span>
+<span class="n">df_temp</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;wxt536_W08D_ambient_temp.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1382,18 +1254,18 @@ you can also query specific variables using the ‘name’ filter</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s check the size of that file using simple unix commands</span>
-<span class="o">!</span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="s1">&#39;wxt536_W057_ambient_temp.csv&#39;</span>
+<span class="o">!</span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="s1">&#39;wxt536_W08D_ambient_temp.csv&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 226M Aug 15 13:31 wxt536_W057_ambient_temp.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 242M Aug 15 14:24 wxt536_W08D_ambient_temp.csv
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>225M MB is a large file for just one environmental parameter.</p></li>
+<li><p>242M MB is a large file for just one environmental parameter.</p></li>
 <li><p>It would be much larger if we saved all the observations for an hour (or day, or week, or month, etc)</p></li>
 </ul>
 <div class="admonition alert alert-info">
@@ -1402,7 +1274,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_temp</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s1">&#39;wxt536_W057_ambient_temp.parquet&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_temp</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s1">&#39;wxt536_W08D_ambient_temp.parquet&#39;</span><span class="p">,</span>
                    <span class="n">use_deprecated_int96_timestamps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1411,18 +1283,18 @@ you can also query specific variables using the ‘name’ filter</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s check the size of the parquet file</span>
-<span class="o">!</span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="s1">&#39;wxt536_W057_ambient_temp.parquet&#39;</span>
+<span class="o">!</span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="s1">&#39;wxt536_W08D_ambient_temp.parquet&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 7.9M Aug 15 13:31 wxt536_W057_ambient_temp.parquet
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 7.3M Aug 15 14:24 wxt536_W08D_ambient_temp.parquet
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>Only 8MB saving the same data as this format!</p></li>
+<li><p>Only 7.2MB saving the same data as this format!</p></li>
 <li><p>Less than 4% of the space taken up by the same data in CSV format!</p></li>
 </ul>
 </section>
@@ -1489,7 +1361,14 @@ you can also query specific variables using the ‘name’ filter</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interact-with-wxt-536-data">Interact with WXT-536 Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#investigate-the-dataset">Investigate the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-the-data">Searching for the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#investigate-the-dataset">Investigate the Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-temperature">Plot the Temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-rainfall-accumulation">Plot the Rainfall Accumulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-wind-speed-wind-direction">Plot the Wind Speed/Wind Direction</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-diurnal-temperature-cycle">Display Diurnal Temperature Cycle</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-your-selected-dataset">Save Your Selected Dataset</a></li>
 </ul>
