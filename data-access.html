@@ -331,12 +331,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#waggle-hosted-data">Waggle-hosted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#globus-data-transfer">Globus Data Transfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -352,7 +356,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-access">
 <h1>Data Access<a class="headerlink" href="#data-access" title="Permalink to this heading">#</a></h1>
-<p>All of the data from CROCUS is open and freely available. Currently, you can access the data using <a class="reference external" href="https://www.globus.org/">globus</a>.</p>
+<p>All of the data from CROCUS is open and freely available.</p>
+<section id="waggle-hosted-data">
+<h2>Waggle-hosted Data<a class="headerlink" href="#waggle-hosted-data" title="Permalink to this heading">#</a></h2>
+<p>Most of the observations can be accessed using the Waggle cyberinfrastructure. We encourage people to check out the CROCUS node overview page, https://crocus.sagecontinuum.org/nodes. From there, you can select which location you are interested in, and find sample scripts to download the data. Data can be downloaded using the <a class="reference external" href="https://github.com/sagecontinuum/sage-data-client"><code class="docutils literal notranslate"><span class="pre">sage-data-client</span></code></a>, with an example provided in the <a class="reference external" href="https://crocus-urban.github.io/instrument-cookbooks/notebooks/crocus_level1_node/vaisala_wxt536.html">WXT sensor cookbook</a>.</p>
+</section>
+<section id="globus-data-transfer">
+<h2>Globus Data Transfer<a class="headerlink" href="#globus-data-transfer" title="Permalink to this heading">#</a></h2>
+<p>For sensors not yet integrated into the Waggle cyberinfrastructure, we use <a class="reference external" href="https://www.globus.org/">Globus</a> for data transfer.</p>
 <p>Globus is a free software that allows to safely transfer data between two different points (endpoints). For example, the data from one instrument might be located on a computer at the observational site (one endpoint) and you would like to transfer that data to your local computer (another endpoint).</p>
 <p>We encourage you to read over the how to get started guide from their documentation</p>
 <ul class="simple">
@@ -363,14 +374,14 @@ document.write(`
 <p>The datasets have not been quality corrected or controlled. This is raw data.</p>
 </div>
 <section id="doppler-lidar">
-<h2>Doppler LiDAR<a class="headerlink" href="#doppler-lidar" title="Permalink to this heading">#</a></h2>
+<h3>Doppler LiDAR<a class="headerlink" href="#doppler-lidar" title="Permalink to this heading">#</a></h3>
 <p>The Doppler LiDAR instrument collects information about the velocity and scattering properties across different times and distances from the instrument, which in most cases for this project, is the ground.</p>
 <p>We encourage you read the documentation about a Doppler LiDAR similar to the one used for CROCUS on the Atmospheric Radiation Measurement user facility page.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.arm.gov/capabilities/instruments/dl">Link to information about the Doppler LiDAR instrument</a></p></li>
 </ul>
 <section id="link-to-the-doppler-lidar-data">
-<h3>Link to the Doppler LiDAR data<a class="headerlink" href="#link-to-the-doppler-lidar-data" title="Permalink to this heading">#</a></h3>
+<h4>Link to the Doppler LiDAR data<a class="headerlink" href="#link-to-the-doppler-lidar-data" title="Permalink to this heading">#</a></h4>
 <p>Here is a link to the data:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://app.globus.org/file-manager?origin_id=d8da717e-ca5c-11ed-9622-4b6fcc022e5a&amp;origin_path=%2F">Link to the LiDAR data globus endpoint</a></p></li>
@@ -378,17 +389,18 @@ document.write(`
 </section>
 </section>
 <section id="sodar">
-<h2>SODAR<a class="headerlink" href="#sodar" title="Permalink to this heading">#</a></h2>
+<h3>SODAR<a class="headerlink" href="#sodar" title="Permalink to this heading">#</a></h3>
 <p>The SODAR (Sonic Detection and Ranging) wind profiler measures wind profiles and backscattered signal strength (from the ARM instrument guide).</p>
 <p>We encourage you read the documentation about a Doppler LiDAR similar to the one used for CROCUS on the ARM user facility webpage.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.arm.gov/capabilities/instruments/sodar">Link to information about the SODAR</a></p></li>
 </ul>
 <section id="link-to-the-sodar-data">
-<h3>Link to the SODAR data<a class="headerlink" href="#link-to-the-sodar-data" title="Permalink to this heading">#</a></h3>
+<h4>Link to the SODAR data<a class="headerlink" href="#link-to-the-sodar-data" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://app.globus.org/file-manager?origin_id=160b4496-b6f4-11ed-a982-5f0e34a3cc4f&amp;origin_path=%2F">Link to the SODAR data globus endpoint</a></p></li>
 </ul>
+</section>
 </section>
 </section>
 </section>
@@ -460,12 +472,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#waggle-hosted-data">Waggle-hosted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#globus-data-transfer">Globus Data Transfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
