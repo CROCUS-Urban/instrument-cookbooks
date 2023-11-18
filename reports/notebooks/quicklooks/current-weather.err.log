@@ -85,13 +85,16 @@ def generate_dataset(df, variables, rename_variable_dict=variable_rename_dict):
         reindexed = df.set_index(['timestamp'])
     return xr.merge([generate_data_array(reindexed, variable) for variable in variables])
 
+crocus_nodes = "W08D"
+
 
 # Query and load for n numbder of days
 wxt_df = sage_data_client.query(
     start=start,
     filter={
         "sensor": "vaisala-wxt536",
-        "name": "wxt.env.*"
+        "name": "wxt.env.*",
+        "vsn": crocus_nodes
     }
 )
 
@@ -99,7 +102,8 @@ wxt_df1 = sage_data_client.query(
     start=start,
     filter={
         "sensor": "vaisala-wxt536",
-        "name": "wxt.wind.*"
+        "name": "wxt.wind.*",
+        "vsn": crocus_nodes
     }
 )
 
@@ -130,127 +134,125 @@ try:
     
     
 except:
-    plots = pn.Row(title='No Data Available')
-
-
-
-
+    minute_ds = None
+    plots = pn.Row('No Data Available')
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[1], line 103[0m
-[1;32m    102[0m plots [38;5;241m=[39m []
-[0;32m--> 103[0m temp_plot [38;5;241m=[39m [43mwxt_ds[49m[38;5;241;43m.[39;49m[43mair_temperature[49m[38;5;241;43m.[39;49m[43mhvplot[49m[43m([49m[43mcolor[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mred[39;49m[38;5;124;43m'[39;49m[43m,[49m
-[1;32m    104[0m [43m                                          [49m[43mlabel[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mAir Temperature (degC)[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[1;32m    105[0m dewp_plot [38;5;241m=[39m wxt_ds[38;5;241m.[39mair_dewpoint_temperature[38;5;241m.[39mhvplot(color[38;5;241m=[39m[38;5;124m'[39m[38;5;124mgreen[39m[38;5;124m'[39m,
-[1;32m    106[0m                                                    label[38;5;241m=[39m[38;5;124m'[39m[38;5;124mDewpoint Temperature (degC)[39m[38;5;124m'[39m)
+[0;31mValueError[0m                                Traceback (most recent call last)
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:566[0m, in [0;36mHTTPResponse._get_chunk_left[0;34m(self)[0m
+[1;32m    565[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 566[0m     chunk_left [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_read_next_chunk_size[49m[43m([49m[43m)[49m
+[1;32m    567[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/hvplot/plotting/core.py:95[0m, in [0;36mhvPlotBase.__call__[0;34m(self, x, y, kind, **kwds)[0m
-[1;32m     93[0m         [38;5;28;01mreturn[39;00m pn[38;5;241m.[39mpanel(plot, [38;5;241m*[39m[38;5;241m*[39mpanel_dict)
-[0;32m---> 95[0m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_get_converter[49m[43m([49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43mkind[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m[43m([49m[43mkind[49m[43m,[49m[43m [49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m)[49m
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:533[0m, in [0;36mHTTPResponse._read_next_chunk_size[0;34m(self)[0m
+[1;32m    532[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 533[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mint[39;49m[43m([49m[43mline[49m[43m,[49m[43m [49m[38;5;241;43m16[39;49m[43m)[49m
+[1;32m    534[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
+[1;32m    535[0m     [38;5;66;03m# close the connection as protocol synchronisation is[39;00m
+[1;32m    536[0m     [38;5;66;03m# probably lost[39;00m
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/hvplot/converter.py:1275[0m, in [0;36mHoloViewsConverter.__call__[0;34m(self, kind, x, y)[0m
-[1;32m   1273[0m     dataset [38;5;241m=[39m dataset[38;5;241m.[39mredim([38;5;241m*[39m[38;5;241m*[39m[38;5;28mself[39m[38;5;241m.[39m_redim)
-[0;32m-> 1275[0m obj [38;5;241m=[39m [43mmethod[49m[43m([49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m)[49m
-[1;32m   1276[0m obj[38;5;241m.[39m_dataset [38;5;241m=[39m dataset
-
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/hvplot/converter.py:2184[0m, in [0;36mHoloViewsConverter.image[0;34m(self, x, y, z, data)[0m
-[1;32m   2183[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mgeo: params[[38;5;124m'[39m[38;5;124mcrs[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mcrs
-[0;32m-> 2184[0m [38;5;28;01mreturn[39;00m ([43melement[49m[43m([49m[43mdata[49m[43m,[49m[43m [49m[43m[[49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m][49m[43m,[49m[43m [49m[43mz[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m[38;5;241m.[39mredim([38;5;241m*[39m[38;5;241m*[39mredim)
-[1;32m   2185[0m         [38;5;241m.[39mapply([38;5;28mself[39m[38;5;241m.[39m_set_backends_opts, cur_opts[38;5;241m=[39mcur_opts, compat_opts[38;5;241m=[39mcompat_opts))
-
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/holoviews/element/raster.py:291[0m, in [0;36mImage.__init__[0;34m(self, data, kdims, vdims, bounds, extents, xdensity, ydensity, rtol, **params)[0m
-[1;32m    290[0m yvals [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mdimension_values([38;5;241m1[39m, [38;5;28;01mFalse[39;00m)
-[0;32m--> 291[0m b, t, ydensity, _ [38;5;241m=[39m [43mutil[49m[38;5;241;43m.[39;49m[43mbound_range[49m[43m([49m[43myvals[49m[43m,[49m[43m [49m[43mydensity[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_time_unit[49m[43m)[49m
-[1;32m    292[0m bounds [38;5;241m=[39m BoundingBox(points[38;5;241m=[39m((l, b), (r, t)))
-
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/holoviews/core/util.py:2084[0m, in [0;36mbound_range[0;34m(vals, density, time_unit)[0m
-[1;32m   2083[0m warnings[38;5;241m.[39mfilterwarnings([38;5;124m'[39m[38;5;124mignore[39m[38;5;124m'[39m, [38;5;124mr[39m[38;5;124m'[39m[38;5;124minvalid value encountered in (double_scalars|scalar divide)[39m[38;5;124m'[39m)
-[0;32m-> 2084[0m full_precision_density [38;5;241m=[39m [43mcompute_density[49m[43m([49m[43mlow[49m[43m,[49m[43m [49m[43mhigh[49m[43m,[49m[43m [49m[38;5;28;43mlen[39;49m[43m([49m[43mvals[49m[43m)[49m[38;5;241;43m-[39;49m[38;5;241;43m1[39;49m[43m)[49m
-[1;32m   2085[0m [38;5;28;01mwith[39;00m np[38;5;241m.[39merrstate(over[38;5;241m=[39m[38;5;124m'[39m[38;5;124mignore[39m[38;5;124m'[39m):
-
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/holoviews/core/util.py:2115[0m, in [0;36mcompute_density[0;34m(start, end, length, time_unit)[0m
-[1;32m   2114[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(end, [38;5;28mint[39m): end [38;5;241m=[39m [38;5;28mfloat[39m(end)
-[0;32m-> 2115[0m diff [38;5;241m=[39m [43mend[49m[38;5;241;43m-[39;49m[43mstart[49m
-[1;32m   2116[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(diff, timedelta_types):
-
-[0;31mTypeError[0m: unsupported operand type(s) for -: 'str' and 'str'
+[0;31mValueError[0m: invalid literal for int() with base 16: b''
 
 During handling of the above exception, another exception occurred:
 
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[1], line 116[0m
-[1;32m    111[0m         plots[38;5;241m.[39mappend((wxt_ds[variable][38;5;241m.[39mhvplot[38;5;241m.[39mline(label[38;5;241m=[39m[38;5;124m'[39m[38;5;124m10 Hz Data[39m[38;5;124m'[39m) [38;5;241m*[39m 
-[1;32m    112[0m                      minute_ds[variable][38;5;241m.[39mhvplot[38;5;241m.[39mline(label[38;5;241m=[39m[38;5;124m'[39m[38;5;124m1 Minute Data[39m[38;5;124m'[39m))[38;5;241m.[39mopts(hooks[38;5;241m=[39m[apply_formatter]))
-[1;32m    115[0m [38;5;28;01mexcept[39;00m:
-[0;32m--> 116[0m     plots [38;5;241m=[39m [43mpn[49m[38;5;241;43m.[39;49m[43mRow[49m[43m([49m[43mtitle[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mNo Data Available[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[0;31mIncompleteRead[0m                            Traceback (most recent call last)
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:583[0m, in [0;36mHTTPResponse._read_chunked[0;34m(self, amt)[0m
+[1;32m    582[0m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
+[0;32m--> 583[0m     chunk_left [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_get_chunk_left[49m[43m([49m[43m)[49m
+[1;32m    584[0m     [38;5;28;01mif[39;00m chunk_left [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/layout/base.py:808[0m, in [0;36mListPanel.__init__[0;34m(self, *objects, **params)[0m
-[1;32m    806[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m resolve_ref(objects) [38;5;129;01mor[39;00m iscoroutinefunction(objects):
-[1;32m    807[0m         params[[38;5;124m'[39m[38;5;124mobjects[39m[38;5;124m'[39m] [38;5;241m=[39m [panel(pane) [38;5;28;01mfor[39;00m pane [38;5;129;01min[39;00m objects]
-[0;32m--> 808[0m [38;5;28;43msuper[39;49m[43m([49m[43mPanel[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:568[0m, in [0;36mHTTPResponse._get_chunk_left[0;34m(self)[0m
+[1;32m    567[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
+[0;32m--> 568[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m)
+[1;32m    569[0m [38;5;28;01mif[39;00m chunk_left [38;5;241m==[39m [38;5;241m0[39m:
+[1;32m    570[0m     [38;5;66;03m# last chunk: 1*("0") [ chunk-extension ] CRLF[39;00m
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/reactive.py:556[0m, in [0;36mReactive.__init__[0;34m(self, refs, **params)[0m
-[1;32m    554[0m     [38;5;28;01mif[39;00m refs:
-[1;32m    555[0m         param[38;5;241m.[39mbind([38;5;28mself[39m[38;5;241m.[39m_sync_refs, [38;5;241m*[39mrefs, watch[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
-[0;32m--> 556[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+[0;31mIncompleteRead[0m: IncompleteRead(0 bytes read)
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/reactive.py:118[0m, in [0;36mSyncable.__init__[0;34m(self, **params)[0m
-[1;32m    116[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, [38;5;241m*[39m[38;5;241m*[39mparams):
-[1;32m    117[0m     [38;5;28mself[39m[38;5;241m.[39m_themer [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[0;32m--> 118[0m     [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
-[1;32m    120[0m     [38;5;66;03m# Useful when updating model properties which trigger potentially[39;00m
-[1;32m    121[0m     [38;5;66;03m# recursive events[39;00m
-[1;32m    122[0m     [38;5;28mself[39m[38;5;241m.[39m_updating [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+During handling of the above exception, another exception occurred:
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/viewable.py:694[0m, in [0;36mViewable.__init__[0;34m(self, **params)[0m
-[1;32m    692[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, [38;5;241m*[39m[38;5;241m*[39mparams):
-[1;32m    693[0m     hooks [38;5;241m=[39m params[38;5;241m.[39mpop([38;5;124m'[39m[38;5;124mhooks[39m[38;5;124m'[39m, [])
-[0;32m--> 694[0m     [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
-[1;32m    695[0m     [38;5;28mself[39m[38;5;241m.[39m_hooks [38;5;241m=[39m hooks
-[1;32m    697[0m     [38;5;28mself[39m[38;5;241m.[39m_update_loading()
+[0;31mIncompleteRead[0m                            Traceback (most recent call last)
+Cell [0;32mIn[1], line 75[0m
+[1;32m     71[0m crocus_nodes [38;5;241m=[39m [38;5;124m"[39m[38;5;124mW08D[39m[38;5;124m"[39m
+[1;32m     74[0m [38;5;66;03m# Query and load for n numbder of days[39;00m
+[0;32m---> 75[0m wxt_df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m
+[1;32m     76[0m [43m    [49m[43mstart[49m[38;5;241;43m=[39;49m[43mstart[49m[43m,[49m
+[1;32m     77[0m [43m    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
+[1;32m     78[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     79[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mwxt.env.*[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     80[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mvsn[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[43mcrocus_nodes[49m
+[1;32m     81[0m [43m    [49m[43m}[49m
+[1;32m     82[0m [43m)[49m
+[1;32m     84[0m wxt_df1 [38;5;241m=[39m sage_data_client[38;5;241m.[39mquery(
+[1;32m     85[0m     start[38;5;241m=[39mstart,
+[1;32m     86[0m     [38;5;28mfilter[39m[38;5;241m=[39m{
+[0;32m   (...)[0m
+[1;32m     90[0m     }
+[1;32m     91[0m )
+[1;32m     93[0m wxt_df [38;5;241m=[39m pd[38;5;241m.[39mconcat([wxt_df, wxt_df1])
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/viewable.py:532[0m, in [0;36mRenderable.__init__[0;34m(self, **params)[0m
-[1;32m    530[0m [38;5;28mself[39m[38;5;241m.[39m_comms [38;5;241m=[39m {}
-[1;32m    531[0m [38;5;28mself[39m[38;5;241m.[39m_kernels [38;5;241m=[39m {}
-[0;32m--> 532[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
-[1;32m    533[0m [38;5;28mself[39m[38;5;241m.[39m_found_links [38;5;241m=[39m [38;5;28mset[39m()
-[1;32m    534[0m [38;5;28mself[39m[38;5;241m.[39m_logger [38;5;241m=[39m logging[38;5;241m.[39mgetLogger([38;5;124mf[39m[38;5;124m'[39m[38;5;132;01m{[39;00m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;132;01m{[39;00m[38;5;28mtype[39m([38;5;28mself[39m)[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m'[39m)
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:106[0m, in [0;36mquery[0;34m(start, end, head, tail, bucket, filter, endpoint)[0m
+[1;32m    104[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
+[1;32m    105[0m     f [38;5;241m=[39m GzipFile(fileobj[38;5;241m=[39mf, mode[38;5;241m=[39m[38;5;124m"[39m[38;5;124mrb[39m[38;5;124m"[39m)
+[0;32m--> 106[0m [38;5;28;01mreturn[39;00m [43mload[49m[43m([49m[43mf[49m[43m)[49m
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/viewable.py:298[0m, in [0;36mLayoutable.__init__[0;34m(self, **params)[0m
-[1;32m    296[0m [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124mdesign[39m[38;5;124m'[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m params [38;5;129;01mand[39;00m [38;5;28mself[39m[38;5;241m.[39mparam[38;5;241m.[39mdesign[38;5;241m.[39mdefault [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[1;32m    297[0m     params[[38;5;124m'[39m[38;5;124mdesign[39m[38;5;124m'[39m] [38;5;241m=[39m config[38;5;241m.[39mdesign
-[0;32m--> 298[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:163[0m, in [0;36mload[0;34m(path_or_buf)[0m
+[1;32m    160[0m         [38;5;28;01mwith[39;00m [38;5;28mopen[39m(path_or_buf, [38;5;124m"[39m[38;5;124mrb[39m[38;5;124m"[39m) [38;5;28;01mas[39;00m f:
+[1;32m    161[0m             [38;5;28;01mreturn[39;00m _load(f)
+[0;32m--> 163[0m [38;5;28;01mreturn[39;00m [43m_load[49m[43m([49m[43mpath_or_buf[49m[43m)[49m
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/param/parameterized.py:4148[0m, in [0;36mParameterized.__init__[0;34m(self, **params)[0m
-[1;32m   4146[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mparam[38;5;241m.[39mname[38;5;241m.[39mdefault [38;5;241m==[39m [38;5;28mself[39m[38;5;241m.[39m[38;5;18m__class__[39m[38;5;241m.[39m[38;5;18m__name__[39m:
-[1;32m   4147[0m     [38;5;28mself[39m[38;5;241m.[39mparam[38;5;241m.[39m_generate_name()
-[0;32m-> 4148[0m refs, deps [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mparam[49m[38;5;241;43m.[39;49m[43m_setup_params[49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
-[1;32m   4149[0m object_count [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
-[1;32m   4151[0m [38;5;28mself[39m[38;5;241m.[39m_param__private[38;5;241m.[39minitialized [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:178[0m, in [0;36m_load[0;34m(fileobj)[0m
+[1;32m    177[0m [38;5;28;01mdef[39;00m [38;5;21m_load[39m(fileobj) [38;5;241m-[39m[38;5;241m>[39m pd[38;5;241m.[39mDataFrame:
+[0;32m--> 178[0m     df [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mDataFrame[49m[43m([49m[38;5;28;43mmap[39;49m[43m([49m[43m_load_row[49m[43m,[49m[43m [49m[43mfileobj[49m[43m)[49m[43m)[49m
+[1;32m    180[0m     [38;5;66;03m# if dataframe is empty, return empty with known columns[39;00m
+[1;32m    181[0m     [38;5;28;01mif[39;00m [38;5;28mlen[39m(df) [38;5;241m==[39m [38;5;241m0[39m:
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/param/parameterized.py:1678[0m, in [0;36mas_uninitialized.<locals>.override_initialization[0;34m(self_, *args, **kw)[0m
-[1;32m   1676[0m original_initialized [38;5;241m=[39m parameterized_instance[38;5;241m.[39m_param__private[38;5;241m.[39minitialized
-[1;32m   1677[0m parameterized_instance[38;5;241m.[39m_param__private[38;5;241m.[39minitialized [38;5;241m=[39m [38;5;28;01mFalse[39;00m
-[0;32m-> 1678[0m ret [38;5;241m=[39m [43mfn[49m[43m([49m[43mself_[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkw[49m[43m)[49m
-[1;32m   1679[0m parameterized_instance[38;5;241m.[39m_param__private[38;5;241m.[39minitialized [38;5;241m=[39m original_initialized
-[1;32m   1680[0m [38;5;28;01mreturn[39;00m ret
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py:798[0m, in [0;36mDataFrame.__init__[0;34m(self, data, index, columns, dtype, copy)[0m
+[1;32m    796[0m         data [38;5;241m=[39m np[38;5;241m.[39masarray(data)
+[1;32m    797[0m     [38;5;28;01melse[39;00m:
+[0;32m--> 798[0m         data [38;5;241m=[39m [38;5;28;43mlist[39;49m[43m([49m[43mdata[49m[43m)[49m
+[1;32m    799[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(data) [38;5;241m>[39m [38;5;241m0[39m:
+[1;32m    800[0m     [38;5;28;01mif[39;00m is_dataclass(data[[38;5;241m0[39m]):
 
-File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/param/parameterized.py:1934[0m, in [0;36mParameters._setup_params[0;34m(self_, **params)[0m
-[1;32m   1932[0m desc [38;5;241m=[39m self_[38;5;241m.[39mcls[38;5;241m.[39mget_param_descriptor(name)[[38;5;241m0[39m] [38;5;66;03m# pylint: disable-msg=E1101[39;00m
-[1;32m   1933[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m desc:
-[0;32m-> 1934[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(
-[1;32m   1935[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39m[38;5;18m__class__[39m[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m.__init__() got an unexpected [39m[38;5;124m"[39m
-[1;32m   1936[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mkeyword argument [39m[38;5;132;01m{[39;00mname[38;5;132;01m!r}[39;00m[38;5;124m"[39m
-[1;32m   1937[0m     )
-[1;32m   1939[0m pobj [38;5;241m=[39m objects[38;5;241m.[39mget(name)
-[1;32m   1940[0m [38;5;28;01mif[39;00m pobj [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m pobj[38;5;241m.[39mallow_refs:
-[1;32m   1941[0m     [38;5;66;03m# Until Parameter.allow_refs=True by default we have to[39;00m
-[1;32m   1942[0m     [38;5;66;03m# speculatively evaluate a values to check whether they[39;00m
-[1;32m   1943[0m     [38;5;66;03m# contain a reference and warn the user that the[39;00m
-[1;32m   1944[0m     [38;5;66;03m# behavior may change in future.[39;00m
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:399[0m, in [0;36mGzipFile.readline[0;34m(self, size)[0m
+[1;32m    397[0m [38;5;28;01mdef[39;00m [38;5;21mreadline[39m([38;5;28mself[39m, size[38;5;241m=[39m[38;5;241m-[39m[38;5;241m1[39m):
+[1;32m    398[0m     [38;5;28mself[39m[38;5;241m.[39m_check_not_closed()
+[0;32m--> 399[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_buffer[49m[38;5;241;43m.[39;49m[43mreadline[49m[43m([49m[43msize[49m[43m)[49m
 
-[0;31mTypeError[0m: Row.__init__() got an unexpected keyword argument 'title'
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/_compression.py:68[0m, in [0;36mDecompressReader.readinto[0;34m(self, b)[0m
+[1;32m     66[0m [38;5;28;01mdef[39;00m [38;5;21mreadinto[39m([38;5;28mself[39m, b):
+[1;32m     67[0m     [38;5;28;01mwith[39;00m [38;5;28mmemoryview[39m(b) [38;5;28;01mas[39;00m view, view[38;5;241m.[39mcast([38;5;124m"[39m[38;5;124mB[39m[38;5;124m"[39m) [38;5;28;01mas[39;00m byte_view:
+[0;32m---> 68[0m         data [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[38;5;28;43mlen[39;49m[43m([49m[43mbyte_view[49m[43m)[49m[43m)[49m
+[1;32m     69[0m         byte_view[:[38;5;28mlen[39m(data)] [38;5;241m=[39m data
+[1;32m     70[0m     [38;5;28;01mreturn[39;00m [38;5;28mlen[39m(data)
+
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:494[0m, in [0;36m_GzipReader.read[0;34m(self, size)[0m
+[1;32m    491[0m     [38;5;28mself[39m[38;5;241m.[39m_new_member [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+[1;32m    493[0m [38;5;66;03m# Read a chunk of data from the file[39;00m
+[0;32m--> 494[0m buf [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_fp[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43mio[49m[38;5;241;43m.[39;49m[43mDEFAULT_BUFFER_SIZE[49m[43m)[49m
+[1;32m    496[0m uncompress [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_decompressor[38;5;241m.[39mdecompress(buf, size)
+[1;32m    497[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_decompressor[38;5;241m.[39munconsumed_tail [38;5;241m!=[39m [38;5;124mb[39m[38;5;124m"[39m[38;5;124m"[39m:
+
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:97[0m, in [0;36m_PaddedFile.read[0;34m(self, size)[0m
+[1;32m     94[0m read [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_read
+[1;32m     95[0m [38;5;28mself[39m[38;5;241m.[39m_read [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[1;32m     96[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_buffer[read:] [38;5;241m+[39m \
+[0;32m---> 97[0m        [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfile[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43msize[49m[38;5;241;43m-[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_length[49m[38;5;241;43m+[39;49m[43mread[49m[43m)[49m
+
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:460[0m, in [0;36mHTTPResponse.read[0;34m(self, amt)[0m
+[1;32m    457[0m     [38;5;28;01mreturn[39;00m [38;5;124mb[39m[38;5;124m"[39m[38;5;124m"[39m
+[1;32m    459[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mchunked:
+[0;32m--> 460[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_read_chunked[49m[43m([49m[43mamt[49m[43m)[49m
+[1;32m    462[0m [38;5;28;01mif[39;00m amt [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    463[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mlength [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m amt [38;5;241m>[39m [38;5;28mself[39m[38;5;241m.[39mlength:
+[1;32m    464[0m         [38;5;66;03m# clip the read to the "end of response"[39;00m
+
+File [0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:598[0m, in [0;36mHTTPResponse._read_chunked[0;34m(self, amt)[0m
+[1;32m    596[0m     [38;5;28;01mreturn[39;00m [38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value)
+[1;32m    597[0m [38;5;28;01mexcept[39;00m IncompleteRead:
+[0;32m--> 598[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value))
+
+[0;31mIncompleteRead[0m: IncompleteRead(331 bytes read)
 
