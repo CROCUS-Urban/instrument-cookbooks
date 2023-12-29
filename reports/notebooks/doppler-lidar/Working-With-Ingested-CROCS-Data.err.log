@@ -19,7 +19,7 @@ ds_ingested = act.io.read_netcdf('/Volumes/T7/data/DL_ingested/crocus-neiu-dlvpt
 ------------------
 
 ----- stderr -----
-/tmp/ipykernel_3929/1678292831.py:1: DeprecationWarning: act.io.armfiles.read_netcdf will be replaced in version 2.0.0 by act.io.arm.read_arm_netcdf()
+/tmp/ipykernel_3909/1678292831.py:1: DeprecationWarning: act.io.armfiles.read_netcdf will be replaced in version 2.0.0 by act.io.arm.read_arm_netcdf()
   ds_ingested = act.io.read_netcdf('/Volumes/T7/data/DL_ingested/crocus-neiu-dlvpt-a1-202308020000.nc')
 ------------------
 
