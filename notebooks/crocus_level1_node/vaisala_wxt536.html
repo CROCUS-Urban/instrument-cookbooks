@@ -507,66 +507,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Query the SAGE data client to access the data</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Note: We need to know the time period we are interested in</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-07-02T12:00:00Z&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                             <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-07-02T13:00:00Z&quot;</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                             <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                 <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W08D&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                                 <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>                             <span class="p">}</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:102,</span> in <span class="ni">query</span><span class="nt">(start, end, head, tail, bucket, filter, endpoint)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Accept-Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip&quot;</span><span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">102</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="n">content_encoding</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Encoding&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="k">if</span> <span class="s2">&quot;gzip&quot;</span> <span class="ow">in</span> <span class="n">content_encoding</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216,</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
-<span class="ne">--&gt; </span><span class="mi">216</span> <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:525,</span> in <span class="ni">OpenerDirector.open</span><span class="nt">(self, fullurl, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="k">for</span> <span class="n">processor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="p">[]):</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">meth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">processor</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">525</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">meth</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:634,</span> in <span class="ni">HTTPErrorProcessor.http_response</span><span class="nt">(self, request, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="c1"># According to RFC 2616, &quot;2xx&quot; code indicates that the client&#39;s</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="c1"># request was successfully received, understood, and accepted.</span>
-<span class="g g-Whitespace">    </span><span class="mi">633</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">200</span> <span class="o">&lt;=</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">634</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:563,</span> in <span class="ni">OpenerDirector.error</span><span class="nt">(self, proto, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="k">if</span> <span class="n">http_err</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;http_error_default&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">orig_args</span>
-<span class="ne">--&gt; </span><span class="mi">563</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496,</span> in <span class="ni">OpenerDirector._call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span>     <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">496</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:643,</span> in <span class="ni">HTTPDefaultErrorHandler.http_error_default</span><span class="nt">(self, req, fp, code, msg, hdrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="k">def</span> <span class="nf">http_error_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">643</span>     <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
-
-<span class="ne">HTTPError</span>: HTTP Error 500: Internal Server Error
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -633,7 +573,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;wxt.wind.direction&#39;, &#39;wxt.env.pressure&#39;, &#39;wxt.env.temp&#39;, &#39;wxt.env.humidity&#39;, &#39;wxt.rain.accumulation&#39;, &#39;wxt.heater.temp&#39;, &#39;wxt.heater.volt&#39;, &#39;wxt.wind.speed&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;wxt.wind.speed&#39;, &#39;wxt.env.temp&#39;, &#39;wxt.env.humidity&#39;, &#39;wxt.wind.direction&#39;, &#39;wxt.rain.accumulation&#39;, &#39;wxt.heater.volt&#39;, &#39;wxt.heater.temp&#39;, &#39;wxt.env.pressure&#39;}
 </pre></div>
 </div>
 </div>
@@ -947,7 +887,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c5411e1888cbe1f26da61785763b522da396adad687934c12d66451d0c4454c2.png" src="../../_images/c5411e1888cbe1f26da61785763b522da396adad687934c12d66451d0c4454c2.png" />
+<img alt="../../_images/e5b7386d23110bc55449a3573d23e616b7556fc7451a57b2d966a45d5f6edc63.png" src="../../_images/e5b7386d23110bc55449a3573d23e616b7556fc7451a57b2d966a45d5f6edc63.png" />
 </div>
 </div>
 </section>
@@ -991,7 +931,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/596259190f26800fad428c865ec1441d5f80ff93288745757cda26a4b7a8acf0.png" src="../../_images/596259190f26800fad428c865ec1441d5f80ff93288745757cda26a4b7a8acf0.png" />
+<img alt="../../_images/61b1ee391767c9da305d889e080ba45b589f834edcfb4f5dce484e5f4d6da8de.png" src="../../_images/61b1ee391767c9da305d889e080ba45b589f834edcfb4f5dce484e5f4d6da8de.png" />
 </div>
 </div>
 </section>
@@ -1040,7 +980,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0a04c8764d772a8a1d24ab549faebd533685cad715cf4328cb770b2469e049de.png" src="../../_images/0a04c8764d772a8a1d24ab549faebd533685cad715cf4328cb770b2469e049de.png" />
+<img alt="../../_images/44bdd796c5562581410853cb6bd0c0f4cc39aa3188633d6a1f5dcb793037e9ed.png" src="../../_images/44bdd796c5562581410853cb6bd0c0f4cc39aa3188633d6a1f5dcb793037e9ed.png" />
 </div>
 </div>
 </section>
@@ -1311,7 +1251,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d5a949d7c38fb2d37b4b701c5c03aa93796f441db5e7041c0c5459faefc15bf2.png" src="../../_images/d5a949d7c38fb2d37b4b701c5c03aa93796f441db5e7041c0c5459faefc15bf2.png" />
+<img alt="../../_images/0add8c29006b65c6af064779f4a6c4649f598fd29eec57d5fe3c741795b95b19.png" src="../../_images/0add8c29006b65c6af064779f4a6c4649f598fd29eec57d5fe3c741795b95b19.png" />
 </div>
 </div>
 </section>
@@ -1338,7 +1278,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r--  1 mgrover  staff   242M Aug 15 09:08 wxt536_W08D_ambient_temp.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 242M Dec 29 01:19 wxt536_W08D_ambient_temp.csv
 </pre></div>
 </div>
 </div>
@@ -1367,7 +1307,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r--  1 mgrover  staff   7.2M Aug 15 09:08 wxt536_W08D_ambient_temp.parquet
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 7.3M Dec 29 01:19 wxt536_W08D_ambient_temp.parquet
 </pre></div>
 </div>
 </div>
