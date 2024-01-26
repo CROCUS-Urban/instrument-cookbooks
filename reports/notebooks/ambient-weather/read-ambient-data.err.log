@@ -33,10 +33,10 @@ File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packa
 [0;32m--> 230[0m     first_obj, objs [38;5;241m=[39m [43mutils[49m[38;5;241;43m.[39;49m[43mpeek_at[49m[43m([49m[43mobjs[49m[43m)[49m
 [1;32m    231[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m:
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py:193[0m, in [0;36mpeek_at[0;34m(iterable)[0m
-[1;32m    192[0m gen [38;5;241m=[39m [38;5;28miter[39m(iterable)
-[0;32m--> 193[0m peek [38;5;241m=[39m [38;5;28;43mnext[39;49m[43m([49m[43mgen[49m[43m)[49m
-[1;32m    194[0m [38;5;28;01mreturn[39;00m peek, itertools[38;5;241m.[39mchain([peek], gen)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py:194[0m, in [0;36mpeek_at[0;34m(iterable)[0m
+[1;32m    193[0m gen [38;5;241m=[39m [38;5;28miter[39m(iterable)
+[0;32m--> 194[0m peek [38;5;241m=[39m [38;5;28;43mnext[39;49m[43m([49m[43mgen[49m[43m)[49m
+[1;32m    195[0m [38;5;28;01mreturn[39;00m peek, itertools[38;5;241m.[39mchain([peek], gen)
 
 [0;31mStopIteration[0m: 
 
