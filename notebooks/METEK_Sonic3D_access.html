@@ -442,117 +442,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:566,</span> in <span class="ni">HTTPResponse._get_chunk_left</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">566</span>     <span class="n">chunk_left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_next_chunk_size</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:533,</span> in <span class="ni">HTTPResponse._read_next_chunk_size</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">533</span>     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">534</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">535</span>     <span class="c1"># close the connection as protocol synchronisation is</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span>     <span class="c1"># probably lost</span>
-
-<span class="ne">ValueError</span>: invalid literal for int() with base 16: b&#39;&#39;
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">IncompleteRead</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:583,</span> in <span class="ni">HTTPResponse._read_chunked</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">582</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">583</span>     <span class="n">chunk_left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_chunk_left</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="k">if</span> <span class="n">chunk_left</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:568,</span> in <span class="ni">HTTPResponse._get_chunk_left</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">568</span>     <span class="k">raise</span> <span class="n">IncompleteRead</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">if</span> <span class="n">chunk_left</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="c1"># last chunk: 1*(&quot;0&quot;) [ chunk-extension ] CRLF</span>
-
-<span class="ne">IncompleteRead</span>: IncompleteRead(0 bytes read)
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">IncompleteRead</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-07-09T00:00:00Z&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                             <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-07-09T01:00:00Z&quot;</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                             <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                 <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;10.31.81.1:5000/local/waggle-sonic3d&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                 <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W039&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                 <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;metek-sonic3D&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                             <span class="p">}</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:106,</span> in <span class="ni">query</span><span class="nt">(start, end, head, tail, bucket, filter, endpoint)</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="k">if</span> <span class="s2">&quot;gzip&quot;</span> <span class="ow">in</span> <span class="n">content_encoding</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="n">f</span> <span class="o">=</span> <span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">106</span> <span class="k">return</span> <span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:163,</span> in <span class="ni">load</span><span class="nt">(path_or_buf)</span>
-<span class="g g-Whitespace">    </span><span class="mi">160</span>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span>             <span class="k">return</span> <span class="n">_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">163</span> <span class="k">return</span> <span class="n">_load</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:178,</span> in <span class="ni">_load</span><span class="nt">(fileobj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">def</span> <span class="nf">_load</span><span class="p">(</span><span class="n">fileobj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">_load_row</span><span class="p">,</span> <span class="n">fileobj</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="c1"># if dataframe is empty, return empty with known columns</span>
-<span class="g g-Whitespace">    </span><span class="mi">181</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py:832,</span> in <span class="ni">DataFrame.__init__</span><span class="nt">(self, data, index, columns, dtype, copy)</span>
-<span class="g g-Whitespace">    </span><span class="mi">830</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">831</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">832</span>         <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">833</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">834</span>     <span class="k">if</span> <span class="n">is_dataclass</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:399,</span> in <span class="ni">GzipFile.readline</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span> <span class="k">def</span> <span class="nf">readline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_not_closed</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">399</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/_compression.py:68,</span> in <span class="ni">DecompressReader.readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="k">def</span> <span class="nf">readinto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="k">with</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">as</span> <span class="n">view</span><span class="p">,</span> <span class="n">view</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">byte_view</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">68</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">byte_view</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>         <span class="n">byte_view</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span> <span class="o">=</span> <span class="n">data</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:494,</span> in <span class="ni">_GzipReader.read</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">491</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_new_member</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">493</span> <span class="c1"># Read a chunk of data from the file</span>
-<span class="ne">--&gt; </span><span class="mi">494</span> <span class="n">buf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">DEFAULT_BUFFER_SIZE</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">496</span> <span class="n">uncompress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">unconsumed_tail</span> <span class="o">!=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:97,</span> in <span class="ni">_PaddedFile.read</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">[</span><span class="n">read</span><span class="p">:]</span> <span class="o">+</span> \
-<span class="ne">---&gt; </span><span class="mi">97</span>        <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_length</span><span class="o">+</span><span class="n">read</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:460,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="k">return</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunked</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">460</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_chunked</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span> <span class="k">if</span> <span class="n">amt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span>         <span class="c1"># clip the read to the &quot;end of response&quot;</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:598,</span> in <span class="ni">HTTPResponse._read_chunked</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>     <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">597</span> <span class="k">except</span> <span class="n">IncompleteRead</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">598</span>     <span class="k">raise</span> <span class="n">IncompleteRead</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
-
-<span class="ne">IncompleteRead</span>: IncompleteRead(400 bytes read)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -822,7 +711,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sonic3d.temp&#39;, &#39;sonic3d.wwind&#39;, &#39;sonic3d.vwind&#39;, &#39;sonic3d.uwind&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sonic3d.temp&#39;, &#39;sonic3d.wwind&#39;, &#39;sonic3d.uwind&#39;, &#39;sonic3d.vwind&#39;}
 </pre></div>
 </div>
 </div>
@@ -1082,7 +971,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/78cf8bae28b37232d84b51bbfaa6c65b463c7fc64894457d0aa9be48b6869f4f.png" src="../_images/78cf8bae28b37232d84b51bbfaa6c65b463c7fc64894457d0aa9be48b6869f4f.png" />
+<img alt="../_images/d4d70e24072445c597b163215b798db4706bdd70716992749a33c0e9480f0abf.png" src="../_images/d4d70e24072445c597b163215b798db4706bdd70716992749a33c0e9480f0abf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1129,10 +1018,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2ad032e66cc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fee3043f430&gt;
 </pre></div>
 </div>
-<img alt="../_images/06893da6c3cf93633d35c1ae0f1506f3ac61857863e551b413778140487e9b0a.png" src="../_images/06893da6c3cf93633d35c1ae0f1506f3ac61857863e551b413778140487e9b0a.png" />
+<img alt="../_images/4301cac0232eaf656454a80e916ea365460936abc6609322bed1e8d4ec3dcb82.png" src="../_images/4301cac0232eaf656454a80e916ea365460936abc6609322bed1e8d4ec3dcb82.png" />
 </div>
 </div>
 
