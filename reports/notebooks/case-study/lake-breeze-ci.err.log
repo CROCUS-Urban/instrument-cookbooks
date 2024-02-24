@@ -30,8 +30,12 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['for i, scan in enumerate(results.iter_success(), start=1):', '    ## skip the files ending in "MDM"', '    if scan.filename[-3:] != "MDM":', '        if i > 1:', '            # define what file you are working on']
-...
-['                               aqvals, ', '                               rad_time,', '                               templocation=templocation)', '            # close the radar file', '            del radar']
+# Configure the nexrad interface using our time and location
+conn = nexradaws.NexradAwsInterface()
+scans = conn.get_avail_scans_in_range(START, STOP, RADAR_ID)
+print("There are {} scans available between {} and {}\n".format(len(scans), START, STOP))
+
+# Download the files
+results = conn.download(scans, templocation)
 -------------------
 
