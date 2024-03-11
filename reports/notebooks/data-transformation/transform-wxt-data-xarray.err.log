@@ -22,24 +22,27 @@ wxt_ds
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mKeyError[0m                                  Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3877/1563727890.py[0m in [0;36m?[0;34m()[0m
-[0;32m----> 1[0;31m [0mwxt_ds[0m [0;34m=[0m [0mgenerate_dataset[0m[0;34m([0m[0mwxt_df[0m[0;34m,[0m [0mwxt_variables[0m[0;34m)[0m[0;34m.[0m[0msqueeze[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0mwxt_ds[0m[0;34m[0m[0;34m[0m[0m
+Cell [0;32mIn[5], line 1[0m
+[0;32m----> 1[0m wxt_ds [38;5;241m=[39m [43mgenerate_dataset[49m[43m([49m[43mwxt_df[49m[43m,[49m[43m [49m[43mwxt_variables[49m[43m)[49m[38;5;241m.[39msqueeze()
+[1;32m      2[0m wxt_ds
 
-[0;32m/tmp/ipykernel_3877/4226391414.py[0m in [0;36m?[0;34m(df, variables, rename_variable_dict)[0m
-[1;32m     24[0m [0;32mdef[0m [0mgenerate_dataset[0m[0;34m([0m[0mdf[0m[0;34m,[0m [0mvariables[0m[0;34m,[0m [0mrename_variable_dict[0m[0;34m=[0m[0mvariable_rename_dict[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 25[0;31m     [0mreindexed[0m [0;34m=[0m [0mdf[0m[0;34m.[0m[0mset_index[0m[0;34m([0m[0;34m[[0m[0;34m'meta.vsn'[0m[0;34m,[0m [0;34m'timestamp'[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     26[0m     [0;32mreturn[0m [0mxr[0m[0;34m.[0m[0mmerge[0m[0;34m([0m[0;34m[[0m[0mgenerate_data_array[0m[0;34m([0m[0mreindexed[0m[0;34m,[0m [0mvariable[0m[0;34m)[0m [0;32mfor[0m [0mvariable[0m [0;32min[0m [0mvariables[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+Cell [0;32mIn[3], line 26[0m, in [0;36mgenerate_dataset[0;34m(df, variables, rename_variable_dict)[0m
+[1;32m     24[0m [38;5;28;01mdef[39;00m [38;5;21mgenerate_dataset[39m(df, variables, rename_variable_dict[38;5;241m=[39mvariable_rename_dict):
+[1;32m     25[0m     reindexed [38;5;241m=[39m df[38;5;241m.[39mset_index([[38;5;124m'[39m[38;5;124mmeta.vsn[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mtimestamp[39m[38;5;124m'[39m])
+[0;32m---> 26[0m     [38;5;28;01mreturn[39;00m xr[38;5;241m.[39mmerge([generate_data_array(reindexed, variable) [38;5;28;01mfor[39;00m variable [38;5;129;01min[39;00m variables])
 
-[0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py[0m in [0;36m?[0;34m(self, keys, drop, append, inplace, verify_integrity)[0m
-[1;32m   6105[0m                     [0;32mif[0m [0;32mnot[0m [0mfound[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6106[0m                         [0mmissing[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mcol[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6107[0m [0;34m[0m[0m
-[1;32m   6108[0m         [0;32mif[0m [0mmissing[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 6109[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0;34mf"None of {missing} are in the columns"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   6110[0m [0;34m[0m[0m
-[1;32m   6111[0m         [0;32mif[0m [0minplace[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6112[0m             [0mframe[0m [0;34m=[0m [0mself[0m[0;34m[0m[0;34m[0m[0m
+Cell [0;32mIn[3], line 26[0m, in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m     24[0m [38;5;28;01mdef[39;00m [38;5;21mgenerate_dataset[39m(df, variables, rename_variable_dict[38;5;241m=[39mvariable_rename_dict):
+[1;32m     25[0m     reindexed [38;5;241m=[39m df[38;5;241m.[39mset_index([[38;5;124m'[39m[38;5;124mmeta.vsn[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mtimestamp[39m[38;5;124m'[39m])
+[0;32m---> 26[0m     [38;5;28;01mreturn[39;00m xr[38;5;241m.[39mmerge([[43mgenerate_data_array[49m[43m([49m[43mreindexed[49m[43m,[49m[43m [49m[43mvariable[49m[43m)[49m [38;5;28;01mfor[39;00m variable [38;5;129;01min[39;00m variables])
 
-[0;31mKeyError[0m: "None of ['meta.vsn'] are in the columns"
+Cell [0;32mIn[3], line 14[0m, in [0;36mgenerate_data_array[0;34m(df, variable, rename_variable_dict)[0m
+[1;32m     13[0m [38;5;28;01mdef[39;00m [38;5;21mgenerate_data_array[39m(df, variable, rename_variable_dict[38;5;241m=[39mvariable_rename_dict):
+[0;32m---> 14[0m     new_variable_name [38;5;241m=[39m [43mrename_variable_dict[49m[43m[[49m[43mvariable[49m[43m][49m
+[1;32m     15[0m     df_variable[38;5;241m=[39m df[38;5;241m.[39mloc[df[38;5;241m.[39mname [38;5;241m==[39m variable]
+[1;32m     16[0m     ds [38;5;241m=[39m df_variable[38;5;241m.[39mto_xarray()[38;5;241m.[39mrename({[38;5;124m'[39m[38;5;124mvalue[39m[38;5;124m'[39m:new_variable_name,
+[1;32m     17[0m                                          [38;5;124m'[39m[38;5;124mtimestamp[39m[38;5;124m'[39m:[38;5;124m'[39m[38;5;124mtime[39m[38;5;124m'[39m,
+[1;32m     18[0m                                          [38;5;124m'[39m[38;5;124mmeta.vsn[39m[38;5;124m'[39m:[38;5;124m'[39m[38;5;124mnode[39m[38;5;124m'[39m})
+
+[0;31mKeyError[0m: 'wxt.hail.accumulation'
 
