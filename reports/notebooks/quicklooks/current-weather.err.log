@@ -15,31 +15,177 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-hv.Layout(plots).cols(1)
+if minute_ds is not None:
+    for node in minute_ds.node.values:
+        minute_ds_subset = minute_ds.sel(node=node)
+        
+        if node == "W08D":
+            minute_ds_subset.attrs["datastream"] = "W08D Northeastern Illinois Univ."
+        elif node == "W099":
+            minute_ds_subset.attrs["datastream"] = "W099 Northwestern Univ."
+        WindDisplay = act.plotting.WindRoseDisplay(minute_ds_subset, figsize=(6, 8), subplot_shape=(1,))
+        WindDisplay.plot(
+            'wind_direction', 'wind_speed', spd_bins=np.linspace(0, 20, 5), num_dirs=30, tick_interval=2, subplot_index=(0,)
+        )
+        plt.show()
+else:
+    print('Issue with wxt datastream')
 ------------------
 
+----- stdout -----
+Error in callback <function _draw_all_if_interactive at 0x7f5655162680> (for post_execute), with arguments args (),kwargs {}:
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[4], line 1[0m
-[0;32m----> 1[0m [43mhv[49m[38;5;241;43m.[39;49m[43mLayout[49m[43m([49m[43mplots[49m[43m)[49m[38;5;241m.[39mcols([38;5;241m1[39m)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/IPython/core/formatters.py:343[0m, in [0;36mBaseFormatter.__call__[0;34m(self, obj)[0m
+[1;32m    341[0m     [38;5;28;01mpass[39;00m
+[1;32m    342[0m [38;5;28;01melse[39;00m:
+[0;32m--> 343[0m     [38;5;28;01mreturn[39;00m [43mprinter[49m[43m([49m[43mobj[49m[43m)[49m
+[1;32m    344[0m [38;5;66;03m# Finally look for special method names[39;00m
+[1;32m    345[0m method [38;5;241m=[39m get_real_method(obj, [38;5;28mself[39m[38;5;241m.[39mprint_method)
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/holoviews/core/layout.py:442[0m, in [0;36mLayout.__init__[0;34m(self, items, identifier, parent, **kwargs)[0m
-[1;32m    440[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, items[38;5;241m=[39m[38;5;28;01mNone[39;00m, identifier[38;5;241m=[39m[38;5;28;01mNone[39;00m, parent[38;5;241m=[39m[38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mkwargs):
-[1;32m    441[0m     [38;5;28mself[39m[38;5;241m.[39m[38;5;18m__dict__[39m[[38;5;124m'[39m[38;5;124m_max_cols[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;241m4[39m
-[0;32m--> 442[0m     [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[43mitems[49m[43m,[49m[43m [49m[43midentifier[49m[43m,[49m[43m [49m[43mparent[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/IPython/core/pylabtools.py:152[0m, in [0;36mprint_figure[0;34m(fig, fmt, bbox_inches, base64, **kwargs)[0m
+[1;32m    149[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbackend_bases[39;00m [38;5;28;01mimport[39;00m FigureCanvasBase
+[1;32m    150[0m     FigureCanvasBase(fig)
+[0;32m--> 152[0m [43mfig[49m[38;5;241;43m.[39;49m[43mcanvas[49m[38;5;241;43m.[39;49m[43mprint_figure[49m[43m([49m[43mbytes_io[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkw[49m[43m)[49m
+[1;32m    153[0m data [38;5;241m=[39m bytes_io[38;5;241m.[39mgetvalue()
+[1;32m    154[0m [38;5;28;01mif[39;00m fmt [38;5;241m==[39m [38;5;124m'[39m[38;5;124msvg[39m[38;5;124m'[39m:
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/holoviews/core/dimension.py:1324[0m, in [0;36mViewableTree.__init__[0;34m(self, items, identifier, parent, **kwargs)[0m
-[1;32m   1321[0m     items [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_process_items(items)
-[1;32m   1322[0m params [38;5;241m=[39m {p: kwargs[38;5;241m.[39mpop(p) [38;5;28;01mfor[39;00m p [38;5;129;01min[39;00m [38;5;28mlist[39m([38;5;28mself[39m[38;5;241m.[39mparam)[38;5;241m+[39m[[38;5;124m'[39m[38;5;124mid[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mplot_id[39m[38;5;124m'[39m] [38;5;28;01mif[39;00m p [38;5;129;01min[39;00m kwargs}
-[0;32m-> 1324[0m [43mAttrTree[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mitems[49m[43m,[49m[43m [49m[43midentifier[49m[43m,[49m[43m [49m[43mparent[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[1;32m   1325[0m Dimensioned[38;5;241m.[39m[38;5;21m__init__[39m([38;5;28mself[39m, [38;5;28mself[39m[38;5;241m.[39mdata, [38;5;241m*[39m[38;5;241m*[39mparams)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/backend_bases.py:2164[0m, in [0;36mFigureCanvasBase.print_figure[0;34m(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, pad_inches, bbox_extra_artists, backend, **kwargs)[0m
+[1;32m   2161[0m     [38;5;66;03m# we do this instead of `self.figure.draw_without_rendering`[39;00m
+[1;32m   2162[0m     [38;5;66;03m# so that we can inject the orientation[39;00m
+[1;32m   2163[0m     [38;5;28;01mwith[39;00m [38;5;28mgetattr[39m(renderer, [38;5;124m"[39m[38;5;124m_draw_disabled[39m[38;5;124m"[39m, nullcontext)():
+[0;32m-> 2164[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfigure[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m   2165[0m [38;5;28;01mif[39;00m bbox_inches:
+[1;32m   2166[0m     [38;5;28;01mif[39;00m bbox_inches [38;5;241m==[39m [38;5;124m"[39m[38;5;124mtight[39m[38;5;124m"[39m:
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/holoviews/core/tree.py:66[0m, in [0;36mAttrTree.__init__[0;34m(self, items, identifier, parent, dir_mode)[0m
-[1;32m     64[0m items [38;5;241m=[39m [38;5;28mlist[39m(items) [38;5;28;01mif[39;00m items [38;5;28;01melse[39;00m items
-[1;32m     65[0m items [38;5;241m=[39m [] [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m items [38;5;28;01melse[39;00m items
-[0;32m---> 66[0m [38;5;28;01mfor[39;00m path, item [38;5;129;01min[39;00m items:
-[1;32m     67[0m     [38;5;28mself[39m[38;5;241m.[39mset_path(path, item)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:95[0m, in [0;36m_finalize_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer, *args, **kwargs)[0m
+[1;32m     93[0m [38;5;129m@wraps[39m(draw)
+[1;32m     94[0m [38;5;28;01mdef[39;00m [38;5;21mdraw_wrapper[39m(artist, renderer, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m---> 95[0m     result [38;5;241m=[39m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m     96[0m     [38;5;28;01mif[39;00m renderer[38;5;241m.[39m_rasterizing:
+[1;32m     97[0m         renderer[38;5;241m.[39mstop_rasterizing()
 
-[0;31mValueError[0m: not enough values to unpack (expected 2, got 1)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/figure.py:3154[0m, in [0;36mFigure.draw[0;34m(self, renderer)[0m
+[1;32m   3151[0m         [38;5;66;03m# ValueError can occur when resizing a window.[39;00m
+[1;32m   3153[0m [38;5;28mself[39m[38;5;241m.[39mpatch[38;5;241m.[39mdraw(renderer)
+[0;32m-> 3154[0m [43mmimage[49m[38;5;241;43m.[39;49m[43m_draw_list_compositing_images[49m[43m([49m
+[1;32m   3155[0m [43m    [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43martists[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msuppressComposite[49m[43m)[49m
+[1;32m   3157[0m [38;5;28;01mfor[39;00m sfig [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39msubfigs:
+[1;32m   3158[0m     sfig[38;5;241m.[39mdraw(renderer)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/image.py:132[0m, in [0;36m_draw_list_compositing_images[0;34m(renderer, parent, artists, suppress_composite)[0m
+[1;32m    130[0m [38;5;28;01mif[39;00m not_composite [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m has_images:
+[1;32m    131[0m     [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m artists:
+[0;32m--> 132[0m         [43ma[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m    133[0m [38;5;28;01melse[39;00m:
+[1;32m    134[0m     [38;5;66;03m# Composite any adjacent images together[39;00m
+[1;32m    135[0m     image_group [38;5;241m=[39m []
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:39[0m, in [0;36m_prevent_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer, *args, **kwargs)[0m
+[1;32m     36[0m     renderer[38;5;241m.[39mstop_rasterizing()
+[1;32m     37[0m     renderer[38;5;241m.[39m_rasterizing [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+[0;32m---> 39[0m [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/projections/polar.py:1036[0m, in [0;36mPolarAxes.draw[0;34m(self, renderer)[0m
+[1;32m   1033[0m     [38;5;28mself[39m[38;5;241m.[39myaxis[38;5;241m.[39mreset_ticks()
+[1;32m   1034[0m     [38;5;28mself[39m[38;5;241m.[39myaxis[38;5;241m.[39mset_clip_path([38;5;28mself[39m[38;5;241m.[39mpatch)
+[0;32m-> 1036[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/axes/_base.py:3070[0m, in [0;36m_AxesBase.draw[0;34m(self, renderer)[0m
+[1;32m   3067[0m [38;5;28;01mif[39;00m artists_rasterized:
+[1;32m   3068[0m     _draw_rasterized([38;5;28mself[39m[38;5;241m.[39mfigure, artists_rasterized, renderer)
+[0;32m-> 3070[0m [43mmimage[49m[38;5;241;43m.[39;49m[43m_draw_list_compositing_images[49m[43m([49m
+[1;32m   3071[0m [43m    [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43martists[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfigure[49m[38;5;241;43m.[39;49m[43msuppressComposite[49m[43m)[49m
+[1;32m   3073[0m renderer[38;5;241m.[39mclose_group([38;5;124m'[39m[38;5;124maxes[39m[38;5;124m'[39m)
+[1;32m   3074[0m [38;5;28mself[39m[38;5;241m.[39mstale [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/image.py:132[0m, in [0;36m_draw_list_compositing_images[0;34m(renderer, parent, artists, suppress_composite)[0m
+[1;32m    130[0m [38;5;28;01mif[39;00m not_composite [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m has_images:
+[1;32m    131[0m     [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m artists:
+[0;32m--> 132[0m         [43ma[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m    133[0m [38;5;28;01melse[39;00m:
+[1;32m    134[0m     [38;5;66;03m# Composite any adjacent images together[39;00m
+[1;32m    135[0m     image_group [38;5;241m=[39m []
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/patches.py:586[0m, in [0;36mPatch.draw[0;34m(self, renderer)[0m
+[1;32m    584[0m path [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_path()
+[1;32m    585[0m transform [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_transform()
+[0;32m--> 586[0m tpath [38;5;241m=[39m [43mtransform[49m[38;5;241;43m.[39;49m[43mtransform_path_non_affine[49m[43m([49m[43mpath[49m[43m)[49m
+[1;32m    587[0m affine [38;5;241m=[39m transform[38;5;241m.[39mget_affine()
+[1;32m    588[0m [38;5;28mself[39m[38;5;241m.[39m_draw_paths_with_artist_properties(
+[1;32m    589[0m     renderer,
+[1;32m    590[0m     [(tpath, affine,
+[0;32m   (...)[0m
+[1;32m    593[0m       [38;5;66;03m# transparent, but do if it is None.[39;00m
+[1;32m    594[0m       [38;5;28mself[39m[38;5;241m.[39m_facecolor [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_facecolor[[38;5;241m3[39m] [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m)])
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/transforms.py:2428[0m, in [0;36mCompositeGenericTransform.transform_path_non_affine[0;34m(self, path)[0m
+[1;32m   2426[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_a[38;5;241m.[39mtransform_path_non_affine(path)
+[1;32m   2427[0m [38;5;28;01melse[39;00m:
+[0;32m-> 2428[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_b[49m[38;5;241;43m.[39;49m[43mtransform_path_non_affine[49m[43m([49m
+[1;32m   2429[0m [43m                            [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_a[49m[38;5;241;43m.[39;49m[43mtransform_path[49m[43m([49m[43mpath[49m[43m)[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/transforms.py:2426[0m, in [0;36mCompositeGenericTransform.transform_path_non_affine[0;34m(self, path)[0m
+[1;32m   2424[0m     [38;5;28;01mreturn[39;00m path
+[1;32m   2425[0m [38;5;28;01melif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m[38;5;241m.[39m_a[38;5;241m.[39mis_affine [38;5;129;01mand[39;00m [38;5;28mself[39m[38;5;241m.[39m_b[38;5;241m.[39mis_affine:
+[0;32m-> 2426[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_a[49m[38;5;241;43m.[39;49m[43mtransform_path_non_affine[49m[43m([49m[43mpath[49m[43m)[49m
+[1;32m   2427[0m [38;5;28;01melse[39;00m:
+[1;32m   2428[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_b[38;5;241m.[39mtransform_path_non_affine(
+[1;32m   2429[0m                             [38;5;28mself[39m[38;5;241m.[39m_a[38;5;241m.[39mtransform_path(path))
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/transforms.py:2428[0m, in [0;36mCompositeGenericTransform.transform_path_non_affine[0;34m(self, path)[0m
+[1;32m   2426[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_a[38;5;241m.[39mtransform_path_non_affine(path)
+[1;32m   2427[0m [38;5;28;01melse[39;00m:
+[0;32m-> 2428[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_b[49m[38;5;241;43m.[39;49m[43mtransform_path_non_affine[49m[43m([49m
+[1;32m   2429[0m [43m                            [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_a[49m[38;5;241;43m.[39;49m[43mtransform_path[49m[43m([49m[43mpath[49m[43m)[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/projections/polar.py:132[0m, in [0;36mPolarTransform.transform_path_non_affine[0;34m(self, path)[0m
+[1;32m    130[0m         codes[38;5;241m.[39mextend([c] [38;5;241m*[39m [38;5;28mlen[39m(trs))
+[1;32m    131[0m     last_t, last_r [38;5;241m=[39m trs[[38;5;241m-[39m[38;5;241m1[39m]
+[0;32m--> 132[0m [38;5;28;01mreturn[39;00m [43mPath[49m[43m([49m[43mxys[49m[43m,[49m[43m [49m[43mcodes[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/path.py:130[0m, in [0;36mPath.__init__[0;34m(self, vertices, codes, _interpolation_steps, closed, readonly)[0m
+[1;32m    101[0m [38;5;250m[39m[38;5;124;03m"""[39;00m
+[1;32m    102[0m [38;5;124;03mCreate a new path with the given vertices and codes.[39;00m
+[1;32m    103[0m 
+[0;32m   (...)[0m
+[1;32m    127[0m [38;5;124;03m    and codes as read-only arrays.[39;00m
+[1;32m    128[0m [38;5;124;03m"""[39;00m
+[1;32m    129[0m vertices [38;5;241m=[39m _to_unmasked_float_array(vertices)
+[0;32m--> 130[0m [43m_api[49m[38;5;241;43m.[39;49m[43mcheck_shape[49m[43m([49m[43m([49m[38;5;28;43;01mNone[39;49;00m[43m,[49m[43m [49m[38;5;241;43m2[39;49m[43m)[49m[43m,[49m[43m [49m[43mvertices[49m[38;5;241;43m=[39;49m[43mvertices[49m[43m)[49m
+[1;32m    132[0m [38;5;28;01mif[39;00m codes [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    133[0m     codes [38;5;241m=[39m np[38;5;241m.[39masarray(codes, [38;5;28mself[39m[38;5;241m.[39mcode_type)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/_api/__init__.py:161[0m, in [0;36mcheck_shape[0;34m(shape, **kwargs)[0m
+[1;32m    158[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(shape) [38;5;241m==[39m [38;5;241m1[39m:
+[1;32m    159[0m     text_shape [38;5;241m+[39m[38;5;241m=[39m [38;5;124m"[39m[38;5;124m,[39m[38;5;124m"[39m
+[0;32m--> 161[0m [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m    162[0m     [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mk[38;5;132;01m!r}[39;00m[38;5;124m must be [39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(shape)[38;5;132;01m}[39;00m[38;5;124mD with shape ([39m[38;5;132;01m{[39;00mtext_shape[38;5;132;01m}[39;00m[38;5;124m), [39m[38;5;124m"[39m
+[1;32m    163[0m     [38;5;124mf[39m[38;5;124m"[39m[38;5;124mbut your input has shape [39m[38;5;132;01m{[39;00mv[38;5;241m.[39mshape[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m    164[0m )
+
+[0;31mValueError[0m: 'vertices' must be 2D with shape (N, 2), but your input has shape (0,)
 
