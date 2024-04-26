@@ -153,119 +153,139 @@ except:
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:566[0m, in [0;36mHTTPResponse._get_chunk_left[0;34m(self)[0m
-[1;32m    565[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 566[0m     chunk_left [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_read_next_chunk_size[49m[43m([49m[43m)[49m
-[1;32m    567[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
+[0;31mSSLError[0m                                  Traceback (most recent call last)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:1348[0m, in [0;36mAbstractHTTPHandler.do_open[0;34m(self, http_class, req, **http_conn_args)[0m
+[1;32m   1347[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 1348[0m     [43mh[49m[38;5;241;43m.[39;49m[43mrequest[49m[43m([49m[43mreq[49m[38;5;241;43m.[39;49m[43mget_method[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mselector[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mdata[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m
+[1;32m   1349[0m [43m              [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mreq[49m[38;5;241;43m.[39;49m[43mhas_header[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mTransfer-encoding[39;49m[38;5;124;43m'[39;49m[43m)[49m[43m)[49m
+[1;32m   1350[0m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:533[0m, in [0;36mHTTPResponse._read_next_chunk_size[0;34m(self)[0m
-[1;32m    532[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 533[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mint[39;49m[43m([49m[43mline[49m[43m,[49m[43m [49m[38;5;241;43m16[39;49m[43m)[49m
-[1;32m    534[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
-[1;32m    535[0m     [38;5;66;03m# close the connection as protocol synchronisation is[39;00m
-[1;32m    536[0m     [38;5;66;03m# probably lost[39;00m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1283[0m, in [0;36mHTTPConnection.request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1282[0m [38;5;250m[39m[38;5;124;03m"""Send a complete request to the server."""[39;00m
+[0;32m-> 1283[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_request[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mbody[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m)[49m
 
-[0;31mValueError[0m: invalid literal for int() with base 16: b''
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1329[0m, in [0;36mHTTPConnection._send_request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1328[0m     body [38;5;241m=[39m _encode(body, [38;5;124m'[39m[38;5;124mbody[39m[38;5;124m'[39m)
+[0;32m-> 1329[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mendheaders[49m[43m([49m[43mbody[49m[43m,[49m[43m [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mencode_chunked[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1278[0m, in [0;36mHTTPConnection.endheaders[0;34m(self, message_body, encode_chunked)[0m
+[1;32m   1277[0m     [38;5;28;01mraise[39;00m CannotSendHeader()
+[0;32m-> 1278[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_output[49m[43m([49m[43mmessage_body[49m[43m,[49m[43m [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mencode_chunked[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1038[0m, in [0;36mHTTPConnection._send_output[0;34m(self, message_body, encode_chunked)[0m
+[1;32m   1037[0m [38;5;28;01mdel[39;00m [38;5;28mself[39m[38;5;241m.[39m_buffer[:]
+[0;32m-> 1038[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msend[49m[43m([49m[43mmsg[49m[43m)[49m
+[1;32m   1040[0m [38;5;28;01mif[39;00m message_body [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m   1041[0m 
+[1;32m   1042[0m     [38;5;66;03m# create a consistent interface to message_body[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:976[0m, in [0;36mHTTPConnection.send[0;34m(self, data)[0m
+[1;32m    975[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mauto_open:
+[0;32m--> 976[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+[1;32m    977[0m [38;5;28;01melse[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1455[0m, in [0;36mHTTPSConnection.connect[0;34m(self)[0m
+[1;32m   1453[0m     server_hostname [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mhost
+[0;32m-> 1455[0m [38;5;28mself[39m[38;5;241m.[39msock [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_context[49m[38;5;241;43m.[39;49m[43mwrap_socket[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msock[49m[43m,[49m
+[1;32m   1456[0m [43m                                      [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/ssl.py:513[0m, in [0;36mSSLContext.wrap_socket[0;34m(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)[0m
+[1;32m    507[0m [38;5;28;01mdef[39;00m [38;5;21mwrap_socket[39m([38;5;28mself[39m, sock, server_side[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
+[1;32m    508[0m                 do_handshake_on_connect[38;5;241m=[39m[38;5;28;01mTrue[39;00m,
+[1;32m    509[0m                 suppress_ragged_eofs[38;5;241m=[39m[38;5;28;01mTrue[39;00m,
+[1;32m    510[0m                 server_hostname[38;5;241m=[39m[38;5;28;01mNone[39;00m, session[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m    511[0m     [38;5;66;03m# SSLSocket class handles server_hostname encoding before it calls[39;00m
+[1;32m    512[0m     [38;5;66;03m# ctx._wrap_socket()[39;00m
+[0;32m--> 513[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msslsocket_class[49m[38;5;241;43m.[39;49m[43m_create[49m[43m([49m
+[1;32m    514[0m [43m        [49m[43msock[49m[38;5;241;43m=[39;49m[43msock[49m[43m,[49m
+[1;32m    515[0m [43m        [49m[43mserver_side[49m[38;5;241;43m=[39;49m[43mserver_side[49m[43m,[49m
+[1;32m    516[0m [43m        [49m[43mdo_handshake_on_connect[49m[38;5;241;43m=[39;49m[43mdo_handshake_on_connect[49m[43m,[49m
+[1;32m    517[0m [43m        [49m[43msuppress_ragged_eofs[49m[38;5;241;43m=[39;49m[43msuppress_ragged_eofs[49m[43m,[49m
+[1;32m    518[0m [43m        [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m,[49m
+[1;32m    519[0m [43m        [49m[43mcontext[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m
+[1;32m    520[0m [43m        [49m[43msession[49m[38;5;241;43m=[39;49m[43msession[49m
+[1;32m    521[0m [43m    [49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/ssl.py:1104[0m, in [0;36mSSLSocket._create[0;34m(cls, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, context, session)[0m
+[1;32m   1103[0m             [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mdo_handshake_on_connect should not be specified for non-blocking sockets[39m[38;5;124m"[39m)
+[0;32m-> 1104[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdo_handshake[49m[43m([49m[43m)[49m
+[1;32m   1105[0m [38;5;28;01mexcept[39;00m ([38;5;167;01mOSError[39;00m, [38;5;167;01mValueError[39;00m):
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/ssl.py:1375[0m, in [0;36mSSLSocket.do_handshake[0;34m(self, block)[0m
+[1;32m   1374[0m         [38;5;28mself[39m[38;5;241m.[39msettimeout([38;5;28;01mNone[39;00m)
+[0;32m-> 1375[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_sslobj[49m[38;5;241;43m.[39;49m[43mdo_handshake[49m[43m([49m[43m)[49m
+[1;32m   1376[0m [38;5;28;01mfinally[39;00m:
+
+[0;31mSSLError[0m: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:1007)
 
 During handling of the above exception, another exception occurred:
 
-[0;31mIncompleteRead[0m                            Traceback (most recent call last)
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:583[0m, in [0;36mHTTPResponse._read_chunked[0;34m(self, amt)[0m
-[1;32m    582[0m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
-[0;32m--> 583[0m     chunk_left [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_get_chunk_left[49m[43m([49m[43m)[49m
-[1;32m    584[0m     [38;5;28;01mif[39;00m chunk_left [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:568[0m, in [0;36mHTTPResponse._get_chunk_left[0;34m(self)[0m
-[1;32m    567[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
-[0;32m--> 568[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m)
-[1;32m    569[0m [38;5;28;01mif[39;00m chunk_left [38;5;241m==[39m [38;5;241m0[39m:
-[1;32m    570[0m     [38;5;66;03m# last chunk: 1*("0") [ chunk-extension ] CRLF[39;00m
-
-[0;31mIncompleteRead[0m: IncompleteRead(0 bytes read)
-
-During handling of the above exception, another exception occurred:
-
-[0;31mIncompleteRead[0m                            Traceback (most recent call last)
-Cell [0;32mIn[1], line 84[0m
+[0;31mURLError[0m                                  Traceback (most recent call last)
+Cell [0;32mIn[1], line 75[0m
+[1;32m     71[0m     [38;5;28;01mreturn[39;00m xr[38;5;241m.[39mmerge([generate_data_array(reindexed, variable) [38;5;28;01mfor[39;00m variable [38;5;129;01min[39;00m variables])
 [1;32m     74[0m [38;5;66;03m# Query and load for n numbder of days[39;00m
-[1;32m     75[0m wxt_df [38;5;241m=[39m sage_data_client[38;5;241m.[39mquery(
-[1;32m     76[0m     start[38;5;241m=[39mstart,
-[1;32m     77[0m     end[38;5;241m=[39mend,
+[0;32m---> 75[0m wxt_df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m
+[1;32m     76[0m [43m    [49m[43mstart[49m[38;5;241;43m=[39;49m[43mstart[49m[43m,[49m
+[1;32m     77[0m [43m    [49m[43mend[49m[38;5;241;43m=[39;49m[43mend[49m[43m,[49m
+[1;32m     78[0m [43m    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
+[1;32m     79[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     80[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mwxt.env.*[39;49m[38;5;124;43m"[39;49m
+[1;32m     81[0m [43m    [49m[43m}[49m
+[1;32m     82[0m [43m)[49m
+[1;32m     84[0m wxt_df1 [38;5;241m=[39m sage_data_client[38;5;241m.[39mquery(
+[1;32m     85[0m     start[38;5;241m=[39mstart,
+[1;32m     86[0m     end[38;5;241m=[39mend,
 [0;32m   (...)[0m
-[1;32m     81[0m     }
-[1;32m     82[0m )
-[0;32m---> 84[0m wxt_df1 [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m
-[1;32m     85[0m [43m    [49m[43mstart[49m[38;5;241;43m=[39;49m[43mstart[49m[43m,[49m
-[1;32m     86[0m [43m    [49m[43mend[49m[38;5;241;43m=[39;49m[43mend[49m[43m,[49m
-[1;32m     87[0m [43m    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
-[1;32m     88[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m     89[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mwxt.wind.*[39;49m[38;5;124;43m"[39;49m
-[1;32m     90[0m [43m    [49m[43m}[49m
-[1;32m     91[0m [43m)[49m
+[1;32m     90[0m     }
+[1;32m     91[0m )
 [1;32m     93[0m [38;5;66;03m# Use local Chicago times[39;00m
-[1;32m     94[0m wxt_df [38;5;241m=[39m pd[38;5;241m.[39mconcat([wxt_df, wxt_df1])
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:106[0m, in [0;36mquery[0;34m(start, end, head, tail, bucket, filter, endpoint)[0m
-[1;32m    104[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
-[1;32m    105[0m     f [38;5;241m=[39m GzipFile(fileobj[38;5;241m=[39mf, mode[38;5;241m=[39m[38;5;124m"[39m[38;5;124mrb[39m[38;5;124m"[39m)
-[0;32m--> 106[0m [38;5;28;01mreturn[39;00m [43mload[49m[43m([49m[43mf[49m[43m)[49m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:107[0m, in [0;36mquery[0;34m(start, end, head, tail, experimental_func, bucket, filter, endpoint)[0m
+[1;32m    104[0m headers [38;5;241m=[39m {[38;5;124m"[39m[38;5;124mAccept-Encoding[39m[38;5;124m"[39m: [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m}
+[1;32m    105[0m req [38;5;241m=[39m Request(endpoint, data, headers[38;5;241m=[39mheaders)
+[0;32m--> 107[0m [38;5;28;01mwith[39;00m [43murlopen[49m[43m([49m[43mreq[49m[43m)[49m [38;5;28;01mas[39;00m f:
+[1;32m    108[0m     content_encoding [38;5;241m=[39m f[38;5;241m.[39mheaders[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mContent-Encoding[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m"[39m)
+[1;32m    109[0m     [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:163[0m, in [0;36mload[0;34m(path_or_buf)[0m
-[1;32m    160[0m         [38;5;28;01mwith[39;00m [38;5;28mopen[39m(path_or_buf, [38;5;124m"[39m[38;5;124mrb[39m[38;5;124m"[39m) [38;5;28;01mas[39;00m f:
-[1;32m    161[0m             [38;5;28;01mreturn[39;00m _load(f)
-[0;32m--> 163[0m [38;5;28;01mreturn[39;00m [43m_load[49m[43m([49m[43mpath_or_buf[49m[43m)[49m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
+[1;32m    214[0m [38;5;28;01melse[39;00m:
+[1;32m    215[0m     opener [38;5;241m=[39m _opener
+[0;32m--> 216[0m [38;5;28;01mreturn[39;00m [43mopener[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:178[0m, in [0;36m_load[0;34m(fileobj)[0m
-[1;32m    177[0m [38;5;28;01mdef[39;00m [38;5;21m_load[39m(fileobj) [38;5;241m-[39m[38;5;241m>[39m pd[38;5;241m.[39mDataFrame:
-[0;32m--> 178[0m     df [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mDataFrame[49m[43m([49m[38;5;28;43mmap[39;49m[43m([49m[43m_load_row[49m[43m,[49m[43m [49m[43mfileobj[49m[43m)[49m[43m)[49m
-[1;32m    180[0m     [38;5;66;03m# if dataframe is empty, return empty with known columns[39;00m
-[1;32m    181[0m     [38;5;28;01mif[39;00m [38;5;28mlen[39m(df) [38;5;241m==[39m [38;5;241m0[39m:
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:519[0m, in [0;36mOpenerDirector.open[0;34m(self, fullurl, data, timeout)[0m
+[1;32m    516[0m     req [38;5;241m=[39m meth(req)
+[1;32m    518[0m sys[38;5;241m.[39maudit([38;5;124m'[39m[38;5;124murllib.Request[39m[38;5;124m'[39m, req[38;5;241m.[39mfull_url, req[38;5;241m.[39mdata, req[38;5;241m.[39mheaders, req[38;5;241m.[39mget_method())
+[0;32m--> 519[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_open[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mdata[49m[43m)[49m
+[1;32m    521[0m [38;5;66;03m# post-process response[39;00m
+[1;32m    522[0m meth_name [38;5;241m=[39m protocol[38;5;241m+[39m[38;5;124m"[39m[38;5;124m_response[39m[38;5;124m"[39m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py:832[0m, in [0;36mDataFrame.__init__[0;34m(self, data, index, columns, dtype, copy)[0m
-[1;32m    830[0m         data [38;5;241m=[39m np[38;5;241m.[39masarray(data)
-[1;32m    831[0m     [38;5;28;01melse[39;00m:
-[0;32m--> 832[0m         data [38;5;241m=[39m [38;5;28;43mlist[39;49m[43m([49m[43mdata[49m[43m)[49m
-[1;32m    833[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(data) [38;5;241m>[39m [38;5;241m0[39m:
-[1;32m    834[0m     [38;5;28;01mif[39;00m is_dataclass(data[[38;5;241m0[39m]):
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:536[0m, in [0;36mOpenerDirector._open[0;34m(self, req, data)[0m
+[1;32m    533[0m     [38;5;28;01mreturn[39;00m result
+[1;32m    535[0m protocol [38;5;241m=[39m req[38;5;241m.[39mtype
+[0;32m--> 536[0m result [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_call_chain[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhandle_open[49m[43m,[49m[43m [49m[43mprotocol[49m[43m,[49m[43m [49m[43mprotocol[49m[43m [49m[38;5;241;43m+[39;49m
+[1;32m    537[0m [43m                          [49m[38;5;124;43m'[39;49m[38;5;124;43m_open[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mreq[49m[43m)[49m
+[1;32m    538[0m [38;5;28;01mif[39;00m result:
+[1;32m    539[0m     [38;5;28;01mreturn[39;00m result
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:399[0m, in [0;36mGzipFile.readline[0;34m(self, size)[0m
-[1;32m    397[0m [38;5;28;01mdef[39;00m [38;5;21mreadline[39m([38;5;28mself[39m, size[38;5;241m=[39m[38;5;241m-[39m[38;5;241m1[39m):
-[1;32m    398[0m     [38;5;28mself[39m[38;5;241m.[39m_check_not_closed()
-[0;32m--> 399[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_buffer[49m[38;5;241;43m.[39;49m[43mreadline[49m[43m([49m[43msize[49m[43m)[49m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496[0m, in [0;36mOpenerDirector._call_chain[0;34m(self, chain, kind, meth_name, *args)[0m
+[1;32m    494[0m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
+[1;32m    495[0m     func [38;5;241m=[39m [38;5;28mgetattr[39m(handler, meth_name)
+[0;32m--> 496[0m     result [38;5;241m=[39m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+[1;32m    497[0m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    498[0m         [38;5;28;01mreturn[39;00m result
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/_compression.py:68[0m, in [0;36mDecompressReader.readinto[0;34m(self, b)[0m
-[1;32m     66[0m [38;5;28;01mdef[39;00m [38;5;21mreadinto[39m([38;5;28mself[39m, b):
-[1;32m     67[0m     [38;5;28;01mwith[39;00m [38;5;28mmemoryview[39m(b) [38;5;28;01mas[39;00m view, view[38;5;241m.[39mcast([38;5;124m"[39m[38;5;124mB[39m[38;5;124m"[39m) [38;5;28;01mas[39;00m byte_view:
-[0;32m---> 68[0m         data [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[38;5;28;43mlen[39;49m[43m([49m[43mbyte_view[49m[43m)[49m[43m)[49m
-[1;32m     69[0m         byte_view[:[38;5;28mlen[39m(data)] [38;5;241m=[39m data
-[1;32m     70[0m     [38;5;28;01mreturn[39;00m [38;5;28mlen[39m(data)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:1391[0m, in [0;36mHTTPSHandler.https_open[0;34m(self, req)[0m
+[1;32m   1390[0m [38;5;28;01mdef[39;00m [38;5;21mhttps_open[39m([38;5;28mself[39m, req):
+[0;32m-> 1391[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdo_open[49m[43m([49m[43mhttp[49m[38;5;241;43m.[39;49m[43mclient[49m[38;5;241;43m.[39;49m[43mHTTPSConnection[49m[43m,[49m[43m [49m[43mreq[49m[43m,[49m
+[1;32m   1392[0m [43m        [49m[43mcontext[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_context[49m[43m,[49m[43m [49m[43mcheck_hostname[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_check_hostname[49m[43m)[49m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:494[0m, in [0;36m_GzipReader.read[0;34m(self, size)[0m
-[1;32m    491[0m     [38;5;28mself[39m[38;5;241m.[39m_new_member [38;5;241m=[39m [38;5;28;01mFalse[39;00m
-[1;32m    493[0m [38;5;66;03m# Read a chunk of data from the file[39;00m
-[0;32m--> 494[0m buf [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_fp[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43mio[49m[38;5;241;43m.[39;49m[43mDEFAULT_BUFFER_SIZE[49m[43m)[49m
-[1;32m    496[0m uncompress [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_decompressor[38;5;241m.[39mdecompress(buf, size)
-[1;32m    497[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_decompressor[38;5;241m.[39munconsumed_tail [38;5;241m!=[39m [38;5;124mb[39m[38;5;124m"[39m[38;5;124m"[39m:
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:1351[0m, in [0;36mAbstractHTTPHandler.do_open[0;34m(self, http_class, req, **http_conn_args)[0m
+[1;32m   1348[0m         h[38;5;241m.[39mrequest(req[38;5;241m.[39mget_method(), req[38;5;241m.[39mselector, req[38;5;241m.[39mdata, headers,
+[1;32m   1349[0m                   encode_chunked[38;5;241m=[39mreq[38;5;241m.[39mhas_header([38;5;124m'[39m[38;5;124mTransfer-encoding[39m[38;5;124m'[39m))
+[1;32m   1350[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+[0;32m-> 1351[0m         [38;5;28;01mraise[39;00m URLError(err)
+[1;32m   1352[0m     r [38;5;241m=[39m h[38;5;241m.[39mgetresponse()
+[1;32m   1353[0m [38;5;28;01mexcept[39;00m:
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:97[0m, in [0;36m_PaddedFile.read[0;34m(self, size)[0m
-[1;32m     94[0m read [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_read
-[1;32m     95[0m [38;5;28mself[39m[38;5;241m.[39m_read [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[1;32m     96[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_buffer[read:] [38;5;241m+[39m \
-[0;32m---> 97[0m        [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfile[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43msize[49m[38;5;241;43m-[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_length[49m[38;5;241;43m+[39;49m[43mread[49m[43m)[49m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:460[0m, in [0;36mHTTPResponse.read[0;34m(self, amt)[0m
-[1;32m    457[0m     [38;5;28;01mreturn[39;00m [38;5;124mb[39m[38;5;124m"[39m[38;5;124m"[39m
-[1;32m    459[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mchunked:
-[0;32m--> 460[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_read_chunked[49m[43m([49m[43mamt[49m[43m)[49m
-[1;32m    462[0m [38;5;28;01mif[39;00m amt [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
-[1;32m    463[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mlength [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m amt [38;5;241m>[39m [38;5;28mself[39m[38;5;241m.[39mlength:
-[1;32m    464[0m         [38;5;66;03m# clip the read to the "end of response"[39;00m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:598[0m, in [0;36mHTTPResponse._read_chunked[0;34m(self, amt)[0m
-[1;32m    596[0m     [38;5;28;01mreturn[39;00m [38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value)
-[1;32m    597[0m [38;5;28;01mexcept[39;00m IncompleteRead:
-[0;32m--> 598[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value))
-
-[0;31mIncompleteRead[0m: IncompleteRead(142 bytes read)
+[0;31mURLError[0m: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:1007)>
 
