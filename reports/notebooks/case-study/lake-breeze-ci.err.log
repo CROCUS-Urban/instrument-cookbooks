@@ -1,15 +1,4 @@
 Traceback (most recent call last):
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 782, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
-    result = await obj
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_client/channels.py", line 313, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
@@ -20,18 +9,367 @@ Traceback (most recent call last):
     return future.result()
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1005, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 600 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-['for i, scan in enumerate(results.iter_success(), start=1):', '    ## skip the files ending in "MDM"', '    if scan.filename[-3:] != "MDM":', '        if i > 1:', '            # define what file you are working on']
-...
-['                               aqvals, ', '                               rad_time,', '                               templocation=templocation)', '            # close the radar file', '            del radar']
--------------------
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+for i, scan in enumerate(results.iter_success(), start=1):
+    ## skip the files ending in "MDM"
+    if scan.filename[-3:] != "MDM":
+        if i > 1:
+            # define what file you are working on
+            print("working on " + scan.filename)
+            # define the radar time
+            rad_time = scan.filename[4:8] + '-' + scan.filename[8:10] + '-' + scan.filename[10:12] + \
+                       ' ' + scan.filename[13:15] + ':' + scan.filename[15:17] + ':' + scan.filename[17:19]
+            # Open the file with PyART
+            radar = scan.open_pyart()
+            # Call the CROCUS AQ Display Function
+            chicago_aq_display(radar, 
+                               BOUNDING_BOX, 
+                               WAGGLE_SITES, 
+                               aqvals, 
+                               rad_time,
+                               templocation=templocation)
+            # close the radar file
+            del radar
+------------------
+
+----- stdout -----
+working on KLOT20230507_161027_V06
+----- stderr -----
+Downloading file 'us_counties_20m.cpg' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/us_counties_20m.cpg' to '/home/runner/.cache/metpy/v1.6.2'.
+----- stderr -----
+Downloading file 'us_counties_20m.cpg' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/us_counties_20m.cpg' to '/home/runner/.cache/metpy/v1.6.2'.
+----- stdout -----
+Error in callback <function _draw_all_if_interactive at 0x7f0816eb79a0> (for post_execute), with arguments args (),kwargs {}:
+----- stderr -----
+Downloading file 'us_counties_20m.cpg' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/us_counties_20m.cpg' to '/home/runner/.cache/metpy/v1.6.2'.
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTimeoutError[0m                              Traceback (most recent call last)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connection.py:198[0m, in [0;36mHTTPConnection._new_conn[0;34m(self)[0m
+[1;32m    197[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 198[0m     sock [38;5;241m=[39m [43mconnection[49m[38;5;241;43m.[39;49m[43mcreate_connection[49m[43m([49m
+[1;32m    199[0m [43m        [49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_dns_host[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mport[49m[43m)[49m[43m,[49m
+[1;32m    200[0m [43m        [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mtimeout[49m[43m,[49m
+[1;32m    201[0m [43m        [49m[43msource_address[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msource_address[49m[43m,[49m
+[1;32m    202[0m [43m        [49m[43msocket_options[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msocket_options[49m[43m,[49m
+[1;32m    203[0m [43m    [49m[43m)[49m
+[1;32m    204[0m [38;5;28;01mexcept[39;00m socket[38;5;241m.[39mgaierror [38;5;28;01mas[39;00m e:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/util/connection.py:85[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address, socket_options)[0m
+[1;32m     84[0m [38;5;28;01mtry[39;00m:
+[0;32m---> 85[0m     [38;5;28;01mraise[39;00m err
+[1;32m     86[0m [38;5;28;01mfinally[39;00m:
+[1;32m     87[0m     [38;5;66;03m# Break explicitly a reference cycle[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/util/connection.py:73[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address, socket_options)[0m
+[1;32m     72[0m     sock[38;5;241m.[39mbind(source_address)
+[0;32m---> 73[0m [43msock[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43msa[49m[43m)[49m
+[1;32m     74[0m [38;5;66;03m# Break explicitly a reference cycle[39;00m
+
+[0;31mTimeoutError[0m: timed out
+
+The above exception was the direct cause of the following exception:
+
+[0;31mConnectTimeoutError[0m                       Traceback (most recent call last)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:793[0m, in [0;36mHTTPConnectionPool.urlopen[0;34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[0m
+[1;32m    792[0m [38;5;66;03m# Make the request on the HTTPConnection object[39;00m
+[0;32m--> 793[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_request[49m[43m([49m
+[1;32m    794[0m [43m    [49m[43mconn[49m[43m,[49m
+[1;32m    795[0m [43m    [49m[43mmethod[49m[43m,[49m
+[1;32m    796[0m [43m    [49m[43murl[49m[43m,[49m
+[1;32m    797[0m [43m    [49m[43mtimeout[49m[38;5;241;43m=[39;49m[43mtimeout_obj[49m[43m,[49m
+[1;32m    798[0m [43m    [49m[43mbody[49m[38;5;241;43m=[39;49m[43mbody[49m[43m,[49m
+[1;32m    799[0m [43m    [49m[43mheaders[49m[38;5;241;43m=[39;49m[43mheaders[49m[43m,[49m
+[1;32m    800[0m [43m    [49m[43mchunked[49m[38;5;241;43m=[39;49m[43mchunked[49m[43m,[49m
+[1;32m    801[0m [43m    [49m[43mretries[49m[38;5;241;43m=[39;49m[43mretries[49m[43m,[49m
+[1;32m    802[0m [43m    [49m[43mresponse_conn[49m[38;5;241;43m=[39;49m[43mresponse_conn[49m[43m,[49m
+[1;32m    803[0m [43m    [49m[43mpreload_content[49m[38;5;241;43m=[39;49m[43mpreload_content[49m[43m,[49m
+[1;32m    804[0m [43m    [49m[43mdecode_content[49m[38;5;241;43m=[39;49m[43mdecode_content[49m[43m,[49m
+[1;32m    805[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mresponse_kw[49m[43m,[49m
+[1;32m    806[0m [43m[49m[43m)[49m
+[1;32m    808[0m [38;5;66;03m# Everything went great![39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:491[0m, in [0;36mHTTPConnectionPool._make_request[0;34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[0m
+[1;32m    490[0m         new_e [38;5;241m=[39m _wrap_proxy_error(new_e, conn[38;5;241m.[39mproxy[38;5;241m.[39mscheme)
+[0;32m--> 491[0m     [38;5;28;01mraise[39;00m new_e
+[1;32m    493[0m [38;5;66;03m# conn.request() calls http.client.*.request, not the method in[39;00m
+[1;32m    494[0m [38;5;66;03m# urllib3.request. It also calls makefile (recv) on the socket.[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:467[0m, in [0;36mHTTPConnectionPool._make_request[0;34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[0m
+[1;32m    466[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 467[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_conn[49m[43m([49m[43mconn[49m[43m)[49m
+[1;32m    468[0m [38;5;28;01mexcept[39;00m (SocketTimeout, BaseSSLError) [38;5;28;01mas[39;00m e:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:1099[0m, in [0;36mHTTPSConnectionPool._validate_conn[0;34m(self, conn)[0m
+[1;32m   1098[0m [38;5;28;01mif[39;00m conn[38;5;241m.[39mis_closed:
+[0;32m-> 1099[0m     [43mconn[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+[1;32m   1101[0m [38;5;66;03m# TODO revise this, see https://github.com/urllib3/urllib3/issues/2791[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connection.py:616[0m, in [0;36mHTTPSConnection.connect[0;34m(self)[0m
+[1;32m    615[0m sock: socket[38;5;241m.[39msocket [38;5;241m|[39m ssl[38;5;241m.[39mSSLSocket
+[0;32m--> 616[0m [38;5;28mself[39m[38;5;241m.[39msock [38;5;241m=[39m sock [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_new_conn[49m[43m([49m[43m)[49m
+[1;32m    617[0m server_hostname: [38;5;28mstr[39m [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mhost
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connection.py:207[0m, in [0;36mHTTPConnection._new_conn[0;34m(self)[0m
+[1;32m    206[0m [38;5;28;01mexcept[39;00m SocketTimeout [38;5;28;01mas[39;00m e:
+[0;32m--> 207[0m     [38;5;28;01mraise[39;00m ConnectTimeoutError(
+[1;32m    208[0m         [38;5;28mself[39m,
+[1;32m    209[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mConnection to [39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mhost[38;5;132;01m}[39;00m[38;5;124m timed out. (connect timeout=[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mtimeout[38;5;132;01m}[39;00m[38;5;124m)[39m[38;5;124m"[39m,
+[1;32m    210[0m     ) [38;5;28;01mfrom[39;00m [38;5;21;01me[39;00m
+[1;32m    212[0m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m e:
+
+[0;31mConnectTimeoutError[0m: (<urllib3.connection.HTTPSConnection object at 0x7f07d12b02b0>, 'Connection to github.com timed out. (connect timeout=5)')
+
+The above exception was the direct cause of the following exception:
+
+[0;31mMaxRetryError[0m                             Traceback (most recent call last)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/adapters.py:589[0m, in [0;36mHTTPAdapter.send[0;34m(self, request, stream, timeout, verify, cert, proxies)[0m
+[1;32m    588[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 589[0m     resp [38;5;241m=[39m [43mconn[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m
+[1;32m    590[0m [43m        [49m[43mmethod[49m[38;5;241;43m=[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43mmethod[49m[43m,[49m
+[1;32m    591[0m [43m        [49m[43murl[49m[38;5;241;43m=[39;49m[43murl[49m[43m,[49m
+[1;32m    592[0m [43m        [49m[43mbody[49m[38;5;241;43m=[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43mbody[49m[43m,[49m
+[1;32m    593[0m [43m        [49m[43mheaders[49m[38;5;241;43m=[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43mheaders[49m[43m,[49m
+[1;32m    594[0m [43m        [49m[43mredirect[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m    595[0m [43m        [49m[43massert_same_host[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m    596[0m [43m        [49m[43mpreload_content[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m    597[0m [43m        [49m[43mdecode_content[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m    598[0m [43m        [49m[43mretries[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mmax_retries[49m[43m,[49m
+[1;32m    599[0m [43m        [49m[43mtimeout[49m[38;5;241;43m=[39;49m[43mtimeout[49m[43m,[49m
+[1;32m    600[0m [43m        [49m[43mchunked[49m[38;5;241;43m=[39;49m[43mchunked[49m[43m,[49m
+[1;32m    601[0m [43m    [49m[43m)[49m
+[1;32m    603[0m [38;5;28;01mexcept[39;00m (ProtocolError, [38;5;167;01mOSError[39;00m) [38;5;28;01mas[39;00m err:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:847[0m, in [0;36mHTTPConnectionPool.urlopen[0;34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[0m
+[1;32m    845[0m     new_e [38;5;241m=[39m ProtocolError([38;5;124m"[39m[38;5;124mConnection aborted.[39m[38;5;124m"[39m, new_e)
+[0;32m--> 847[0m retries [38;5;241m=[39m [43mretries[49m[38;5;241;43m.[39;49m[43mincrement[49m[43m([49m
+[1;32m    848[0m [43m    [49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43merror[49m[38;5;241;43m=[39;49m[43mnew_e[49m[43m,[49m[43m [49m[43m_pool[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43m_stacktrace[49m[38;5;241;43m=[39;49m[43msys[49m[38;5;241;43m.[39;49m[43mexc_info[49m[43m([49m[43m)[49m[43m[[49m[38;5;241;43m2[39;49m[43m][49m
+[1;32m    849[0m [43m[49m[43m)[49m
+[1;32m    850[0m retries[38;5;241m.[39msleep()
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/util/retry.py:515[0m, in [0;36mRetry.increment[0;34m(self, method, url, response, error, _pool, _stacktrace)[0m
+[1;32m    514[0m     reason [38;5;241m=[39m error [38;5;129;01mor[39;00m ResponseError(cause)
+[0;32m--> 515[0m     [38;5;28;01mraise[39;00m MaxRetryError(_pool, url, reason) [38;5;28;01mfrom[39;00m [38;5;21;01mreason[39;00m  [38;5;66;03m# type: ignore[arg-type][39;00m
+[1;32m    517[0m log[38;5;241m.[39mdebug([38;5;124m"[39m[38;5;124mIncremented Retry for (url=[39m[38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m'[39m[38;5;124m): [39m[38;5;132;01m%r[39;00m[38;5;124m"[39m, url, new_retry)
+
+[0;31mMaxRetryError[0m: HTTPSConnectionPool(host='github.com', port=443): Max retries exceeded with url: /Unidata/MetPy/raw/v1.6.2/staticdata/us_counties_20m.cpg (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f07d12b02b0>, 'Connection to github.com timed out. (connect timeout=5)'))
+
+During handling of the above exception, another exception occurred:
+
+[0;31mConnectTimeout[0m                            Traceback (most recent call last)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/IPython/core/formatters.py:343[0m, in [0;36mBaseFormatter.__call__[0;34m(self, obj)[0m
+[1;32m    341[0m     [38;5;28;01mpass[39;00m
+[1;32m    342[0m [38;5;28;01melse[39;00m:
+[0;32m--> 343[0m     [38;5;28;01mreturn[39;00m [43mprinter[49m[43m([49m[43mobj[49m[43m)[49m
+[1;32m    344[0m [38;5;66;03m# Finally look for special method names[39;00m
+[1;32m    345[0m method [38;5;241m=[39m get_real_method(obj, [38;5;28mself[39m[38;5;241m.[39mprint_method)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/IPython/core/pylabtools.py:170[0m, in [0;36mprint_figure[0;34m(fig, fmt, bbox_inches, base64, **kwargs)[0m
+[1;32m    167[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbackend_bases[39;00m [38;5;28;01mimport[39;00m FigureCanvasBase
+[1;32m    168[0m     FigureCanvasBase(fig)
+[0;32m--> 170[0m [43mfig[49m[38;5;241;43m.[39;49m[43mcanvas[49m[38;5;241;43m.[39;49m[43mprint_figure[49m[43m([49m[43mbytes_io[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkw[49m[43m)[49m
+[1;32m    171[0m data [38;5;241m=[39m bytes_io[38;5;241m.[39mgetvalue()
+[1;32m    172[0m [38;5;28;01mif[39;00m fmt [38;5;241m==[39m [38;5;124m'[39m[38;5;124msvg[39m[38;5;124m'[39m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/backend_bases.py:2164[0m, in [0;36mFigureCanvasBase.print_figure[0;34m(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, pad_inches, bbox_extra_artists, backend, **kwargs)[0m
+[1;32m   2161[0m     [38;5;66;03m# we do this instead of `self.figure.draw_without_rendering`[39;00m
+[1;32m   2162[0m     [38;5;66;03m# so that we can inject the orientation[39;00m
+[1;32m   2163[0m     [38;5;28;01mwith[39;00m [38;5;28mgetattr[39m(renderer, [38;5;124m"[39m[38;5;124m_draw_disabled[39m[38;5;124m"[39m, nullcontext)():
+[0;32m-> 2164[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfigure[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m   2165[0m [38;5;28;01mif[39;00m bbox_inches:
+[1;32m   2166[0m     [38;5;28;01mif[39;00m bbox_inches [38;5;241m==[39m [38;5;124m"[39m[38;5;124mtight[39m[38;5;124m"[39m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:95[0m, in [0;36m_finalize_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer, *args, **kwargs)[0m
+[1;32m     93[0m [38;5;129m@wraps[39m(draw)
+[1;32m     94[0m [38;5;28;01mdef[39;00m [38;5;21mdraw_wrapper[39m(artist, renderer, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m---> 95[0m     result [38;5;241m=[39m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m     96[0m     [38;5;28;01mif[39;00m renderer[38;5;241m.[39m_rasterizing:
+[1;32m     97[0m         renderer[38;5;241m.[39mstop_rasterizing()
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/figure.py:3154[0m, in [0;36mFigure.draw[0;34m(self, renderer)[0m
+[1;32m   3151[0m         [38;5;66;03m# ValueError can occur when resizing a window.[39;00m
+[1;32m   3153[0m [38;5;28mself[39m[38;5;241m.[39mpatch[38;5;241m.[39mdraw(renderer)
+[0;32m-> 3154[0m [43mmimage[49m[38;5;241;43m.[39;49m[43m_draw_list_compositing_images[49m[43m([49m
+[1;32m   3155[0m [43m    [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43martists[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msuppressComposite[49m[43m)[49m
+[1;32m   3157[0m [38;5;28;01mfor[39;00m sfig [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39msubfigs:
+[1;32m   3158[0m     sfig[38;5;241m.[39mdraw(renderer)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/image.py:132[0m, in [0;36m_draw_list_compositing_images[0;34m(renderer, parent, artists, suppress_composite)[0m
+[1;32m    130[0m [38;5;28;01mif[39;00m not_composite [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m has_images:
+[1;32m    131[0m     [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m artists:
+[0;32m--> 132[0m         [43ma[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m    133[0m [38;5;28;01melse[39;00m:
+[1;32m    134[0m     [38;5;66;03m# Composite any adjacent images together[39;00m
+[1;32m    135[0m     image_group [38;5;241m=[39m []
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/mpl/geoaxes.py:525[0m, in [0;36mGeoAxes.draw[0;34m(self, renderer, **kwargs)[0m
+[1;32m    520[0m         [38;5;28mself[39m[38;5;241m.[39mimshow(img, extent[38;5;241m=[39mextent, origin[38;5;241m=[39morigin,
+[1;32m    521[0m                     transform[38;5;241m=[39mfactory[38;5;241m.[39mcrs, [38;5;241m*[39mfactory_args[[38;5;241m1[39m:],
+[1;32m    522[0m                     [38;5;241m*[39m[38;5;241m*[39mfactory_kwargs)
+[1;32m    523[0m [38;5;28mself[39m[38;5;241m.[39m_done_img_factory [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m--> 525[0m [38;5;28;01mreturn[39;00m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[38;5;241;43m=[39;49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/axes/_base.py:3070[0m, in [0;36m_AxesBase.draw[0;34m(self, renderer)[0m
+[1;32m   3067[0m [38;5;28;01mif[39;00m artists_rasterized:
+[1;32m   3068[0m     _draw_rasterized([38;5;28mself[39m[38;5;241m.[39mfigure, artists_rasterized, renderer)
+[0;32m-> 3070[0m [43mmimage[49m[38;5;241;43m.[39;49m[43m_draw_list_compositing_images[49m[43m([49m
+[1;32m   3071[0m [43m    [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43martists[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfigure[49m[38;5;241;43m.[39;49m[43msuppressComposite[49m[43m)[49m
+[1;32m   3073[0m renderer[38;5;241m.[39mclose_group([38;5;124m'[39m[38;5;124maxes[39m[38;5;124m'[39m)
+[1;32m   3074[0m [38;5;28mself[39m[38;5;241m.[39mstale [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/image.py:132[0m, in [0;36m_draw_list_compositing_images[0;34m(renderer, parent, artists, suppress_composite)[0m
+[1;32m    130[0m [38;5;28;01mif[39;00m not_composite [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m has_images:
+[1;32m    131[0m     [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m artists:
+[0;32m--> 132[0m         [43ma[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m    133[0m [38;5;28;01melse[39;00m:
+[1;32m    134[0m     [38;5;66;03m# Composite any adjacent images together[39;00m
+[1;32m    135[0m     image_group [38;5;241m=[39m []
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/mpl/feature_artist.py:185[0m, in [0;36mFeatureArtist.draw[0;34m(self, renderer)[0m
+[1;32m    180[0m     geoms [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_feature[38;5;241m.[39mgeometries()
+[1;32m    181[0m [38;5;28;01melse[39;00m:
+[1;32m    182[0m     [38;5;66;03m# For efficiency on local maps with high resolution features (e.g[39;00m
+[1;32m    183[0m     [38;5;66;03m# from Natural Earth), only create paths for geometries that are[39;00m
+[1;32m    184[0m     [38;5;66;03m# in view.[39;00m
+[0;32m--> 185[0m     geoms [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_feature[49m[38;5;241;43m.[39;49m[43mintersecting_geometries[49m[43m([49m[43mextent[49m[43m)[49m
+[1;32m    187[0m stylised_paths [38;5;241m=[39m {}
+[1;32m    188[0m [38;5;66;03m# Make an empty placeholder style dictionary for when styler is not[39;00m
+[1;32m    189[0m [38;5;66;03m# used.  Freeze it so that we can use it as a dict key.  We will need[39;00m
+[1;32m    190[0m [38;5;66;03m# to unfreeze all style dicts with dict(frozen) before passing to mpl.[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/plots/cartopy_utils.py:38[0m, in [0;36mMetPyMapFeature.intersecting_geometries[0;34m(self, extent)[0m
+[1;32m     36[0m [38;5;250m[39m[38;5;124;03m"""Return geometries that intersect the extent."""[39;00m
+[1;32m     37[0m [38;5;28mself[39m[38;5;241m.[39mscaler[38;5;241m.[39mscale_from_extent(extent)
+[0;32m---> 38[0m [38;5;28;01mreturn[39;00m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mintersecting_geometries[49m[43m([49m[43mextent[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/feature/__init__.py:112[0m, in [0;36mFeature.intersecting_geometries[0;34m(self, extent)[0m
+[1;32m    109[0m [38;5;28;01mif[39;00m extent [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m np[38;5;241m.[39misnan(extent[[38;5;241m0[39m]):
+[1;32m    110[0m     extent_geom [38;5;241m=[39m sgeom[38;5;241m.[39mbox(extent[[38;5;241m0[39m], extent[[38;5;241m2[39m],
+[1;32m    111[0m                             extent[[38;5;241m1[39m], extent[[38;5;241m3[39m])
+[0;32m--> 112[0m     [38;5;28;01mreturn[39;00m (geom [38;5;28;01mfor[39;00m geom [38;5;129;01min[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mgeometries[49m[43m([49m[43m)[49m [38;5;28;01mif[39;00m
+[1;32m    113[0m             geom [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m extent_geom[38;5;241m.[39mintersects(geom))
+[1;32m    114[0m [38;5;28;01melse[39;00m:
+[1;32m    115[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mgeometries()
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/plots/cartopy_utils.py:31[0m, in [0;36mMetPyMapFeature.geometries[0;34m(self)[0m
+[1;32m     29[0m fname [38;5;241m=[39m [38;5;124mf[39m[38;5;124m'[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mname[38;5;132;01m}[39;00m[38;5;124m_[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mscaler[38;5;241m.[39mscale[38;5;132;01m}[39;00m[38;5;124m'[39m
+[1;32m     30[0m [38;5;28;01mfor[39;00m extension [38;5;129;01min[39;00m [[38;5;124m'[39m[38;5;124m.cpg[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124m.dbf[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124m.prj[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124m.shx[39m[38;5;124m'[39m]:
+[0;32m---> 31[0m     [43mget_test_data[49m[43m([49m[43mfname[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43mextension[49m[43m,[49m[43m [49m[43mas_file_obj[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m
+[1;32m     32[0m path [38;5;241m=[39m get_test_data(fname [38;5;241m+[39m [38;5;124m'[39m[38;5;124m.shp[39m[38;5;124m'[39m, as_file_obj[38;5;241m=[39m[38;5;28;01mFalse[39;00m)
+[1;32m     33[0m [38;5;28;01mreturn[39;00m [38;5;28miter[39m([38;5;28mtuple[39m(shapereader[38;5;241m.[39mReader(path)[38;5;241m.[39mgeometries()))
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/cbook.py:34[0m, in [0;36mget_test_data[0;34m(fname, as_file_obj, mode)[0m
+[1;32m     32[0m [38;5;28;01mdef[39;00m [38;5;21mget_test_data[39m(fname, as_file_obj[38;5;241m=[39m[38;5;28;01mTrue[39;00m, mode[38;5;241m=[39m[38;5;124m'[39m[38;5;124mrb[39m[38;5;124m'[39m):
+[1;32m     33[0m [38;5;250m    [39m[38;5;124;03m"""Access a file from MetPy's collection of test data."""[39;00m
+[0;32m---> 34[0m     path [38;5;241m=[39m [43mPOOCH[49m[38;5;241;43m.[39;49m[43mfetch[49m[43m([49m[43mfname[49m[43m)[49m
+[1;32m     35[0m     [38;5;66;03m# If we want a file object, open it, trying to guess whether this should be binary mode[39;00m
+[1;32m     36[0m     [38;5;66;03m# or not[39;00m
+[1;32m     37[0m     [38;5;28;01mif[39;00m as_file_obj:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pooch/core.py:589[0m, in [0;36mPooch.fetch[0;34m(self, fname, processor, downloader, progressbar)[0m
+[1;32m    586[0m     [38;5;28;01mif[39;00m downloader [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    587[0m         downloader [38;5;241m=[39m choose_downloader(url, progressbar[38;5;241m=[39mprogressbar)
+[0;32m--> 589[0m     [43mstream_download[49m[43m([49m
+[1;32m    590[0m [43m        [49m[43murl[49m[43m,[49m
+[1;32m    591[0m [43m        [49m[43mfull_path[49m[43m,[49m
+[1;32m    592[0m [43m        [49m[43mknown_hash[49m[43m,[49m
+[1;32m    593[0m [43m        [49m[43mdownloader[49m[43m,[49m
+[1;32m    594[0m [43m        [49m[43mpooch[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m
+[1;32m    595[0m [43m        [49m[43mretry_if_failed[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mretry_if_failed[49m[43m,[49m
+[1;32m    596[0m [43m    [49m[43m)[49m
+[1;32m    598[0m [38;5;28;01mif[39;00m processor [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    599[0m     [38;5;28;01mreturn[39;00m processor([38;5;28mstr[39m(full_path), action, [38;5;28mself[39m)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pooch/core.py:807[0m, in [0;36mstream_download[0;34m(url, fname, known_hash, downloader, pooch, retry_if_failed)[0m
+[1;32m    803[0m [38;5;28;01mtry[39;00m:
+[1;32m    804[0m     [38;5;66;03m# Stream the file to a temporary so that we can safely check its[39;00m
+[1;32m    805[0m     [38;5;66;03m# hash before overwriting the original.[39;00m
+[1;32m    806[0m     [38;5;28;01mwith[39;00m temporary_file(path[38;5;241m=[39m[38;5;28mstr[39m(fname[38;5;241m.[39mparent)) [38;5;28;01mas[39;00m tmp:
+[0;32m--> 807[0m         [43mdownloader[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mtmp[49m[43m,[49m[43m [49m[43mpooch[49m[43m)[49m
+[1;32m    808[0m         hash_matches(tmp, known_hash, strict[38;5;241m=[39m[38;5;28;01mTrue[39;00m, source[38;5;241m=[39m[38;5;28mstr[39m(fname[38;5;241m.[39mname))
+[1;32m    809[0m         shutil[38;5;241m.[39mmove(tmp, [38;5;28mstr[39m(fname))
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pooch/downloaders.py:214[0m, in [0;36mHTTPDownloader.__call__[0;34m(self, url, output_file, pooch, check_only)[0m
+[1;32m    212[0m     [38;5;66;03m# pylint: enable=consider-using-with[39;00m
+[1;32m    213[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 214[0m     response [38;5;241m=[39m [43mrequests[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mtimeout[49m[38;5;241;43m=[39;49m[43mtimeout[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    215[0m     response[38;5;241m.[39mraise_for_status()
+[1;32m    216[0m     content [38;5;241m=[39m response[38;5;241m.[39miter_content(chunk_size[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39mchunk_size)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/api.py:73[0m, in [0;36mget[0;34m(url, params, **kwargs)[0m
+[1;32m     62[0m [38;5;28;01mdef[39;00m [38;5;21mget[39m(url, params[38;5;241m=[39m[38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[1;32m     63[0m [38;5;250m    [39m[38;5;124mr[39m[38;5;124;03m"""Sends a GET request.[39;00m
+[1;32m     64[0m 
+[1;32m     65[0m [38;5;124;03m    :param url: URL for the new :class:`Request` object.[39;00m
+[0;32m   (...)[0m
+[1;32m     70[0m [38;5;124;03m    :rtype: requests.Response[39;00m
+[1;32m     71[0m [38;5;124;03m    """[39;00m
+[0;32m---> 73[0m     [38;5;28;01mreturn[39;00m [43mrequest[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mget[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mparams[49m[38;5;241;43m=[39;49m[43mparams[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/api.py:59[0m, in [0;36mrequest[0;34m(method, url, **kwargs)[0m
+[1;32m     55[0m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[1;32m     56[0m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[1;32m     57[0m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[1;32m     58[0m [38;5;28;01mwith[39;00m sessions[38;5;241m.[39mSession() [38;5;28;01mas[39;00m session:
+[0;32m---> 59[0m     [38;5;28;01mreturn[39;00m [43msession[49m[38;5;241;43m.[39;49m[43mrequest[49m[43m([49m[43mmethod[49m[38;5;241;43m=[39;49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[38;5;241;43m=[39;49m[43murl[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/sessions.py:589[0m, in [0;36mSession.request[0;34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[0m
+[1;32m    584[0m send_kwargs [38;5;241m=[39m {
+[1;32m    585[0m     [38;5;124m"[39m[38;5;124mtimeout[39m[38;5;124m"[39m: timeout,
+[1;32m    586[0m     [38;5;124m"[39m[38;5;124mallow_redirects[39m[38;5;124m"[39m: allow_redirects,
+[1;32m    587[0m }
+[1;32m    588[0m send_kwargs[38;5;241m.[39mupdate(settings)
+[0;32m--> 589[0m resp [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msend[49m[43m([49m[43mprep[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43msend_kwargs[49m[43m)[49m
+[1;32m    591[0m [38;5;28;01mreturn[39;00m resp
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/sessions.py:703[0m, in [0;36mSession.send[0;34m(self, request, **kwargs)[0m
+[1;32m    700[0m start [38;5;241m=[39m preferred_clock()
+[1;32m    702[0m [38;5;66;03m# Send the request[39;00m
+[0;32m--> 703[0m r [38;5;241m=[39m [43madapter[49m[38;5;241;43m.[39;49m[43msend[49m[43m([49m[43mrequest[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    705[0m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
+[1;32m    706[0m elapsed [38;5;241m=[39m preferred_clock() [38;5;241m-[39m start
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/adapters.py:610[0m, in [0;36mHTTPAdapter.send[0;34m(self, request, stream, timeout, verify, cert, proxies)[0m
+[1;32m    607[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e[38;5;241m.[39mreason, ConnectTimeoutError):
+[1;32m    608[0m     [38;5;66;03m# TODO: Remove this in 3.0.0: see #2811[39;00m
+[1;32m    609[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(e[38;5;241m.[39mreason, NewConnectionError):
+[0;32m--> 610[0m         [38;5;28;01mraise[39;00m ConnectTimeout(e, request[38;5;241m=[39mrequest)
+[1;32m    612[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e[38;5;241m.[39mreason, ResponseError):
+[1;32m    613[0m     [38;5;28;01mraise[39;00m RetryError(e, request[38;5;241m=[39mrequest)
+
+[0;31mConnectTimeout[0m: HTTPSConnectionPool(host='github.com', port=443): Max retries exceeded with url: /Unidata/MetPy/raw/v1.6.2/staticdata/us_counties_20m.cpg (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f07d12b02b0>, 'Connection to github.com timed out. (connect timeout=5)'))
 
