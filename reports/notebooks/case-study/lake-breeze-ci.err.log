@@ -52,7 +52,7 @@ Downloading file 'us_counties_20m.shx' from 'https://github.com/Unidata/MetPy/ra
 ----- stderr -----
 Downloading file 'us_counties_20m.shp' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/us_counties_20m.shp' to '/home/runner/.cache/metpy/v1.6.2'.
 ----- stdout -----
-Error in callback <function _draw_all_if_interactive at 0x7faedb13c1f0> (for post_execute), with arguments args (),kwargs {}:
+Error in callback <function _draw_all_if_interactive at 0x7fb2593981f0> (for post_execute), with arguments args (),kwargs {}:
 ----- stderr -----
 Downloading file 'us_counties_20m.shp' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/us_counties_20m.shp' to '/home/runner/.cache/metpy/v1.6.2'.
 ------------------
