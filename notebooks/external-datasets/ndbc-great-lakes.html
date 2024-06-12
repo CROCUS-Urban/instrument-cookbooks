@@ -29,7 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -46,7 +46,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -253,9 +253,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -280,14 +280,14 @@
       
       <li><a href="https://binder.projectpythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/external-datasets/ndbc-great-lakes.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -298,14 +298,14 @@
       
       <li><a href="https://jupyter-open.olcf.ornl.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/CROCUS-Urban/instrument-cookbooks&urlpath=lab/tree/instrument-cookbooks/notebooks/notebooks/external-datasets/ndbc-great-lakes.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -398,9 +398,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -1032,21 +1032,21 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Harrison-Dever Crib, Chicago, IL
-                      #YY  MM  DD  hh  mm   WDIR  WSPD   GST  WVHT  DPD  APD  \
-datetime                                                                       
-2024-06-12 13:20:00  2024   6  12  13  20  240.0   7.7   9.3   NaN  NaN  NaN   
-2024-06-12 13:10:00  2024   6  12  13  10  240.0   6.7   7.7   NaN  NaN  NaN   
-2024-06-12 13:00:00  2024   6  12  13   0  230.0   9.3  11.3   NaN  NaN  NaN   
-2024-06-12 12:50:00  2024   6  12  12  50  230.0   7.7   9.3   NaN  NaN  NaN   
-2024-06-12 12:40:00  2024   6  12  12  40  250.0   8.8   9.3   NaN  NaN  NaN   
+                      #YY  MM  DD  hh  mm   WDIR  WSPD  GST  WVHT  DPD  APD  \
+datetime                                                                      
+2024-06-12 14:20:00  2024   6  12  14  20  260.0   5.1  5.7   NaN  NaN  NaN   
+2024-06-12 14:10:00  2024   6  12  14  10  260.0   4.6  5.1   NaN  NaN  NaN   
+2024-06-12 14:00:00  2024   6  12  14   0  230.0   5.1  5.7   NaN  NaN  NaN   
+2024-06-12 13:50:00  2024   6  12  13  50  220.0   4.1  4.6   NaN  NaN  NaN   
+2024-06-12 13:40:00  2024   6  12  13  40  220.0   5.7  7.2   NaN  NaN  NaN   
 
                      MWD  PRES  ATMP  WTMP  DEWP  VIS  PTDY  TIDE  
 datetime                                                           
-2024-06-12 13:20:00  NaN   NaN  23.7   NaN  16.5  NaN   NaN   NaN  
-2024-06-12 13:10:00  NaN   NaN  23.7   NaN  16.6  NaN   NaN   NaN  
-2024-06-12 13:00:00  NaN   NaN  23.7   NaN  16.5  NaN   NaN   NaN  
-2024-06-12 12:50:00  NaN   NaN  23.5   NaN  16.3  NaN   NaN   NaN  
-2024-06-12 12:40:00  NaN   NaN  23.6   NaN  16.0  NaN   NaN   NaN  
+2024-06-12 14:20:00  NaN   NaN  25.2   NaN  17.0  NaN   NaN   NaN  
+2024-06-12 14:10:00  NaN   NaN  24.9   NaN  16.8  NaN   NaN   NaN  
+2024-06-12 14:00:00  NaN   NaN  24.6   NaN  16.7  NaN   NaN   NaN  
+2024-06-12 13:50:00  NaN   NaN  24.2   NaN  16.8  NaN   NaN   NaN  
+2024-06-12 13:40:00  NaN   NaN  23.7   NaN  16.7  NaN   NaN   NaN  
 </pre></div>
 </div>
 </div>
@@ -1121,7 +1121,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0f6ebc3adb1d623d746f4613c6407e05e3c0977fa71a6b3566b50e04b2d0335e.png" src="../../_images/0f6ebc3adb1d623d746f4613c6407e05e3c0977fa71a6b3566b50e04b2d0335e.png" />
+<img alt="../../_images/3f6d637541793079078175cf652c94ee509061773ec5a36732a75277895e3202.png" src="../../_images/3f6d637541793079078175cf652c94ee509061773ec5a36732a75277895e3202.png" />
 </div>
 </div>
 <p>Distribution of Wind Speeds</p>
@@ -1140,7 +1140,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2a6dfd8167ac959931479c64777b3b2402e504709068b6533b2a4ebf73efdf80.png" src="../../_images/2a6dfd8167ac959931479c64777b3b2402e504709068b6533b2a4ebf73efdf80.png" />
+<img alt="../../_images/17504ea2f3a2e6c77b0c71dbac6ce332e7651db6648dc99323a869df45d283ce.png" src="../../_images/17504ea2f3a2e6c77b0c71dbac6ce332e7651db6648dc99323a869df45d283ce.png" />
 </div>
 </div>
 <p>Get data from nearby stations for comparison</p>
@@ -1187,7 +1187,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1dd739bfbd0469a6fa33f4ba6fc59431e7af9b500e1818a6766ab57dbfa9c1d0.png" src="../../_images/1dd739bfbd0469a6fa33f4ba6fc59431e7af9b500e1818a6766ab57dbfa9c1d0.png" />
+<img alt="../../_images/c877570d65c0fde4029be0b42eff11030011a85bd3086f3115e23100edaba437.png" src="../../_images/c877570d65c0fde4029be0b42eff11030011a85bd3086f3115e23100edaba437.png" />
 </div>
 </div>
 </section>
