@@ -1,0 +1,84 @@
+Traceback (most recent call last):
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from windrose import WindroseAxes
+
+fig, (ax1, ax2, ax3) = plt.subplots(1, ncols=3, figsize=(15, 5), subplot_kw ={'projection': 'windrose'})
+fig.suptitle("Windroses from Three Nearby Stations",y=1.1)
+
+fig.add_axes(ax1)
+ax1.bar(rtdf["WDIR"], rtdf['WSPD'], normed=True, opening=0.8, edgecolor="white")
+ax1.set_legend(units="m/s")
+ax1.set_title(StationName + " (" + StationID + ")",y=1.1)
+
+fig.add_axes(ax2)
+ax2.bar(station2_df["WDIR"], station2_df['WSPD'], normed=True, opening=0.8, edgecolor="white")
+ax2.set_legend(units="m/s")
+ax2.set_title(StationName2 + " (" + StationID2 + ")",y=1.1)
+
+#ax3 = WindroseAxes.from_ax()
+ax3.bar(station3_df["WDIR"], station3_df['WSPD'], normed=True, opening=0.8, edgecolor="white")
+ax3.set_legend(units="m/s")
+ax3.set_title(StationName3 + " (" + StationID3 +")",y=1.1)
+
+plt.tight_layout()
+plt.show()
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[11], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mwindrose[39;00m [38;5;28;01mimport[39;00m WindroseAxes
+[1;32m      3[0m fig, (ax1, ax2, ax3) [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m1[39m, ncols[38;5;241m=[39m[38;5;241m3[39m, figsize[38;5;241m=[39m([38;5;241m15[39m, [38;5;241m5[39m), subplot_kw [38;5;241m=[39m{[38;5;124m'[39m[38;5;124mprojection[39m[38;5;124m'[39m: [38;5;124m'[39m[38;5;124mwindrose[39m[38;5;124m'[39m})
+[1;32m      4[0m fig[38;5;241m.[39msuptitle([38;5;124m"[39m[38;5;124mWindroses from Three Nearby Stations[39m[38;5;124m"[39m,y[38;5;241m=[39m[38;5;241m1.1[39m)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/windrose/__init__.py:5[0m
+[1;32m      1[0m [38;5;124;03m"""Draw windrose (also known as a polar rose plot)"""[39;00m
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mprojections[39;00m [38;5;28;01mimport[39;00m register_projection
+[0;32m----> 5[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mwindrose[39;00m [38;5;28;01mimport[39;00m (
+[1;32m      6[0m     D_KIND_PLOT,  [38;5;66;03m# noqa[39;00m
+[1;32m      7[0m     DEFAULT_THETA_LABELS,  [38;5;66;03m# noqa[39;00m
+[1;32m      8[0m     DPI_DEFAULT,  [38;5;66;03m# noqa[39;00m
+[1;32m      9[0m     FIGSIZE_DEFAULT,  [38;5;66;03m# noqa[39;00m
+[1;32m     10[0m     WindAxes,  [38;5;66;03m# noqa[39;00m
+[1;32m     11[0m     WindAxesFactory,  [38;5;66;03m# noqa[39;00m
+[1;32m     12[0m     WindroseAxes,  [38;5;66;03m# noqa[39;00m
+[1;32m     13[0m     clean,  [38;5;66;03m# noqa[39;00m
+[1;32m     14[0m     clean_df,  [38;5;66;03m# noqa[39;00m
+[1;32m     15[0m     plot_windrose,  [38;5;66;03m# noqa[39;00m
+[1;32m     16[0m     plot_windrose_df,  [38;5;66;03m# noqa[39;00m
+[1;32m     17[0m     plot_windrose_np,  [38;5;66;03m# noqa[39;00m
+[1;32m     18[0m     wrbar,  [38;5;66;03m# noqa[39;00m
+[1;32m     19[0m     wrbox,  [38;5;66;03m# noqa[39;00m
+[1;32m     20[0m     wrcontour,  [38;5;66;03m# noqa[39;00m
+[1;32m     21[0m     wrcontourf,  [38;5;66;03m# noqa[39;00m
+[1;32m     22[0m     wrpdf,  [38;5;66;03m# noqa[39;00m
+[1;32m     23[0m     wrscatter,  [38;5;66;03m# noqa[39;00m
+[1;32m     24[0m )
+[1;32m     26[0m register_projection(WindroseAxes)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/windrose/windrose.py:10[0m
+[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      9[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mprojections[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpolar[39;00m [38;5;28;01mimport[39;00m PolarAxes
+[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mtwodim_base[39;00m [38;5;28;01mimport[39;00m histogram2d
+[1;32m     12[0m ZBASE [38;5;241m=[39m [38;5;241m-[39m[38;5;241m1000[39m  [38;5;66;03m# The starting zorder for all drawing, negative to have the grid on[39;00m
+[1;32m     13[0m VAR_DEFAULT [38;5;241m=[39m [38;5;124m"[39m[38;5;124mspeed[39m[38;5;124m"[39m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy.lib.twodim_base'
+
