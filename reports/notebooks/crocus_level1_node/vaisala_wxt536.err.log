@@ -15,14 +15,15 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Query the SAGE data client to access the data
-# Note: We need to know the time period we are interested in
-df = sage_data_client.query(start="2023-07-02T12:00:00Z",
-                            end="2023-07-02T13:00:00Z", 
-                            filter={
-                                "vsn": "W08D",
-                                "sensor": "vaisala-wxt536"
-                            }
+# Query the SAGE data client to access the data; use 'name' filter
+
+df_temp = sage_data_client.query(start="2023-07-02T00:00:00Z",
+                                 end="2023-07-03T00:00:00Z", 
+                                    filter={
+                                        "name" : 'wxt.env.temp',
+                                        "vsn": "W08D",
+                                        "sensor": "vaisala-wxt536"
+                                    }
 )
 ------------------
 
@@ -62,16 +63,16 @@ File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/clien
 During handling of the above exception, another exception occurred:
 
 [0;31mIncompleteRead[0m                            Traceback (most recent call last)
-Cell [0;32mIn[2], line 3[0m
-[1;32m      1[0m [38;5;66;03m# Query the SAGE data client to access the data[39;00m
-[1;32m      2[0m [38;5;66;03m# Note: We need to know the time period we are interested in[39;00m
-[0;32m----> 3[0m df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m[43mstart[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-07-02T12:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m      4[0m [43m                            [49m[43mend[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-07-02T13:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m
-[1;32m      5[0m [43m                            [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
-[1;32m      6[0m [43m                                [49m[38;5;124;43m"[39;49m[38;5;124;43mvsn[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mW08D[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m      7[0m [43m                                [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m
-[1;32m      8[0m [43m                            [49m[43m}[49m
-[1;32m      9[0m [43m)[49m
+Cell [0;32mIn[15], line 3[0m
+[1;32m      1[0m [38;5;66;03m# Query the SAGE data client to access the data; use 'name' filter[39;00m
+[0;32m----> 3[0m df_temp [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m[43mstart[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-07-02T00:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      4[0m [43m                                 [49m[43mend[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-07-03T00:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m
+[1;32m      5[0m [43m                                    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
+[1;32m      6[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m [49m[43m:[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mwxt.env.temp[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m      7[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43mvsn[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mW08D[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      8[0m [43m                                        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m
+[1;32m      9[0m [43m                                    [49m[43m}[49m
+[1;32m     10[0m [43m)[49m
 
 File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:111[0m, in [0;36mquery[0;34m(start, end, head, tail, experimental_func, bucket, filter, endpoint)[0m
 [1;32m    109[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
@@ -134,5 +135,5 @@ File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/clien
 [1;32m    597[0m [38;5;28;01mexcept[39;00m IncompleteRead:
 [0;32m--> 598[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value))
 
-[0;31mIncompleteRead[0m: IncompleteRead(375 bytes read)
+[0;31mIncompleteRead[0m: IncompleteRead(152 bytes read)
 
