@@ -1034,19 +1034,19 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Harrison-Dever Crib, Chicago, IL
                       #YY  MM  DD  hh  mm   WDIR  WSPD  GST  WVHT  DPD  APD  \
 datetime                                                                      
-2024-06-20 09:20:00  2024   6  20   9  20  340.0   4.6  4.6   NaN  NaN  NaN   
-2024-06-20 09:10:00  2024   6  20   9  10  340.0   4.6  5.1   NaN  NaN  NaN   
-2024-06-20 09:00:00  2024   6  20   9   0  340.0   6.2  6.2   NaN  NaN  NaN   
-2024-06-20 08:50:00  2024   6  20   8  50  330.0   7.2  7.7   NaN  NaN  NaN   
-2024-06-20 08:40:00  2024   6  20   8  40  330.0   6.7  6.7   NaN  NaN  NaN   
+2024-06-20 10:20:00  2024   6  20  10  20  340.0   5.7  6.2   NaN  NaN  NaN   
+2024-06-20 10:10:00  2024   6  20  10  10  330.0   5.7  5.7   NaN  NaN  NaN   
+2024-06-20 10:00:00  2024   6  20  10   0  340.0   5.7  5.7   NaN  NaN  NaN   
+2024-06-20 09:50:00  2024   6  20   9  50  340.0   5.7  6.2   NaN  NaN  NaN   
+2024-06-20 09:40:00  2024   6  20   9  40  340.0   6.2  6.7   NaN  NaN  NaN   
 
                      MWD  PRES  ATMP  WTMP  DEWP  VIS  PTDY  TIDE  
 datetime                                                           
-2024-06-20 09:20:00  NaN   NaN  21.1   NaN  21.1  NaN   NaN   NaN  
-2024-06-20 09:10:00  NaN   NaN  21.1   NaN  21.1  NaN   NaN   NaN  
-2024-06-20 09:00:00  NaN   NaN  21.3   NaN  21.3  NaN   NaN   NaN  
-2024-06-20 08:50:00  NaN   NaN  21.0   NaN  21.0  NaN   NaN   NaN  
-2024-06-20 08:40:00  NaN   NaN  21.0   NaN  21.0  NaN   NaN   NaN  
+2024-06-20 10:20:00  NaN   NaN  20.5   NaN  20.5  NaN   NaN   NaN  
+2024-06-20 10:10:00  NaN   NaN  20.5   NaN  20.5  NaN   NaN   NaN  
+2024-06-20 10:00:00  NaN   NaN  20.6   NaN  20.6  NaN   NaN   NaN  
+2024-06-20 09:50:00  NaN   NaN  20.6   NaN  20.6  NaN   NaN   NaN  
+2024-06-20 09:40:00  NaN   NaN  20.8   NaN  20.8  NaN   NaN   NaN  
 </pre></div>
 </div>
 </div>
@@ -1121,7 +1121,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04e4b6769c298216a35eb343014852e9b051888105b8e68772f5bde521b00760.png" src="../../_images/04e4b6769c298216a35eb343014852e9b051888105b8e68772f5bde521b00760.png" />
+<img alt="../../_images/11685676e9de3a56e6d2084f529b9ad7729592ccbef7df831d767c45edd18bf5.png" src="../../_images/11685676e9de3a56e6d2084f529b9ad7729592ccbef7df831d767c45edd18bf5.png" />
 </div>
 </div>
 <p>Distribution of Wind Speeds</p>
@@ -1140,7 +1140,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/08f1f68dcf0950154179bed951ae3deabfb9d04b16aa58c5326c85040c35cbb4.png" src="../../_images/08f1f68dcf0950154179bed951ae3deabfb9d04b16aa58c5326c85040c35cbb4.png" />
+<img alt="../../_images/b04f88714c15d2ef2d70f9012dbf0c9135d5411ab7542d33a1d965d07f0e6573.png" src="../../_images/b04f88714c15d2ef2d70f9012dbf0c9135d5411ab7542d33a1d965d07f0e6573.png" />
 </div>
 </div>
 <p>Get data from nearby stations for comparison</p>
@@ -1187,48 +1187,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">windrose</span> <span class="kn">import</span> <span class="n">WindroseAxes</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">subplot_kw</span> <span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="s1">&#39;windrose&#39;</span><span class="p">})</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Windroses from Three Nearby Stations&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">windrose</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Draw windrose (also known as a polar rose plot)&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">matplotlib.projections</span> <span class="kn">import</span> <span class="n">register_projection</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">.windrose</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">D_KIND_PLOT</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">DEFAULT_THETA_LABELS</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">DPI_DEFAULT</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">FIGSIZE_DEFAULT</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">WindAxes</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">WindAxesFactory</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">WindroseAxes</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">clean</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">clean_df</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">plot_windrose</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">plot_windrose_df</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">plot_windrose_np</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">wrbar</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">wrbox</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">wrcontour</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">wrcontourf</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">wrpdf</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="n">wrscatter</span><span class="p">,</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="n">register_projection</span><span class="p">(</span><span class="n">WindroseAxes</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">windrose</span><span class="o">/</span><span class="n">windrose</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">matplotlib.projections.polar</span> <span class="kn">import</span> <span class="n">PolarAxes</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">numpy.lib.twodim_base</span> <span class="kn">import</span> <span class="n">histogram2d</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">ZBASE</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1000</span>  <span class="c1"># The starting zorder for all drawing, negative to have the grid on</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">VAR_DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;speed&quot;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy.lib.twodim_base&#39;
-</pre></div>
-</div>
+<img alt="../../_images/ab050b9b8fbd92efc9b3c4160e58849b26452a07601397a3157be00d5be2965f.png" src="../../_images/ab050b9b8fbd92efc9b3c4160e58849b26452a07601397a3157be00d5be2965f.png" />
 </div>
 </div>
 </section>
@@ -1423,7 +1382,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/60116af55bcd1e88e48aa1e85ca925bbbb6bfbfe05daebb466078db14755ab2b.png" src="../../_images/60116af55bcd1e88e48aa1e85ca925bbbb6bfbfe05daebb466078db14755ab2b.png" />
+<img alt="../../_images/3a25512f09f59f205169277ea501e0557e2e474a5e4d477c621485877d84cf5e.png" src="../../_images/3a25512f09f59f205169277ea501e0557e2e474a5e4d477c621485877d84cf5e.png" />
 </div>
 </div>
 <div class="cell docutils container">
