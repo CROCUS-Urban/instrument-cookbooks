@@ -187,24 +187,24 @@ File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/clien
 During handling of the above exception, another exception occurred:
 
 [0;31mIncompleteRead[0m                            Traceback (most recent call last)
-Cell [0;32mIn[1], line 84[0m
+Cell [0;32mIn[1], line 75[0m
+[1;32m     71[0m     [38;5;28;01mreturn[39;00m xr[38;5;241m.[39mmerge([generate_data_array(reindexed, variable) [38;5;28;01mfor[39;00m variable [38;5;129;01min[39;00m variables])
 [1;32m     74[0m [38;5;66;03m# Query and load for n numbder of days[39;00m
-[1;32m     75[0m wxt_df [38;5;241m=[39m sage_data_client[38;5;241m.[39mquery(
-[1;32m     76[0m     start[38;5;241m=[39mstart,
-[1;32m     77[0m     end[38;5;241m=[39mend,
+[0;32m---> 75[0m wxt_df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m
+[1;32m     76[0m [43m    [49m[43mstart[49m[38;5;241;43m=[39;49m[43mstart[49m[43m,[49m
+[1;32m     77[0m [43m    [49m[43mend[49m[38;5;241;43m=[39;49m[43mend[49m[43m,[49m
+[1;32m     78[0m [43m    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
+[1;32m     79[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     80[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mwxt.env.*[39;49m[38;5;124;43m"[39;49m
+[1;32m     81[0m [43m    [49m[43m}[49m
+[1;32m     82[0m [43m)[49m
+[1;32m     84[0m wxt_df1 [38;5;241m=[39m sage_data_client[38;5;241m.[39mquery(
+[1;32m     85[0m     start[38;5;241m=[39mstart,
+[1;32m     86[0m     end[38;5;241m=[39mend,
 [0;32m   (...)[0m
-[1;32m     81[0m     }
-[1;32m     82[0m )
-[0;32m---> 84[0m wxt_df1 [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m
-[1;32m     85[0m [43m    [49m[43mstart[49m[38;5;241;43m=[39;49m[43mstart[49m[43m,[49m
-[1;32m     86[0m [43m    [49m[43mend[49m[38;5;241;43m=[39;49m[43mend[49m[43m,[49m
-[1;32m     87[0m [43m    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
-[1;32m     88[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m     89[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mwxt.wind.*[39;49m[38;5;124;43m"[39;49m
-[1;32m     90[0m [43m    [49m[43m}[49m
-[1;32m     91[0m [43m)[49m
+[1;32m     90[0m     }
+[1;32m     91[0m )
 [1;32m     93[0m [38;5;66;03m# Use local Chicago times[39;00m
-[1;32m     94[0m wxt_df [38;5;241m=[39m pd[38;5;241m.[39mconcat([wxt_df, wxt_df1])
 
 File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:111[0m, in [0;36mquery[0;34m(start, end, head, tail, experimental_func, bucket, filter, endpoint)[0m
 [1;32m    109[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
@@ -267,5 +267,5 @@ File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/clien
 [1;32m    597[0m [38;5;28;01mexcept[39;00m IncompleteRead:
 [0;32m--> 598[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value))
 
-[0;31mIncompleteRead[0m: IncompleteRead(55 bytes read)
+[0;31mIncompleteRead[0m: IncompleteRead(321 bytes read)
 
