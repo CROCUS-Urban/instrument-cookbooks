@@ -663,162 +663,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">active_st</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span><span class="n">path_or_buffer</span><span class="o">=</span><span class="s2">&quot;https://www.ndbc.noaa.gov/activestations.xml&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">active_st</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/xml.py:1160,</span> in <span class="ni">read_xml</span><span class="nt">(path_or_buffer, xpath, namespaces, elems_only, attrs_only, names, dtype, converters, parse_dates, encoding, parser, stylesheet, iterparse, compression, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">888</span><span class="w"> </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">889</span><span class="sd"> Read XML document into a :class:`~pandas.DataFrame` object.</span>
-<span class="g g-Whitespace">    </span><span class="mi">890</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1156</span><span class="sd"> 1      1  &lt;NA&gt;  4.5  False  b 2019-12-31</span>
-<span class="g g-Whitespace">   </span><span class="mi">1157</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1158</span> <span class="n">check_dtype_backend</span><span class="p">(</span><span class="n">dtype_backend</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1160</span> <span class="k">return</span> <span class="n">_parse</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1161</span>     <span class="n">path_or_buffer</span><span class="o">=</span><span class="n">path_or_buffer</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="n">xpath</span><span class="o">=</span><span class="n">xpath</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1163</span>     <span class="n">namespaces</span><span class="o">=</span><span class="n">namespaces</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1164</span>     <span class="n">elems_only</span><span class="o">=</span><span class="n">elems_only</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1165</span>     <span class="n">attrs_only</span><span class="o">=</span><span class="n">attrs_only</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1166</span>     <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1167</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1168</span>     <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1169</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1170</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1171</span>     <span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1172</span>     <span class="n">stylesheet</span><span class="o">=</span><span class="n">stylesheet</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1173</span>     <span class="n">iterparse</span><span class="o">=</span><span class="n">iterparse</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1174</span>     <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1175</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1176</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1177</span> <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/xml.py:852,</span> in <span class="ni">_parse</span><span class="nt">(path_or_buffer, xpath, namespaces, elems_only, attrs_only, names, dtype, converters, parse_dates, encoding, parser, stylesheet, iterparse, compression, storage_options, dtype_backend, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">849</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">850</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Values for parser can only be lxml or etree.&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">852</span> <span class="n">data_dicts</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parse_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">854</span> <span class="k">return</span> <span class="n">_data_to_frame</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">855</span>     <span class="n">data</span><span class="o">=</span><span class="n">data_dicts</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">856</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span> <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/xml.py:556,</span> in <span class="ni">_LxmlFrameParser.parse_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">553</span> <span class="kn">from</span> <span class="nn">lxml.etree</span> <span class="kn">import</span> <span class="n">iterparse</span>
-<span class="g g-Whitespace">    </span><span class="mi">555</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterparse</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">556</span>     <span class="bp">self</span><span class="o">.</span><span class="n">xml_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_doc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_or_buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">558</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stylesheet</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">559</span>         <span class="bp">self</span><span class="o">.</span><span class="n">xsl_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_doc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stylesheet</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/xml.py:631,</span> in <span class="ni">_LxmlFrameParser._parse_doc</span><span class="nt">(self, raw_doc)</span>
-<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">def</span> <span class="nf">_parse_doc</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">raw_doc</span><span class="p">:</span> <span class="n">FilePath</span> <span class="o">|</span> <span class="n">ReadBuffer</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">|</span> <span class="n">ReadBuffer</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">624</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">etree</span><span class="o">.</span><span class="n">_Element</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">625</span>     <span class="kn">from</span> <span class="nn">lxml.etree</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">626</span>         <span class="n">XMLParser</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">627</span>         <span class="n">fromstring</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span>         <span class="n">parse</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">631</span>     <span class="n">handle_data</span> <span class="o">=</span> <span class="n">get_data_from_filepath</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>         <span class="n">filepath_or_buffer</span><span class="o">=</span><span class="n">raw_doc</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">633</span>         <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span>         <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">636</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">638</span>     <span class="k">with</span> <span class="n">preprocess_data</span><span class="p">(</span><span class="n">handle_data</span><span class="p">)</span> <span class="k">as</span> <span class="n">xml_data</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">639</span>         <span class="n">curr_parser</span> <span class="o">=</span> <span class="n">XMLParser</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/xml.py:700,</span> in <span class="ni">get_data_from_filepath</span><span class="nt">(filepath_or_buffer, encoding, compression, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">689</span>     <span class="n">filepath_or_buffer</span> <span class="o">=</span> <span class="n">stringify_path</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">691</span> <span class="k">if</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">692</span>     <span class="nb">isinstance</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">693</span>     <span class="ow">and</span> <span class="ow">not</span> <span class="n">filepath_or_buffer</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s2">&quot;&lt;?xml&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">))</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">698</span>     <span class="ow">or</span> <span class="n">file_exists</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">699</span> <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">700</span>     <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span>         <span class="n">filepath_or_buffer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="s2">&quot;r&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span>         <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span>         <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="p">)</span> <span class="k">as</span> <span class="n">handle_obj</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">707</span>         <span class="n">filepath_or_buffer</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">708</span>             <span class="n">handle_obj</span><span class="o">.</span><span class="n">handle</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">709</span>             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">handle_obj</span><span class="o">.</span><span class="n">handle</span><span class="p">,</span> <span class="s2">&quot;read&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">710</span>             <span class="k">else</span> <span class="n">handle_obj</span><span class="o">.</span><span class="n">handle</span>
-<span class="g g-Whitespace">    </span><span class="mi">711</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">713</span> <span class="k">return</span> <span class="n">filepath_or_buffer</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/common.py:728,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span>     <span class="n">codecs</span><span class="o">.</span><span class="n">lookup_error</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span> <span class="c1"># open URLs</span>
-<span class="ne">--&gt; </span><span class="mi">728</span> <span class="n">ioargs</span> <span class="o">=</span> <span class="n">_get_filepath_or_buffer</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>     <span class="n">path_or_buf</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">730</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">731</span>     <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">732</span>     <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">733</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">734</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">736</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">filepath_or_buffer</span>
-<span class="g g-Whitespace">    </span><span class="mi">737</span> <span class="n">handles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BaseBuffer</span><span class="p">]</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/common.py:384,</span> in <span class="ni">_get_filepath_or_buffer</span><span class="nt">(filepath_or_buffer, encoding, compression, mode, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="c1"># assuming storage_options is to be interpreted as headers</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="n">req_info</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">storage_options</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">384</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req_info</span><span class="p">)</span> <span class="k">as</span> <span class="n">req</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span>     <span class="n">content_encoding</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span>     <span class="k">if</span> <span class="n">content_encoding</span> <span class="o">==</span> <span class="s2">&quot;gzip&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">387</span>         <span class="c1"># Override compression based on Content-Encoding header</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/io/common.py:289,</span> in <span class="ni">urlopen</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span><span class="sd"> Lazy-import wrapper for stdlib urlopen, as that imports a big chunk of</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span><span class="sd"> the stdlib.</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="kn">import</span> <span class="nn">urllib.request</span>
-<span class="ne">--&gt; </span><span class="mi">289</span> <span class="k">return</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216,</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
-<span class="ne">--&gt; </span><span class="mi">216</span> <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:525,</span> in <span class="ni">OpenerDirector.open</span><span class="nt">(self, fullurl, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="k">for</span> <span class="n">processor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="p">[]):</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">meth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">processor</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">525</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">meth</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:634,</span> in <span class="ni">HTTPErrorProcessor.http_response</span><span class="nt">(self, request, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="c1"># According to RFC 2616, &quot;2xx&quot; code indicates that the client&#39;s</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="c1"># request was successfully received, understood, and accepted.</span>
-<span class="g g-Whitespace">    </span><span class="mi">633</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">200</span> <span class="o">&lt;=</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">634</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:563,</span> in <span class="ni">OpenerDirector.error</span><span class="nt">(self, proto, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="k">if</span> <span class="n">http_err</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;http_error_default&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">orig_args</span>
-<span class="ne">--&gt; </span><span class="mi">563</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496,</span> in <span class="ni">OpenerDirector._call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span>     <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">496</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:643,</span> in <span class="ni">HTTPDefaultErrorHandler.http_error_default</span><span class="nt">(self, req, fp, code, msg, hdrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="k">def</span> <span class="nf">http_error_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">643</span>     <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
-
-<span class="ne">HTTPError</span>: HTTP Error 404: Not Found
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1336, 13)
 </pre></div>
 </div>
 </div>
@@ -904,7 +749,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
   <tbody>
     <tr>
       <th>0</th>
-      <td>257</td>
+      <td>259</td>
       <td>45026</td>
       <td>41.982</td>
       <td>-86.619</td>
@@ -912,11 +757,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>Cook Nuclear Plant Buoy, Stevensville, MI</td>
       <td>Limno Tech</td>
       <td>buoy</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>287</td>
+      <td>289</td>
       <td>45168</td>
       <td>42.397</td>
       <td>-86.331</td>
@@ -924,11 +769,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>South Haven Buoy, MI</td>
       <td>Limno Tech</td>
       <td>buoy</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>289</td>
+      <td>291</td>
       <td>45170</td>
       <td>41.755</td>
       <td>-86.968</td>
@@ -936,11 +781,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>Michigan City Buoy, IN</td>
       <td>Illinois-Indiana Sea Grant and Purdue Civil En...</td>
       <td>buoy</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>293</td>
+      <td>295</td>
       <td>45174</td>
       <td>42.135</td>
       <td>-87.655</td>
@@ -948,11 +793,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>Wilmette Buoy, IL</td>
       <td>llinois-Indiana Sea Grant</td>
       <td>buoy</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>303</td>
+      <td>305</td>
       <td>45186</td>
       <td>42.368</td>
       <td>-87.795</td>
@@ -960,11 +805,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>Waukegan Buoy, IL</td>
       <td>University of Illinois at Urbana-Champaign</td>
       <td>buoy</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>304</td>
+      <td>306</td>
       <td>45187</td>
       <td>42.491</td>
       <td>-87.779</td>
@@ -972,11 +817,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>Winthrop Harbor Buoy, IL</td>
       <td>University of Illinois at Urbana-Champaign</td>
       <td>buoy</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>309</td>
+      <td>311</td>
       <td>45198</td>
       <td>41.892</td>
       <td>-87.563</td>
@@ -984,11 +829,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>Chicago Buoy</td>
       <td>Illinois-Indiana Sea Grant and Purdue Civil En...</td>
       <td>buoy</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>649</td>
+      <td>658</td>
       <td>bhri3</td>
       <td>41.646</td>
       <td>-87.147</td>
@@ -1000,7 +845,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>8</th>
-      <td>699</td>
+      <td>708</td>
       <td>chii2</td>
       <td>41.916</td>
       <td>-87.572</td>
@@ -1012,7 +857,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>9</th>
-      <td>714</td>
+      <td>723</td>
       <td>cmti2</td>
       <td>41.730</td>
       <td>-87.538</td>
@@ -1024,7 +869,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>10</th>
-      <td>717</td>
+      <td>726</td>
       <td>cnii2</td>
       <td>41.856</td>
       <td>-87.609</td>
@@ -1036,7 +881,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>11</th>
-      <td>902</td>
+      <td>912</td>
       <td>knsw3</td>
       <td>42.589</td>
       <td>-87.809</td>
@@ -1048,7 +893,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>12</th>
-      <td>973</td>
+      <td>983</td>
       <td>mcyi3</td>
       <td>41.729</td>
       <td>-86.912</td>
@@ -1060,7 +905,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>13</th>
-      <td>1059</td>
+      <td>1069</td>
       <td>oksi2</td>
       <td>41.912</td>
       <td>-87.624</td>
@@ -1072,7 +917,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>14</th>
-      <td>1200</td>
+      <td>1210</td>
       <td>sjom4</td>
       <td>42.098</td>
       <td>-86.494</td>
@@ -1080,11 +925,11 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>St. Joseph, MI</td>
       <td>NWS Central Region</td>
       <td>fixed</td>
-      <td>n</td>
+      <td>y</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>1228</td>
+      <td>1238</td>
       <td>svnm4</td>
       <td>42.401</td>
       <td>-86.288</td>
@@ -1096,7 +941,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
     </tr>
     <tr>
       <th>16</th>
-      <td>1303</td>
+      <td>1313</td>
       <td>whri2</td>
       <td>42.361</td>
       <td>-87.813</td>
@@ -1104,7 +949,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
       <td>Waukegan Harbor, IL</td>
       <td>NWS Central Region</td>
       <td>fixed</td>
-      <td>y</td>
+      <td>n</td>
     </tr>
   </tbody>
 </table>
@@ -1189,21 +1034,21 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Harrison-Dever Crib, Chicago, IL
-                      #YY  MM  DD  hh  mm   WDIR  WSPD   GST  WVHT  DPD  APD  \
-datetime                                                                       
-2024-04-09 14:00:00  2024   4   9  14   0  280.0   8.8   9.3   NaN  NaN  NaN   
-2024-04-09 13:50:00  2024   4   9  13  50  280.0   9.8  11.3   NaN  NaN  NaN   
-2024-04-09 13:40:00  2024   4   9  13  40  280.0   9.8  10.8   NaN  NaN  NaN   
-2024-04-09 13:30:00  2024   4   9  13  30  280.0   9.3  10.3   NaN  NaN  NaN   
-2024-04-09 13:20:00  2024   4   9  13  20  280.0   9.3  10.3   NaN  NaN  NaN   
+                      #YY  MM  DD  hh  mm   WDIR  WSPD  GST  WVHT  DPD  APD  \
+datetime                                                                      
+2024-07-03 11:50:00  2024   7   3  11  50  270.0   6.2  7.2   NaN  NaN  NaN   
+2024-07-03 11:40:00  2024   7   3  11  40  270.0   5.1  6.2   NaN  NaN  NaN   
+2024-07-03 11:30:00  2024   7   3  11  30  280.0   6.2  7.2   NaN  NaN  NaN   
+2024-07-03 11:20:00  2024   7   3  11  20  280.0   4.6  5.7   NaN  NaN  NaN   
+2024-07-03 11:10:00  2024   7   3  11  10  270.0   6.2  7.2   NaN  NaN  NaN   
 
                      MWD  PRES  ATMP  WTMP  DEWP  VIS  PTDY  TIDE  
 datetime                                                           
-2024-04-09 14:00:00  NaN   NaN  15.3   NaN   6.2  NaN   NaN   NaN  
-2024-04-09 13:50:00  NaN   NaN  14.9   NaN   6.3  NaN   NaN   NaN  
-2024-04-09 13:40:00  NaN   NaN  15.1   NaN   6.4  NaN   NaN   NaN  
-2024-04-09 13:30:00  NaN   NaN  14.7   NaN   6.8  NaN   NaN   NaN  
-2024-04-09 13:20:00  NaN   NaN  14.9   NaN   7.0  NaN   NaN   NaN  
+2024-07-03 11:50:00  NaN   NaN  25.4   NaN  23.2  NaN   NaN   NaN  
+2024-07-03 11:40:00  NaN   NaN  25.3   NaN  23.2  NaN   NaN   NaN  
+2024-07-03 11:30:00  NaN   NaN  25.2   NaN  23.1  NaN   NaN   NaN  
+2024-07-03 11:20:00  NaN   NaN  25.0   NaN  23.1  NaN   NaN   NaN  
+2024-07-03 11:10:00  NaN   NaN  25.1   NaN  23.1  NaN   NaN   NaN  
 </pre></div>
 </div>
 </div>
@@ -1278,7 +1123,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/78b76d965eb28933fa9075a4d4b566f46c496d4a54acf514a8c2c13bb925ad52.png" src="../../_images/78b76d965eb28933fa9075a4d4b566f46c496d4a54acf514a8c2c13bb925ad52.png" />
+<img alt="../../_images/6b094ae93103d8847171b16544e176a4f521ee523f1d73ddb16ddd4a77c24f58.png" src="../../_images/6b094ae93103d8847171b16544e176a4f521ee523f1d73ddb16ddd4a77c24f58.png" />
 </div>
 </div>
 <p>Distribution of Wind Speeds</p>
@@ -1297,7 +1142,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/198fac759bcb50986495b15d78c01ed79fd929f6f3cf10baa8dbafa7ce9f82a3.png" src="../../_images/198fac759bcb50986495b15d78c01ed79fd929f6f3cf10baa8dbafa7ce9f82a3.png" />
+<img alt="../../_images/d184a8eccac811a892d5f1b5af14c220c80c1d4e3941ca9b3184f775a3754ea8.png" src="../../_images/d184a8eccac811a892d5f1b5af14c220c80c1d4e3941ca9b3184f775a3754ea8.png" />
 </div>
 </div>
 <p>Get data from nearby stations for comparison</p>
@@ -1344,7 +1189,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/45c67a03f148c3e0d281738be088b8ad4b96c4f39411716255fa0504e459c71f.png" src="../../_images/45c67a03f148c3e0d281738be088b8ad4b96c4f39411716255fa0504e459c71f.png" />
+<img alt="../../_images/0378f828912a4e168d10ba0bca6d4b45bfef6320884dd243a43e0baf1d42e6a6.png" src="../../_images/0378f828912a4e168d10ba0bca6d4b45bfef6320884dd243a43e0baf1d42e6a6.png" />
 </div>
 </div>
 </section>
@@ -1539,7 +1384,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/60116af55bcd1e88e48aa1e85ca925bbbb6bfbfe05daebb466078db14755ab2b.png" src="../../_images/60116af55bcd1e88e48aa1e85ca925bbbb6bfbfe05daebb466078db14755ab2b.png" />
+<img alt="../../_images/14dff67c3769863fb43bfb9a63cb0b829fb831eeb70583a496e40a82030fb898.png" src="../../_images/14dff67c3769863fb43bfb9a63cb0b829fb831eeb70583a496e40a82030fb898.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1599,7 +1444,7 @@ datetime
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.02, &#39;Wilmette Buoy, IL (45174)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/af568540cce32e7b2f3ce917b6d6bb81aa2e09d046cbecf9a42c13aa9a041217.png" src="../../_images/af568540cce32e7b2f3ce917b6d6bb81aa2e09d046cbecf9a42c13aa9a041217.png" />
+<img alt="../../_images/41df6212d54cb588947ae76592fc0f07afa3f0f6186bc453292bcc40cbf98c31.png" src="../../_images/41df6212d54cb588947ae76592fc0f07afa3f0f6186bc453292bcc40cbf98c31.png" />
 </div>
 </div>
 <p>Historical Radiation Data</p>
@@ -1691,7 +1536,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f62e54e99d2d271a02c36b75d56272285385b1bd9d1a74512b9665e07a17aca0.png" src="../../_images/f62e54e99d2d271a02c36b75d56272285385b1bd9d1a74512b9665e07a17aca0.png" />
+<img alt="../../_images/3888a8942173ac3310cd3f5b961d1d9ed55a5c67555b10187f0c57c1820850e8.png" src="../../_images/3888a8942173ac3310cd3f5b961d1d9ed55a5c67555b10187f0c57c1820850e8.png" />
 </div>
 </div>
 </section>
