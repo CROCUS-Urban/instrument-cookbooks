@@ -153,67 +153,93 @@ except:
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mHTTPError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[1], line 75[0m
-[1;32m     71[0m     [38;5;28;01mreturn[39;00m xr[38;5;241m.[39mmerge([generate_data_array(reindexed, variable) [38;5;28;01mfor[39;00m variable [38;5;129;01min[39;00m variables])
-[1;32m     74[0m [38;5;66;03m# Query and load for n numbder of days[39;00m
-[0;32m---> 75[0m wxt_df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m
-[1;32m     76[0m [43m    [49m[43mstart[49m[38;5;241;43m=[39;49m[43mstart[49m[43m,[49m
-[1;32m     77[0m [43m    [49m[43mend[49m[38;5;241;43m=[39;49m[43mend[49m[43m,[49m
-[1;32m     78[0m [43m    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
-[1;32m     79[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m     80[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mname[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mwxt.env.*[39;49m[38;5;124;43m"[39;49m
-[1;32m     81[0m [43m    [49m[43m}[49m
-[1;32m     82[0m [43m)[49m
-[1;32m     84[0m wxt_df1 [38;5;241m=[39m sage_data_client[38;5;241m.[39mquery(
-[1;32m     85[0m     start[38;5;241m=[39mstart,
-[1;32m     86[0m     end[38;5;241m=[39mend,
-[0;32m   (...)[0m
-[1;32m     90[0m     }
-[1;32m     91[0m )
-[1;32m     93[0m [38;5;66;03m# Use local Chicago times[39;00m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[1], line 107[0m
+[1;32m    106[0m [38;5;66;03m# Convert to Local Chicago Time - THIS IS ONLY FOR DAYLIGHT TIME[39;00m
+[0;32m--> 107[0m wxt_ds[[38;5;124m'[39m[38;5;124mtime[39m[38;5;124m'[39m] [38;5;241m=[39m [43mwxt_ds[49m[38;5;241;43m.[39;49m[43mtime[49m [38;5;241m-[39m pd[38;5;241m.[39mTimedelta(hours[38;5;241m=[39m[38;5;241m5[39m)
+[1;32m    108[0m wxt_ds[[38;5;124m'[39m[38;5;124mair_dewpoint_temperature[39m[38;5;124m'[39m] [38;5;241m=[39m mpcalc[38;5;241m.[39mdewpoint_from_relative_humidity(wxt_ds[38;5;241m.[39mair_temperature, wxt_ds[38;5;241m.[39mrelative_humidity)
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:107[0m, in [0;36mquery[0;34m(start, end, head, tail, experimental_func, bucket, filter, endpoint)[0m
-[1;32m    104[0m headers [38;5;241m=[39m {[38;5;124m"[39m[38;5;124mAccept-Encoding[39m[38;5;124m"[39m: [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m}
-[1;32m    105[0m req [38;5;241m=[39m Request(endpoint, data, headers[38;5;241m=[39mheaders)
-[0;32m--> 107[0m [38;5;28;01mwith[39;00m [43murlopen[49m[43m([49m[43mreq[49m[43m)[49m [38;5;28;01mas[39;00m f:
-[1;32m    108[0m     content_encoding [38;5;241m=[39m f[38;5;241m.[39mheaders[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mContent-Encoding[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m"[39m)
-[1;32m    109[0m     [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/common.py:285[0m, in [0;36mAttrAccessMixin.__getattr__[0;34m(self, name)[0m
+[1;32m    284[0m             [38;5;28;01mreturn[39;00m source[name]
+[0;32m--> 285[0m [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m(
+[1;32m    286[0m     [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00m[38;5;28mtype[39m([38;5;28mself[39m)[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m!r}[39;00m[38;5;124m object has no attribute [39m[38;5;132;01m{[39;00mname[38;5;132;01m!r}[39;00m[38;5;124m"[39m
+[1;32m    287[0m )
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
-[1;32m    214[0m [38;5;28;01melse[39;00m:
-[1;32m    215[0m     opener [38;5;241m=[39m _opener
-[0;32m--> 216[0m [38;5;28;01mreturn[39;00m [43mopener[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+[0;31mAttributeError[0m: 'Dataset' object has no attribute 'time'
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:525[0m, in [0;36mOpenerDirector.open[0;34m(self, fullurl, data, timeout)[0m
-[1;32m    523[0m [38;5;28;01mfor[39;00m processor [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mprocess_response[38;5;241m.[39mget(protocol, []):
-[1;32m    524[0m     meth [38;5;241m=[39m [38;5;28mgetattr[39m(processor, meth_name)
-[0;32m--> 525[0m     response [38;5;241m=[39m [43mmeth[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mresponse[49m[43m)[49m
-[1;32m    527[0m [38;5;28;01mreturn[39;00m response
+During handling of the above exception, another exception occurred:
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:634[0m, in [0;36mHTTPErrorProcessor.http_response[0;34m(self, request, response)[0m
-[1;32m    631[0m [38;5;66;03m# According to RFC 2616, "2xx" code indicates that the client's[39;00m
-[1;32m    632[0m [38;5;66;03m# request was successfully received, understood, and accepted.[39;00m
-[1;32m    633[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m ([38;5;241m200[39m [38;5;241m<[39m[38;5;241m=[39m code [38;5;241m<[39m [38;5;241m300[39m):
-[0;32m--> 634[0m     response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mparent[49m[38;5;241;43m.[39;49m[43merror[49m[43m([49m
-[1;32m    635[0m [43m        [49m[38;5;124;43m'[39;49m[38;5;124;43mhttp[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mrequest[49m[43m,[49m[43m [49m[43mresponse[49m[43m,[49m[43m [49m[43mcode[49m[43m,[49m[43m [49m[43mmsg[49m[43m,[49m[43m [49m[43mhdrs[49m[43m)[49m
-[1;32m    637[0m [38;5;28;01mreturn[39;00m response
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 134[0m
+[1;32m    129[0m         plots[38;5;241m.[39mappend((wxt_ds[variable][38;5;241m.[39mhvplot[38;5;241m.[39mline(label[38;5;241m=[39m[38;5;124m'[39m[38;5;124m10 Hz Data[39m[38;5;124m'[39m) [38;5;241m*[39m 
+[1;32m    130[0m                      minute_ds[variable][38;5;241m.[39mhvplot[38;5;241m.[39mline(label[38;5;241m=[39m[38;5;124m'[39m[38;5;124m1 Minute Data[39m[38;5;124m'[39m))[38;5;241m.[39mopts(hooks[38;5;241m=[39m[apply_formatter]))
+[1;32m    133[0m [38;5;28;01mexcept[39;00m:
+[0;32m--> 134[0m     plots [38;5;241m=[39m [43mpn[49m[38;5;241;43m.[39;49m[43mRow[49m[43m([49m[43mtitle[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mNo Data Available[39;49m[38;5;124;43m'[39;49m[43m)[49m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:563[0m, in [0;36mOpenerDirector.error[0;34m(self, proto, *args)[0m
-[1;32m    561[0m [38;5;28;01mif[39;00m http_err:
-[1;32m    562[0m     args [38;5;241m=[39m ([38;5;28mdict[39m, [38;5;124m'[39m[38;5;124mdefault[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mhttp_error_default[39m[38;5;124m'[39m) [38;5;241m+[39m orig_args
-[0;32m--> 563[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_call_chain[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/layout/base.py:825[0m, in [0;36mListPanel.__init__[0;34m(self, *objects, **params)[0m
+[1;32m    823[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m resolve_ref(objects) [38;5;129;01mor[39;00m iscoroutinefunction(objects):
+[1;32m    824[0m         params[[38;5;124m'[39m[38;5;124mobjects[39m[38;5;124m'[39m] [38;5;241m=[39m [panel(pane) [38;5;28;01mfor[39;00m pane [38;5;129;01min[39;00m objects]
+[0;32m--> 825[0m [38;5;28;43msuper[39;49m[43m([49m[43mPanel[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496[0m, in [0;36mOpenerDirector._call_chain[0;34m(self, chain, kind, meth_name, *args)[0m
-[1;32m    494[0m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
-[1;32m    495[0m     func [38;5;241m=[39m [38;5;28mgetattr[39m(handler, meth_name)
-[0;32m--> 496[0m     result [38;5;241m=[39m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
-[1;32m    497[0m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
-[1;32m    498[0m         [38;5;28;01mreturn[39;00m result
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/reactive.py:559[0m, in [0;36mReactive.__init__[0;34m(self, refs, **params)[0m
+[1;32m    557[0m     [38;5;28;01mif[39;00m refs:
+[1;32m    558[0m         param[38;5;241m.[39mbind([38;5;28mself[39m[38;5;241m.[39m_sync_refs, [38;5;241m*[39mrefs, watch[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[0;32m--> 559[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:643[0m, in [0;36mHTTPDefaultErrorHandler.http_error_default[0;34m(self, req, fp, code, msg, hdrs)[0m
-[1;32m    642[0m [38;5;28;01mdef[39;00m [38;5;21mhttp_error_default[39m([38;5;28mself[39m, req, fp, code, msg, hdrs):
-[0;32m--> 643[0m     [38;5;28;01mraise[39;00m HTTPError(req[38;5;241m.[39mfull_url, code, msg, hdrs, fp)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/reactive.py:119[0m, in [0;36mSyncable.__init__[0;34m(self, **params)[0m
+[1;32m    117[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, [38;5;241m*[39m[38;5;241m*[39mparams):
+[1;32m    118[0m     [38;5;28mself[39m[38;5;241m.[39m_themer [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m--> 119[0m     [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+[1;32m    121[0m     [38;5;66;03m# Useful when updating model properties which trigger potentially[39;00m
+[1;32m    122[0m     [38;5;66;03m# recursive events[39;00m
+[1;32m    123[0m     [38;5;28mself[39m[38;5;241m.[39m_updating [38;5;241m=[39m [38;5;28;01mFalse[39;00m
 
-[0;31mHTTPError[0m: HTTP Error 503: Service Temporarily Unavailable
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/viewable.py:699[0m, in [0;36mViewable.__init__[0;34m(self, **params)[0m
+[1;32m    697[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, [38;5;241m*[39m[38;5;241m*[39mparams):
+[1;32m    698[0m     hooks [38;5;241m=[39m params[38;5;241m.[39mpop([38;5;124m'[39m[38;5;124mhooks[39m[38;5;124m'[39m, [])
+[0;32m--> 699[0m     [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+[1;32m    700[0m     [38;5;28mself[39m[38;5;241m.[39m_hooks [38;5;241m=[39m hooks
+[1;32m    702[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mloading:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/viewable.py:538[0m, in [0;36mRenderable.__init__[0;34m(self, **params)[0m
+[1;32m    536[0m [38;5;28mself[39m[38;5;241m.[39m_comms [38;5;241m=[39m {}
+[1;32m    537[0m [38;5;28mself[39m[38;5;241m.[39m_kernels [38;5;241m=[39m {}
+[0;32m--> 538[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+[1;32m    539[0m [38;5;28mself[39m[38;5;241m.[39m_found_links [38;5;241m=[39m [38;5;28mset[39m()
+[1;32m    540[0m [38;5;28mself[39m[38;5;241m.[39m_logger [38;5;241m=[39m logging[38;5;241m.[39mgetLogger([38;5;124mf[39m[38;5;124m'[39m[38;5;132;01m{[39;00m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;132;01m{[39;00m[38;5;28mtype[39m([38;5;28mself[39m)[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m'[39m)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/panel/viewable.py:299[0m, in [0;36mLayoutable.__init__[0;34m(self, **params)[0m
+[1;32m    297[0m [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124mdesign[39m[38;5;124m'[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m params [38;5;129;01mand[39;00m [38;5;28mself[39m[38;5;241m.[39mparam[38;5;241m.[39mdesign[38;5;241m.[39mdefault [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    298[0m     params[[38;5;124m'[39m[38;5;124mdesign[39m[38;5;124m'[39m] [38;5;241m=[39m config[38;5;241m.[39mdesign
+[0;32m--> 299[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/param/parameterized.py:4188[0m, in [0;36mParameterized.__init__[0;34m(self, **params)[0m
+[1;32m   4186[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mparam[38;5;241m.[39mname[38;5;241m.[39mdefault [38;5;241m==[39m [38;5;28mself[39m[38;5;241m.[39m[38;5;18m__class__[39m[38;5;241m.[39m[38;5;18m__name__[39m:
+[1;32m   4187[0m     [38;5;28mself[39m[38;5;241m.[39mparam[38;5;241m.[39m_generate_name()
+[0;32m-> 4188[0m refs, deps [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mparam[49m[38;5;241;43m.[39;49m[43m_setup_params[49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mparams[49m[43m)[49m
+[1;32m   4189[0m object_count [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[1;32m   4191[0m [38;5;28mself[39m[38;5;241m.[39m_param__private[38;5;241m.[39minitialized [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/param/parameterized.py:1686[0m, in [0;36mas_uninitialized.<locals>.override_initialization[0;34m(self_, *args, **kw)[0m
+[1;32m   1684[0m original_initialized [38;5;241m=[39m parameterized_instance[38;5;241m.[39m_param__private[38;5;241m.[39minitialized
+[1;32m   1685[0m parameterized_instance[38;5;241m.[39m_param__private[38;5;241m.[39minitialized [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+[0;32m-> 1686[0m ret [38;5;241m=[39m [43mfn[49m[43m([49m[43mself_[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkw[49m[43m)[49m
+[1;32m   1687[0m parameterized_instance[38;5;241m.[39m_param__private[38;5;241m.[39minitialized [38;5;241m=[39m original_initialized
+[1;32m   1688[0m [38;5;28;01mreturn[39;00m ret
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/param/parameterized.py:1939[0m, in [0;36mParameters._setup_params[0;34m(self_, **params)[0m
+[1;32m   1937[0m desc [38;5;241m=[39m self_[38;5;241m.[39mcls[38;5;241m.[39mget_param_descriptor(name)[[38;5;241m0[39m] [38;5;66;03m# pylint: disable-msg=E1101[39;00m
+[1;32m   1938[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m desc:
+[0;32m-> 1939[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(
+[1;32m   1940[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39m[38;5;18m__class__[39m[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m.__init__() got an unexpected [39m[38;5;124m"[39m
+[1;32m   1941[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mkeyword argument [39m[38;5;132;01m{[39;00mname[38;5;132;01m!r}[39;00m[38;5;124m"[39m
+[1;32m   1942[0m     )
+[1;32m   1944[0m pobj [38;5;241m=[39m objects[38;5;241m.[39mget(name)
+[1;32m   1945[0m [38;5;28;01mif[39;00m pobj [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m pobj[38;5;241m.[39mallow_refs:
+[1;32m   1946[0m     [38;5;66;03m# Until Parameter.allow_refs=True by default we have to[39;00m
+[1;32m   1947[0m     [38;5;66;03m# speculatively evaluate a values to check whether they[39;00m
+[1;32m   1948[0m     [38;5;66;03m# contain a reference and warn the user that the[39;00m
+[1;32m   1949[0m     [38;5;66;03m# behavior may change in future.[39;00m
+
+[0;31mTypeError[0m: Row.__init__() got an unexpected keyword argument 'title'
 

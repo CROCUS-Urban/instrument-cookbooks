@@ -456,65 +456,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-07-09T00:00:00Z&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                             <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-07-09T01:00:00Z&quot;</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                             <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                 <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;10.31.81.1:5000/local/waggle-sonic3d&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                 <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W039&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                 <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;metek-sonic3D&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                             <span class="p">}</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:107,</span> in <span class="ni">query</span><span class="nt">(start, end, head, tail, experimental_func, bucket, filter, endpoint)</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Accept-Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip&quot;</span><span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">107</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="n">content_encoding</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Encoding&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="k">if</span> <span class="s2">&quot;gzip&quot;</span> <span class="ow">in</span> <span class="n">content_encoding</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216,</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
-<span class="ne">--&gt; </span><span class="mi">216</span> <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:525,</span> in <span class="ni">OpenerDirector.open</span><span class="nt">(self, fullurl, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="k">for</span> <span class="n">processor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="p">[]):</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">meth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">processor</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">525</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">meth</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:634,</span> in <span class="ni">HTTPErrorProcessor.http_response</span><span class="nt">(self, request, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="c1"># According to RFC 2616, &quot;2xx&quot; code indicates that the client&#39;s</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="c1"># request was successfully received, understood, and accepted.</span>
-<span class="g g-Whitespace">    </span><span class="mi">633</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">200</span> <span class="o">&lt;=</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">634</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:563,</span> in <span class="ni">OpenerDirector.error</span><span class="nt">(self, proto, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="k">if</span> <span class="n">http_err</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;http_error_default&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">orig_args</span>
-<span class="ne">--&gt; </span><span class="mi">563</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496,</span> in <span class="ni">OpenerDirector._call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span>     <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">496</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:643,</span> in <span class="ni">HTTPDefaultErrorHandler.http_error_default</span><span class="nt">(self, req, fp, code, msg, hdrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="k">def</span> <span class="nf">http_error_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">643</span>     <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
-
-<span class="ne">HTTPError</span>: HTTP Error 503: Service Temporarily Unavailable
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -544,210 +485,11 @@ document.write(`
       <th>timestamp</th>
       <th>name</th>
       <th>value</th>
-      <th>meta.description</th>
-      <th>meta.host</th>
-      <th>meta.job</th>
-      <th>meta.missing</th>
-      <th>meta.node</th>
-      <th>meta.plugin</th>
-      <th>meta.sensor</th>
-      <th>meta.task</th>
-      <th>meta.units</th>
-      <th>meta.vsn</th>
-      <th>meta.zone</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>0</th>
-      <td>2023-07-09 00:00:00.025172660+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.149</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2023-07-09 00:00:00.058506456+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.157</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2023-07-09 00:00:00.091937791+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.151</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2023-07-09 00:00:00.126452480+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.151</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2023-07-09 00:00:00.160199343+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.150</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>431973</th>
-      <td>2023-07-09 00:59:59.851615551+00:00</td>
-      <td>sonic3d.wwind</td>
-      <td>0.002</td>
-      <td>Vertical wind</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>m/s</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>431974</th>
-      <td>2023-07-09 00:59:59.884990547+00:00</td>
-      <td>sonic3d.wwind</td>
-      <td>0.002</td>
-      <td>Vertical wind</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>m/s</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>431975</th>
-      <td>2023-07-09 00:59:59.918300549+00:00</td>
-      <td>sonic3d.wwind</td>
-      <td>0.009</td>
-      <td>Vertical wind</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>m/s</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>431976</th>
-      <td>2023-07-09 00:59:59.951650872+00:00</td>
-      <td>sonic3d.wwind</td>
-      <td>0.001</td>
-      <td>Vertical wind</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>m/s</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>431977</th>
-      <td>2023-07-09 00:59:59.985170224+00:00</td>
-      <td>sonic3d.wwind</td>
-      <td>-0.006</td>
-      <td>Vertical wind</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>m/s</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
   </tbody>
 </table>
-<p>431978 rows × 14 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -757,7 +499,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=431978, step=1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=0, step=1)
 </pre></div>
 </div>
 </div>
@@ -769,10 +511,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;timestamp&#39;, &#39;name&#39;, &#39;value&#39;, &#39;meta.description&#39;, &#39;meta.host&#39;,
-       &#39;meta.job&#39;, &#39;meta.missing&#39;, &#39;meta.node&#39;, &#39;meta.plugin&#39;, &#39;meta.sensor&#39;,
-       &#39;meta.task&#39;, &#39;meta.units&#39;, &#39;meta.vsn&#39;, &#39;meta.zone&#39;],
-      dtype=&#39;object&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;timestamp&#39;, &#39;name&#39;, &#39;value&#39;], dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -784,7 +523,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sonic3d.temp&#39;, &#39;sonic3d.wwind&#39;, &#39;sonic3d.vwind&#39;, &#39;sonic3d.uwind&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>set()
 </pre></div>
 </div>
 </div>
@@ -817,210 +556,11 @@ document.write(`
       <th>timestamp</th>
       <th>name</th>
       <th>value</th>
-      <th>meta.description</th>
-      <th>meta.host</th>
-      <th>meta.job</th>
-      <th>meta.missing</th>
-      <th>meta.node</th>
-      <th>meta.plugin</th>
-      <th>meta.sensor</th>
-      <th>meta.task</th>
-      <th>meta.units</th>
-      <th>meta.vsn</th>
-      <th>meta.zone</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>0</th>
-      <td>2023-07-09 00:00:00.025172660+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.149</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2023-07-09 00:00:00.058506456+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.157</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2023-07-09 00:00:00.091937791+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.151</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2023-07-09 00:00:00.126452480+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.151</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2023-07-09 00:00:00.160199343+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.150</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>107989</th>
-      <td>2023-07-09 00:59:59.851615551+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.887</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>107990</th>
-      <td>2023-07-09 00:59:59.884990547+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.872</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>107991</th>
-      <td>2023-07-09 00:59:59.918300549+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.871</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>107992</th>
-      <td>2023-07-09 00:59:59.951650872+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.847</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
-    <tr>
-      <th>107993</th>
-      <td>2023-07-09 00:59:59.985170224+00:00</td>
-      <td>sonic3d.temp</td>
-      <td>22.830</td>
-      <td>Sonic Temperature</td>
-      <td>000048b02d15bc8c.ws-nxcore</td>
-      <td>Pluginctl</td>
-      <td>-9999.9</td>
-      <td>000048b02d15bc8c</td>
-      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
-      <td>metek-sonic3D</td>
-      <td>sonictest</td>
-      <td>degrees Celsius</td>
-      <td>W039</td>
-      <td>core</td>
-    </tr>
   </tbody>
 </table>
-<p>107994 rows × 14 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1044,7 +584,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/78cf8bae28b37232d84b51bbfaa6c65b463c7fc64894457d0aa9be48b6869f4f.png" src="../_images/78cf8bae28b37232d84b51bbfaa6c65b463c7fc64894457d0aa9be48b6869f4f.png" />
+<img alt="../_images/689f74a9208085db4e2798ce03e08a003aa2d2f6609eec716cbd07b5ef9d8d7e.png" src="../_images/689f74a9208085db4e2798ce03e08a003aa2d2f6609eec716cbd07b5ef9d8d7e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1091,10 +631,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2ad032e66cc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f63f9acdde0&gt;
 </pre></div>
 </div>
-<img alt="../_images/06893da6c3cf93633d35c1ae0f1506f3ac61857863e551b413778140487e9b0a.png" src="../_images/06893da6c3cf93633d35c1ae0f1506f3ac61857863e551b413778140487e9b0a.png" />
+<img alt="../_images/937842c063a02630767a37a06acca69780309fb39d894432e180ad7693f7aba8.png" src="../_images/937842c063a02630767a37a06acca69780309fb39d894432e180ad7693f7aba8.png" />
 </div>
 </div>
 
