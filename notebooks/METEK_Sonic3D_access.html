@@ -485,11 +485,210 @@ document.write(`
       <th>timestamp</th>
       <th>name</th>
       <th>value</th>
+      <th>meta.description</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-07-09 00:00:00.025172660+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.149</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-07-09 00:00:00.058506456+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.157</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-07-09 00:00:00.091937791+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-07-09 00:00:00.126452480+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-07-09 00:00:00.160199343+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.150</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>431973</th>
+      <td>2023-07-09 00:59:59.851615551+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.002</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431974</th>
+      <td>2023-07-09 00:59:59.884990547+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.002</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431975</th>
+      <td>2023-07-09 00:59:59.918300549+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.009</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431976</th>
+      <td>2023-07-09 00:59:59.951650872+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.001</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431977</th>
+      <td>2023-07-09 00:59:59.985170224+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>-0.006</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
   </tbody>
 </table>
+<p>431978 rows × 14 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -499,7 +698,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=0, step=1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=431978, step=1)
 </pre></div>
 </div>
 </div>
@@ -511,7 +710,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;timestamp&#39;, &#39;name&#39;, &#39;value&#39;], dtype=&#39;object&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;timestamp&#39;, &#39;name&#39;, &#39;value&#39;, &#39;meta.description&#39;, &#39;meta.host&#39;,
+       &#39;meta.job&#39;, &#39;meta.missing&#39;, &#39;meta.node&#39;, &#39;meta.plugin&#39;, &#39;meta.sensor&#39;,
+       &#39;meta.task&#39;, &#39;meta.units&#39;, &#39;meta.vsn&#39;, &#39;meta.zone&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -523,7 +725,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>set()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sonic3d.vwind&#39;, &#39;sonic3d.wwind&#39;, &#39;sonic3d.uwind&#39;, &#39;sonic3d.temp&#39;}
 </pre></div>
 </div>
 </div>
@@ -556,11 +758,210 @@ document.write(`
       <th>timestamp</th>
       <th>name</th>
       <th>value</th>
+      <th>meta.description</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-07-09 00:00:00.025172660+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.149</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-07-09 00:00:00.058506456+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.157</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-07-09 00:00:00.091937791+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-07-09 00:00:00.126452480+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-07-09 00:00:00.160199343+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.150</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>107989</th>
+      <td>2023-07-09 00:59:59.851615551+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.887</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107990</th>
+      <td>2023-07-09 00:59:59.884990547+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.872</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107991</th>
+      <td>2023-07-09 00:59:59.918300549+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.871</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107992</th>
+      <td>2023-07-09 00:59:59.951650872+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.847</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107993</th>
+      <td>2023-07-09 00:59:59.985170224+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.830</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
   </tbody>
 </table>
+<p>107994 rows × 14 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -584,7 +985,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/689f74a9208085db4e2798ce03e08a003aa2d2f6609eec716cbd07b5ef9d8d7e.png" src="../_images/689f74a9208085db4e2798ce03e08a003aa2d2f6609eec716cbd07b5ef9d8d7e.png" />
+<img alt="../_images/adec3cf742dedbccc31b906777f39232f40bde8032673fd79434f7d1e6f27a42.png" src="../_images/adec3cf742dedbccc31b906777f39232f40bde8032673fd79434f7d1e6f27a42.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -631,10 +1032,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8ce14440a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fba084a3fa0&gt;
 </pre></div>
 </div>
-<img alt="../_images/937842c063a02630767a37a06acca69780309fb39d894432e180ad7693f7aba8.png" src="../_images/937842c063a02630767a37a06acca69780309fb39d894432e180ad7693f7aba8.png" />
+<img alt="../_images/caf23d67359ac040696bd9b79464f1eac9b0066ca8ba1aa74910f6ed2ff3cc19.png" src="../_images/caf23d67359ac040696bd9b79464f1eac9b0066ca8ba1aa74910f6ed2ff3cc19.png" />
 </div>
 </div>
 

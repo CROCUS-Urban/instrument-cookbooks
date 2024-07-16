@@ -584,16 +584,202 @@ document.write(`
       <th></th>
       <th>name</th>
       <th>value</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
     </tr>
     <tr>
       <th>timestamp</th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>2023-07-02 12:00:00.029156535+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.107252119+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.206164123+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.283311181+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.364271449+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.600882716+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.684669667+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.760763484+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.841247667+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.920791677+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
   </tbody>
 </table>
+<p>350864 rows × 12 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -642,8 +828,8 @@ document.write(`
 <section id="header-levels">
 <h6>header levels<a class="headerlink" href="#header-levels" title="Link to this heading">#</a></h6>
 <p>as well <span class="math notranslate nohighlight">\(m = a * t / h\)</span> text! Similarly, you have access to other <span class="math notranslate nohighlight">\(\LaTeX\)</span> equation <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Typesetting%20Equations.html"><strong>functionality</strong></a> via MathJax (demo below from link),</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2746fe57-595a-4c78-9d4e-e8c81ecda4c1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-2746fe57-595a-4c78-9d4e-e8c81ecda4c1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-349b41ef-7f4c-4d4d-b1cc-a1d87f3a0b7b">
+<span class="eqno">(1)<a class="headerlink" href="#equation-349b41ef-7f4c-4d4d-b1cc-a1d87f3a0b7b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \dot{x} &amp; = \sigma(y-x) \\
 \dot{y} &amp; = \rho x - y - xz \\
 \dot{z} &amp; = -\beta z + xy

@@ -547,7 +547,28 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([], dtype=&#39;datetime64[ns, UTC]&#39;, name=&#39;timestamp&#39;, freq=None)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2023-07-02 12:00:00.029156535+00:00&#39;,
+               &#39;2023-07-02 12:00:00.107252119+00:00&#39;,
+               &#39;2023-07-02 12:00:00.206164123+00:00&#39;,
+               &#39;2023-07-02 12:00:00.283311181+00:00&#39;,
+               &#39;2023-07-02 12:00:00.364271449+00:00&#39;,
+               &#39;2023-07-02 12:00:00.442495483+00:00&#39;,
+               &#39;2023-07-02 12:00:00.525232643+00:00&#39;,
+               &#39;2023-07-02 12:00:00.610763159+00:00&#39;,
+               &#39;2023-07-02 12:00:00.697874627+00:00&#39;,
+               &#39;2023-07-02 12:00:00.778449770+00:00&#39;,
+               ...
+               &#39;2023-07-02 12:59:59.200688231+00:00&#39;,
+               &#39;2023-07-02 12:59:59.280641431+00:00&#39;,
+               &#39;2023-07-02 12:59:59.361137582+00:00&#39;,
+               &#39;2023-07-02 12:59:59.441958059+00:00&#39;,
+               &#39;2023-07-02 12:59:59.520813355+00:00&#39;,
+               &#39;2023-07-02 12:59:59.600882716+00:00&#39;,
+               &#39;2023-07-02 12:59:59.684669667+00:00&#39;,
+               &#39;2023-07-02 12:59:59.760763484+00:00&#39;,
+               &#39;2023-07-02 12:59:59.841247667+00:00&#39;,
+               &#39;2023-07-02 12:59:59.920791677+00:00&#39;],
+              dtype=&#39;datetime64[ns, UTC]&#39;, name=&#39;timestamp&#39;, length=350864, freq=None)
 </pre></div>
 </div>
 </div>
@@ -560,7 +581,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;name&#39;, &#39;value&#39;], dtype=&#39;object&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;name&#39;, &#39;value&#39;, &#39;meta.host&#39;, &#39;meta.job&#39;, &#39;meta.missing&#39;, &#39;meta.node&#39;,
+       &#39;meta.plugin&#39;, &#39;meta.sensor&#39;, &#39;meta.task&#39;, &#39;meta.units&#39;, &#39;meta.vsn&#39;,
+       &#39;meta.zone&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -573,7 +597,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>set()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;wxt.heater.temp&#39;, &#39;wxt.env.temp&#39;, &#39;wxt.heater.volt&#39;, &#39;wxt.rain.accumulation&#39;, &#39;wxt.env.pressure&#39;, &#39;wxt.env.humidity&#39;, &#39;wxt.wind.direction&#39;, &#39;wxt.wind.speed&#39;}
 </pre></div>
 </div>
 </div>
@@ -665,16 +689,202 @@ document.write(`
       <th></th>
       <th>name</th>
       <th>value</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
     </tr>
     <tr>
       <th>timestamp</th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>2023-07-02 12:00:00.029156535+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.107252119+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.206164123+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.283311181+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.364271449+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.6</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.600882716+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.684669667+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.760763484+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.841247667+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.920791677+00:00</th>
+      <td>wxt.env.temp</td>
+      <td>20.3</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>degree Celsius</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
   </tbody>
 </table>
+<p>43858 rows × 12 columns</p>
 </div></div></div>
 </div>
 <section id="plot-the-temperature">
@@ -701,7 +911,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fe8a28d2417d7216a20cf662ad14dbe9ba2254435c9158a1c60e4c44e9d74e28.png" src="../../_images/fe8a28d2417d7216a20cf662ad14dbe9ba2254435c9158a1c60e4c44e9d74e28.png" />
+<img alt="../../_images/a5a151e6d0259322486d615a4e6a4fc5bf5fe19b1907a01554786007f80dc676.png" src="../../_images/a5a151e6d0259322486d615a4e6a4fc5bf5fe19b1907a01554786007f80dc676.png" />
 </div>
 </div>
 </section>
@@ -720,16 +930,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">single_event_total</span> <span class="o">=</span> <span class="n">accumulation</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">accumulation</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">single_event_total</span> <span class="o">=</span> <span class="n">accumulation</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">accumulation</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="ne">IndexError</span>: index 0 is out of bounds for axis 0 with size 0
 </pre></div>
 </div>
 </div>
@@ -755,7 +955,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/596259190f26800fad428c865ec1441d5f80ff93288745757cda26a4b7a8acf0.png" src="../../_images/596259190f26800fad428c865ec1441d5f80ff93288745757cda26a4b7a8acf0.png" />
+<img alt="../../_images/371495244f3794395cf552ed32664811c52acd406cbc5b6c29ed8f97a6d1e3f0.png" src="../../_images/371495244f3794395cf552ed32664811c52acd406cbc5b6c29ed8f97a6d1e3f0.png" />
 </div>
 </div>
 </section>
@@ -804,7 +1004,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0a04c8764d772a8a1d24ab549faebd533685cad715cf4328cb770b2469e049de.png" src="../../_images/0a04c8764d772a8a1d24ab549faebd533685cad715cf4328cb770b2469e049de.png" />
+<img alt="../../_images/1ec16bc13b921821a7a43e24fc614628d778a7eb32dc8fd3fae661b404a5fd9f.png" src="../../_images/1ec16bc13b921821a7a43e24fc614628d778a7eb32dc8fd3fae661b404a5fd9f.png" />
 </div>
 </div>
 </section>
@@ -1075,7 +1275,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d5a949d7c38fb2d37b4b701c5c03aa93796f441db5e7041c0c5459faefc15bf2.png" src="../../_images/d5a949d7c38fb2d37b4b701c5c03aa93796f441db5e7041c0c5459faefc15bf2.png" />
+<img alt="../../_images/7d9c66b9b6ec7ddb6a6559e7fdcb8fb67a0a2b0683d53be7b08eee6175cb09f5.png" src="../../_images/7d9c66b9b6ec7ddb6a6559e7fdcb8fb67a0a2b0683d53be7b08eee6175cb09f5.png" />
 </div>
 </div>
 </section>
@@ -1102,7 +1302,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r--  1 mgrover  staff   242M Aug 15 09:08 wxt536_W08D_ambient_temp.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 242M Jul 16 01:38 wxt536_W08D_ambient_temp.csv
 </pre></div>
 </div>
 </div>
@@ -1131,7 +1331,7 @@ you can also query specific variables using the ‘name’ filter</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r--  1 mgrover  staff   7.2M Aug 15 09:08 wxt536_W08D_ambient_temp.parquet
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 7.3M Jul 16 01:38 wxt536_W08D_ambient_temp.parquet
 </pre></div>
 </div>
 </div>
