@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Read Data from a Vaisala WXT536" href="../crocus_level1_node/vaisala_wxt536.html" />
-    <link rel="prev" title="Current Weather Quicklooks" href="../quicklooks/current-weather.html" />
+    <link rel="prev" title="Plot Station Maps Combining CROCUS and NOAA Data" href="../quicklooks/surface-map.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -195,6 +195,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../quicklooks/air-quality.html">Air Quality Quicklooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quicklooks/surface-map.html">Plot Station Maps Combining CROCUS and NOAA Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">External Datasets</span></p>
 <ul class="current nav bd-sidenav">
@@ -1036,19 +1037,19 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Harrison-Dever Crib, Chicago, IL
                       #YY  MM  DD  hh  mm  WDIR  WSPD   GST  WVHT  DPD  APD  \
 datetime                                                                      
+2024-07-18 17:20:00  2024   7  18  17  20  20.0   9.3  10.3   NaN  NaN  NaN   
+2024-07-18 17:10:00  2024   7  18  17  10  30.0   8.8  10.3   NaN  NaN  NaN   
 2024-07-18 17:00:00  2024   7  18  17   0  30.0   8.8   9.8   NaN  NaN  NaN   
 2024-07-18 16:50:00  2024   7  18  16  50  20.0   8.2   9.8   NaN  NaN  NaN   
 2024-07-18 16:40:00  2024   7  18  16  40  20.0   8.8  10.3   NaN  NaN  NaN   
-2024-07-18 16:30:00  2024   7  18  16  30  20.0   9.3  10.8   NaN  NaN  NaN   
-2024-07-18 16:20:00  2024   7  18  16  20  20.0   9.3  10.8   NaN  NaN  NaN   
 
                      MWD  PRES  ATMP  WTMP  DEWP  VIS  PTDY  TIDE  
 datetime                                                           
+2024-07-18 17:20:00  NaN   NaN  19.9   NaN  14.0  NaN   NaN   NaN  
+2024-07-18 17:10:00  NaN   NaN  20.0   NaN  14.0  NaN   NaN   NaN  
 2024-07-18 17:00:00  NaN   NaN  19.9   NaN  13.8  NaN   NaN   NaN  
 2024-07-18 16:50:00  NaN   NaN  19.9   NaN  14.3  NaN   NaN   NaN  
 2024-07-18 16:40:00  NaN   NaN  19.9   NaN  13.8  NaN   NaN   NaN  
-2024-07-18 16:30:00  NaN   NaN  19.9   NaN  13.8  NaN   NaN   NaN  
-2024-07-18 16:20:00  NaN   NaN  20.0   NaN  13.8  NaN   NaN   NaN  
 </pre></div>
 </div>
 </div>
@@ -1123,7 +1124,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0ef5b257eb40fd4c098ed09831b3718b76116b3d41beed646e385ccb627c7f7b.png" src="../../_images/0ef5b257eb40fd4c098ed09831b3718b76116b3d41beed646e385ccb627c7f7b.png" />
+<img alt="../../_images/7257541f1b71e2de72204c442cbcb5c3a5ae223f5add7fdafb9028fee1058a32.png" src="../../_images/7257541f1b71e2de72204c442cbcb5c3a5ae223f5add7fdafb9028fee1058a32.png" />
 </div>
 </div>
 <p>Distribution of Wind Speeds</p>
@@ -1142,7 +1143,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a19a972c81b8e456edbefd8c98726a632e046325a74aefc218be02df512f1ce3.png" src="../../_images/a19a972c81b8e456edbefd8c98726a632e046325a74aefc218be02df512f1ce3.png" />
+<img alt="../../_images/abdf9fd7040c953e7d0f42b67af76bf97bc8043da745bbaf36576d0d9b401895.png" src="../../_images/abdf9fd7040c953e7d0f42b67af76bf97bc8043da745bbaf36576d0d9b401895.png" />
 </div>
 </div>
 <p>Get data from nearby stations for comparison</p>
@@ -1189,7 +1190,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bb30d6b47fe31f1efc8b274ac1786f4e6734226b49bc488fe998abd063befaf7.png" src="../../_images/bb30d6b47fe31f1efc8b274ac1786f4e6734226b49bc488fe998abd063befaf7.png" />
+<img alt="../../_images/45f781e631bb47115fda3b9fa2468af2c29585c02aedc4872b1de6b71393583a.png" src="../../_images/45f781e631bb47115fda3b9fa2468af2c29585c02aedc4872b1de6b71393583a.png" />
 </div>
 </div>
 </section>
@@ -1600,12 +1601,12 @@ See also</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../quicklooks/current-weather.html"
+       href="../quicklooks/surface-map.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Current Weather Quicklooks</p>
+        <p class="prev-next-title">Plot Station Maps Combining CROCUS and NOAA Data</p>
       </div>
     </a>
     <a class="right-next"
