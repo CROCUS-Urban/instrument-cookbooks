@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 782, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
+    result = await obj
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_client/channels.py", line 313, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
@@ -9,124 +20,21 @@ Traceback (most recent call last):
     return future.result()
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1005, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
+    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 600 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
 wxt_df = sage_data_client.query(
     start="-3h",
     filter={
         "sensor": "vaisala-wxt536"
     }
 )
-------------------
-
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:566[0m, in [0;36mHTTPResponse._get_chunk_left[0;34m(self)[0m
-[1;32m    565[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 566[0m     chunk_left [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_read_next_chunk_size[49m[43m([49m[43m)[49m
-[1;32m    567[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:533[0m, in [0;36mHTTPResponse._read_next_chunk_size[0;34m(self)[0m
-[1;32m    532[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 533[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mint[39;49m[43m([49m[43mline[49m[43m,[49m[43m [49m[38;5;241;43m16[39;49m[43m)[49m
-[1;32m    534[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
-[1;32m    535[0m     [38;5;66;03m# close the connection as protocol synchronisation is[39;00m
-[1;32m    536[0m     [38;5;66;03m# probably lost[39;00m
-
-[0;31mValueError[0m: invalid literal for int() with base 16: b''
-
-During handling of the above exception, another exception occurred:
-
-[0;31mIncompleteRead[0m                            Traceback (most recent call last)
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:583[0m, in [0;36mHTTPResponse._read_chunked[0;34m(self, amt)[0m
-[1;32m    582[0m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
-[0;32m--> 583[0m     chunk_left [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_get_chunk_left[49m[43m([49m[43m)[49m
-[1;32m    584[0m     [38;5;28;01mif[39;00m chunk_left [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:568[0m, in [0;36mHTTPResponse._get_chunk_left[0;34m(self)[0m
-[1;32m    567[0m [38;5;28;01mexcept[39;00m [38;5;167;01mValueError[39;00m:
-[0;32m--> 568[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m)
-[1;32m    569[0m [38;5;28;01mif[39;00m chunk_left [38;5;241m==[39m [38;5;241m0[39m:
-[1;32m    570[0m     [38;5;66;03m# last chunk: 1*("0") [ chunk-extension ] CRLF[39;00m
-
-[0;31mIncompleteRead[0m: IncompleteRead(0 bytes read)
-
-During handling of the above exception, another exception occurred:
-
-[0;31mIncompleteRead[0m                            Traceback (most recent call last)
-Cell [0;32mIn[2], line 1[0m
-[0;32m----> 1[0m wxt_df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m
-[1;32m      2[0m [43m    [49m[43mstart[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m-3h[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m      3[0m [43m    [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
-[1;32m      4[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m
-[1;32m      5[0m [43m    [49m[43m}[49m
-[1;32m      6[0m [43m)[49m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:111[0m, in [0;36mquery[0;34m(start, end, head, tail, experimental_func, bucket, filter, endpoint)[0m
-[1;32m    109[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
-[1;32m    110[0m     f [38;5;241m=[39m GzipFile(fileobj[38;5;241m=[39mf, mode[38;5;241m=[39m[38;5;124m"[39m[38;5;124mrb[39m[38;5;124m"[39m)
-[0;32m--> 111[0m [38;5;28;01mreturn[39;00m [43mload[49m[43m([49m[43mf[49m[43m)[49m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:168[0m, in [0;36mload[0;34m(path_or_buf)[0m
-[1;32m    165[0m         [38;5;28;01mwith[39;00m [38;5;28mopen[39m(path_or_buf, [38;5;124m"[39m[38;5;124mrb[39m[38;5;124m"[39m) [38;5;28;01mas[39;00m f:
-[1;32m    166[0m             [38;5;28;01mreturn[39;00m _load(f)
-[0;32m--> 168[0m [38;5;28;01mreturn[39;00m [43m_load[49m[43m([49m[43mpath_or_buf[49m[43m)[49m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:183[0m, in [0;36m_load[0;34m(fileobj)[0m
-[1;32m    182[0m [38;5;28;01mdef[39;00m [38;5;21m_load[39m(fileobj) [38;5;241m-[39m[38;5;241m>[39m pd[38;5;241m.[39mDataFrame:
-[0;32m--> 183[0m     df [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mDataFrame[49m[43m([49m[38;5;28;43mmap[39;49m[43m([49m[43m_load_row[49m[43m,[49m[43m [49m[43mfileobj[49m[43m)[49m[43m)[49m
-[1;32m    185[0m     [38;5;66;03m# if dataframe is empty, return empty with known columns[39;00m
-[1;32m    186[0m     [38;5;28;01mif[39;00m [38;5;28mlen[39m(df) [38;5;241m==[39m [38;5;241m0[39m:
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py:843[0m, in [0;36mDataFrame.__init__[0;34m(self, data, index, columns, dtype, copy)[0m
-[1;32m    841[0m         data [38;5;241m=[39m np[38;5;241m.[39masarray(data)
-[1;32m    842[0m     [38;5;28;01melse[39;00m:
-[0;32m--> 843[0m         data [38;5;241m=[39m [38;5;28;43mlist[39;49m[43m([49m[43mdata[49m[43m)[49m
-[1;32m    844[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(data) [38;5;241m>[39m [38;5;241m0[39m:
-[1;32m    845[0m     [38;5;28;01mif[39;00m is_dataclass(data[[38;5;241m0[39m]):
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:399[0m, in [0;36mGzipFile.readline[0;34m(self, size)[0m
-[1;32m    397[0m [38;5;28;01mdef[39;00m [38;5;21mreadline[39m([38;5;28mself[39m, size[38;5;241m=[39m[38;5;241m-[39m[38;5;241m1[39m):
-[1;32m    398[0m     [38;5;28mself[39m[38;5;241m.[39m_check_not_closed()
-[0;32m--> 399[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_buffer[49m[38;5;241;43m.[39;49m[43mreadline[49m[43m([49m[43msize[49m[43m)[49m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/_compression.py:68[0m, in [0;36mDecompressReader.readinto[0;34m(self, b)[0m
-[1;32m     66[0m [38;5;28;01mdef[39;00m [38;5;21mreadinto[39m([38;5;28mself[39m, b):
-[1;32m     67[0m     [38;5;28;01mwith[39;00m [38;5;28mmemoryview[39m(b) [38;5;28;01mas[39;00m view, view[38;5;241m.[39mcast([38;5;124m"[39m[38;5;124mB[39m[38;5;124m"[39m) [38;5;28;01mas[39;00m byte_view:
-[0;32m---> 68[0m         data [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[38;5;28;43mlen[39;49m[43m([49m[43mbyte_view[49m[43m)[49m[43m)[49m
-[1;32m     69[0m         byte_view[:[38;5;28mlen[39m(data)] [38;5;241m=[39m data
-[1;32m     70[0m     [38;5;28;01mreturn[39;00m [38;5;28mlen[39m(data)
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:494[0m, in [0;36m_GzipReader.read[0;34m(self, size)[0m
-[1;32m    491[0m     [38;5;28mself[39m[38;5;241m.[39m_new_member [38;5;241m=[39m [38;5;28;01mFalse[39;00m
-[1;32m    493[0m [38;5;66;03m# Read a chunk of data from the file[39;00m
-[0;32m--> 494[0m buf [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_fp[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43mio[49m[38;5;241;43m.[39;49m[43mDEFAULT_BUFFER_SIZE[49m[43m)[49m
-[1;32m    496[0m uncompress [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_decompressor[38;5;241m.[39mdecompress(buf, size)
-[1;32m    497[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_decompressor[38;5;241m.[39munconsumed_tail [38;5;241m!=[39m [38;5;124mb[39m[38;5;124m"[39m[38;5;124m"[39m:
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/gzip.py:97[0m, in [0;36m_PaddedFile.read[0;34m(self, size)[0m
-[1;32m     94[0m read [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_read
-[1;32m     95[0m [38;5;28mself[39m[38;5;241m.[39m_read [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[1;32m     96[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_buffer[read:] [38;5;241m+[39m \
-[0;32m---> 97[0m        [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfile[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43msize[49m[38;5;241;43m-[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_length[49m[38;5;241;43m+[39;49m[43mread[49m[43m)[49m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:460[0m, in [0;36mHTTPResponse.read[0;34m(self, amt)[0m
-[1;32m    457[0m     [38;5;28;01mreturn[39;00m [38;5;124mb[39m[38;5;124m"[39m[38;5;124m"[39m
-[1;32m    459[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mchunked:
-[0;32m--> 460[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_read_chunked[49m[43m([49m[43mamt[49m[43m)[49m
-[1;32m    462[0m [38;5;28;01mif[39;00m amt [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
-[1;32m    463[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mlength [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m amt [38;5;241m>[39m [38;5;28mself[39m[38;5;241m.[39mlength:
-[1;32m    464[0m         [38;5;66;03m# clip the read to the "end of response"[39;00m
-
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:598[0m, in [0;36mHTTPResponse._read_chunked[0;34m(self, amt)[0m
-[1;32m    596[0m     [38;5;28;01mreturn[39;00m [38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value)
-[1;32m    597[0m [38;5;28;01mexcept[39;00m IncompleteRead:
-[0;32m--> 598[0m     [38;5;28;01mraise[39;00m IncompleteRead([38;5;124mb[39m[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(value))
-
-[0;31mIncompleteRead[0m: IncompleteRead(338 bytes read)
+-------------------
 
