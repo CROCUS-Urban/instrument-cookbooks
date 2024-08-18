@@ -40,7 +40,7 @@ for i, scan in enumerate(results.iter_success(), start=1):
 ----- stdout -----
 working on KLOT20230507_161027_V06
 ----- stdout -----
-Error in callback <function _draw_all_if_interactive at 0x7f5ed2465870> (for post_execute), with arguments args (),kwargs {}:
+Error in callback <function _draw_all_if_interactive at 0x7fcdebd89870> (for post_execute), with arguments args (),kwargs {}:
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
