@@ -1,15 +1,4 @@
 Traceback (most recent call last):
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 782, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
-    result = await obj
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_client/channels.py", line 313, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
@@ -20,18 +9,361 @@ Traceback (most recent call last):
     return future.result()
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1005, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 600 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-['# Set up the map projection', 'proj = ccrs.LambertConformal(central_longitude=-95, central_latitude=35,', '                             standard_parallels=[35])', '', '# Use the Cartopy map projection to transform station locations to the map and']
-...
-['', 'stationplot_metars.plot_barb(ew, nw)', "stationplot_metars.plot_text('SE', metars['station_id'].values, fontsize=10)", 'plt.title(pd.to_datetime(data.time.values[0]).strftime("%H:%M UTC \\n %d %b %Y \\n CROCUS and NOAA Surface Observations"), fontsize=20)', 'plt.savefig("current-conditions-crocus.png", dpi=300)']
--------------------
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Set up the map projection
+proj = ccrs.LambertConformal(central_longitude=-95, central_latitude=35,
+                             standard_parallels=[35])
+
+# Use the Cartopy map projection to transform station locations to the map and
+# then refine the number of stations plotted by setting a 300km radius
+point_locs = proj.transform_points(ccrs.PlateCarree(), data['longitude'].values,
+                                   data['latitude'].values)
+
+fig = plt.figure(figsize=(20, 10))
+tiler = OSM()
+mercator = tiler.crs
+#add_metpy_logo(fig, 1100, 300, size='large')
+ax = fig.add_subplot(1, 1, 1, projection=mercator)
+
+
+# Add some various map elements to the plot to make it recognizable.
+ax.add_feature(cfeature.LAND)
+ax.add_feature(cfeature.OCEAN)
+#ax.add_feature(cfeature.NaturalEarthFeature("physical", "land", "10m"),
+#              ec="red", fc="yellow", lw=2, alpha=0.4)
+#ax.add_feature(cfeature.LAKES)
+ax.add_feature(cfeature.COASTLINE)
+ax.add_feature(cfeature.STATES)
+ax.add_feature(cfeature.BORDERS)
+ax.add_image(tiler, 11)
+
+# Set plot bounds
+ax.set_extent((-88.2, -87.4, 41.5, 42.1))
+
+#
+# Here's the actual station plot
+#
+
+# Start the station plot by specifying the axes to draw on, as well as the
+# lon/lat of the stations (with transform). We also the fontsize to 12 pt.
+stationplot = StationPlot(ax, data['longitude'].values, data['latitude'].values,
+                          clip_on=True, transform=ccrs.PlateCarree(), fontsize=12)
+
+stationplot.plot_parameter('NW', (data['temperature'].values * units.degC).to("degF"), color='red', formatter = '0.1f')
+stationplot.plot_parameter('SW', (data['dewpoint'].values * units.degC).to("degF"),
+                           color='darkgreen', formatter = '0.1f')
+
+stationplot.plot_parameter('NE', data['mslp'].values,
+                           formatter=lambda v: format(10 * v, '.0f')[-3:])
+
+ew, nw = wind_components((data['wind_mean_10s'].values * units.meter_per_second).to("knot") , 
+                                data['wind_dir_10s'].values * units.degrees_north)
+
+stationplot.plot_barb(ew, nw)
+
+stationplot.plot_text('SE', data['station_id'].values, fontsize=10)
+
+
+
+stationplot_metars = StationPlot(ax, metars['longitude'].values, metars['latitude'].values,
+                          clip_on=True, transform=ccrs.PlateCarree(), fontsize=12)
+
+stationplot_metars.plot_parameter('NW', (metars['air_temperature'].values * units.degC).to("degF"), color='red', formatter = '0.1f')
+stationplot_metars.plot_parameter('SW', (metars['dew_point_temperature'].values * units.degC).to("degF"),
+                                  fontsize=11,
+                           color='darkgreen', formatter = '0.1f')
+
+stationplot_metars.plot_parameter('NE', metars['air_pressure_at_sea_level'].values,
+                                  fontsize=11,
+                           formatter=lambda v: format(10 * v, ' .0f')[-3:])
+
+
+ew, nw = wind_components(metars['wind_speed'].values * units.knot , 
+                                metars['wind_direction'].values * units.degrees_north)
+
+
+stationplot_metars.plot_barb(ew, nw)
+stationplot_metars.plot_text('SE', metars['station_id'].values, fontsize=10)
+plt.title(pd.to_datetime(data.time.values[0]).strftime("%H:%M UTC \n %d %b %Y \n CROCUS and NOAA Surface Observations"), fontsize=20)
+plt.savefig("current-conditions-crocus.png", dpi=300)
+------------------
+
+----- stderr -----
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_land.zip
+  warnings.warn(f'Downloading: {url}', DownloadWarning)
+----- stderr -----
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_ocean.zip
+  warnings.warn(f'Downloading: {url}', DownloadWarning)
+----- stderr -----
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
+  warnings.warn(f'Downloading: {url}', DownloadWarning)
+----- stderr -----
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_boundary_lines_land.zip
+  warnings.warn(f'Downloading: {url}', DownloadWarning)
+----- stderr -----
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_boundary_lines_land.zip
+  warnings.warn(f'Downloading: {url}', DownloadWarning)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mHTTPError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[6], line 76[0m
+[1;32m     74[0m stationplot_metars[38;5;241m.[39mplot_text([38;5;124m'[39m[38;5;124mSE[39m[38;5;124m'[39m, metars[[38;5;124m'[39m[38;5;124mstation_id[39m[38;5;124m'[39m][38;5;241m.[39mvalues, fontsize[38;5;241m=[39m[38;5;241m10[39m)
+[1;32m     75[0m plt[38;5;241m.[39mtitle(pd[38;5;241m.[39mto_datetime(data[38;5;241m.[39mtime[38;5;241m.[39mvalues[[38;5;241m0[39m])[38;5;241m.[39mstrftime([38;5;124m"[39m[38;5;124m%[39m[38;5;124mH:[39m[38;5;124m%[39m[38;5;124mM UTC [39m[38;5;130;01m\n[39;00m[38;5;124m [39m[38;5;132;01m%d[39;00m[38;5;124m [39m[38;5;124m%[39m[38;5;124mb [39m[38;5;124m%[39m[38;5;124mY [39m[38;5;130;01m\n[39;00m[38;5;124m CROCUS and NOAA Surface Observations[39m[38;5;124m"[39m), fontsize[38;5;241m=[39m[38;5;241m20[39m)
+[0;32m---> 76[0m [43mplt[49m[38;5;241;43m.[39;49m[43msavefig[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mcurrent-conditions-crocus.png[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mdpi[49m[38;5;241;43m=[39;49m[38;5;241;43m300[39;49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/pyplot.py:1228[0m, in [0;36msavefig[0;34m(*args, **kwargs)[0m
+[1;32m   1225[0m fig [38;5;241m=[39m gcf()
+[1;32m   1226[0m [38;5;66;03m# savefig default implementation has no return, so mypy is unhappy[39;00m
+[1;32m   1227[0m [38;5;66;03m# presumably this is here because subclasses can return?[39;00m
+[0;32m-> 1228[0m res [38;5;241m=[39m [43mfig[49m[38;5;241;43m.[39;49m[43msavefig[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m  [38;5;66;03m# type: ignore[func-returns-value][39;00m
+[1;32m   1229[0m fig[38;5;241m.[39mcanvas[38;5;241m.[39mdraw_idle()  [38;5;66;03m# Need this if 'transparent=True', to reset colors.[39;00m
+[1;32m   1230[0m [38;5;28;01mreturn[39;00m res
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/figure.py:3395[0m, in [0;36mFigure.savefig[0;34m(self, fname, transparent, **kwargs)[0m
+[1;32m   3393[0m     [38;5;28;01mfor[39;00m ax [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39maxes:
+[1;32m   3394[0m         _recursively_make_axes_transparent(stack, ax)
+[0;32m-> 3395[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcanvas[49m[38;5;241;43m.[39;49m[43mprint_figure[49m[43m([49m[43mfname[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/backend_bases.py:2204[0m, in [0;36mFigureCanvasBase.print_figure[0;34m(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, pad_inches, bbox_extra_artists, backend, **kwargs)[0m
+[1;32m   2200[0m [38;5;28;01mtry[39;00m:
+[1;32m   2201[0m     [38;5;66;03m# _get_renderer may change the figure dpi (as vector formats[39;00m
+[1;32m   2202[0m     [38;5;66;03m# force the figure dpi to 72), so we need to set it again here.[39;00m
+[1;32m   2203[0m     [38;5;28;01mwith[39;00m cbook[38;5;241m.[39m_setattr_cm([38;5;28mself[39m[38;5;241m.[39mfigure, dpi[38;5;241m=[39mdpi):
+[0;32m-> 2204[0m         result [38;5;241m=[39m [43mprint_method[49m[43m([49m
+[1;32m   2205[0m [43m            [49m[43mfilename[49m[43m,[49m
+[1;32m   2206[0m [43m            [49m[43mfacecolor[49m[38;5;241;43m=[39;49m[43mfacecolor[49m[43m,[49m
+[1;32m   2207[0m [43m            [49m[43medgecolor[49m[38;5;241;43m=[39;49m[43medgecolor[49m[43m,[49m
+[1;32m   2208[0m [43m            [49m[43morientation[49m[38;5;241;43m=[39;49m[43morientation[49m[43m,[49m
+[1;32m   2209[0m [43m            [49m[43mbbox_inches_restore[49m[38;5;241;43m=[39;49m[43m_bbox_inches_restore[49m[43m,[49m
+[1;32m   2210[0m [43m            [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   2211[0m [38;5;28;01mfinally[39;00m:
+[1;32m   2212[0m     [38;5;28;01mif[39;00m bbox_inches [38;5;129;01mand[39;00m restore_bbox:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/backend_bases.py:2054[0m, in [0;36mFigureCanvasBase._switch_canvas_and_return_print_method.<locals>.<lambda>[0;34m(*args, **kwargs)[0m
+[1;32m   2050[0m     optional_kws [38;5;241m=[39m {  [38;5;66;03m# Passed by print_figure for other renderers.[39;00m
+[1;32m   2051[0m         [38;5;124m"[39m[38;5;124mdpi[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mfacecolor[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124medgecolor[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124morientation[39m[38;5;124m"[39m,
+[1;32m   2052[0m         [38;5;124m"[39m[38;5;124mbbox_inches_restore[39m[38;5;124m"[39m}
+[1;32m   2053[0m     skip [38;5;241m=[39m optional_kws [38;5;241m-[39m {[38;5;241m*[39minspect[38;5;241m.[39msignature(meth)[38;5;241m.[39mparameters}
+[0;32m-> 2054[0m     print_method [38;5;241m=[39m functools[38;5;241m.[39mwraps(meth)([38;5;28;01mlambda[39;00m [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs: [43mmeth[49m[43m([49m
+[1;32m   2055[0m [43m        [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43m{[49m[43mk[49m[43m:[49m[43m [49m[43mv[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mk[49m[43m,[49m[43m [49m[43mv[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mkwargs[49m[38;5;241;43m.[39;49m[43mitems[49m[43m([49m[43m)[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mk[49m[43m [49m[38;5;129;43;01mnot[39;49;00m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mskip[49m[43m}[49m[43m)[49m)
+[1;32m   2056[0m [38;5;28;01melse[39;00m:  [38;5;66;03m# Let third-parties do as they see fit.[39;00m
+[1;32m   2057[0m     print_method [38;5;241m=[39m meth
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py:496[0m, in [0;36mFigureCanvasAgg.print_png[0;34m(self, filename_or_obj, metadata, pil_kwargs)[0m
+[1;32m    449[0m [38;5;28;01mdef[39;00m [38;5;21mprint_png[39m([38;5;28mself[39m, filename_or_obj, [38;5;241m*[39m, metadata[38;5;241m=[39m[38;5;28;01mNone[39;00m, pil_kwargs[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m    450[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m    451[0m [38;5;124;03m    Write the figure to a PNG file.[39;00m
+[1;32m    452[0m 
+[0;32m   (...)[0m
+[1;32m    494[0m [38;5;124;03m        *metadata*, including the default 'Software' key.[39;00m
+[1;32m    495[0m [38;5;124;03m    """[39;00m
+[0;32m--> 496[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_print_pil[49m[43m([49m[43mfilename_or_obj[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mpng[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mpil_kwargs[49m[43m,[49m[43m [49m[43mmetadata[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py:444[0m, in [0;36mFigureCanvasAgg._print_pil[0;34m(self, filename_or_obj, fmt, pil_kwargs, metadata)[0m
+[1;32m    439[0m [38;5;28;01mdef[39;00m [38;5;21m_print_pil[39m([38;5;28mself[39m, filename_or_obj, fmt, pil_kwargs, metadata[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m    440[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m    441[0m [38;5;124;03m    Draw the canvas, then save it using `.image.imsave` (to which[39;00m
+[1;32m    442[0m [38;5;124;03m    *pil_kwargs* and *metadata* are forwarded).[39;00m
+[1;32m    443[0m [38;5;124;03m    """[39;00m
+[0;32m--> 444[0m     [43mFigureCanvasAgg[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+[1;32m    445[0m     mpl[38;5;241m.[39mimage[38;5;241m.[39mimsave(
+[1;32m    446[0m         filename_or_obj, [38;5;28mself[39m[38;5;241m.[39mbuffer_rgba(), [38;5;28mformat[39m[38;5;241m=[39mfmt, origin[38;5;241m=[39m[38;5;124m"[39m[38;5;124mupper[39m[38;5;124m"[39m,
+[1;32m    447[0m         dpi[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39mfigure[38;5;241m.[39mdpi, metadata[38;5;241m=[39mmetadata, pil_kwargs[38;5;241m=[39mpil_kwargs)
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py:387[0m, in [0;36mFigureCanvasAgg.draw[0;34m(self)[0m
+[1;32m    384[0m [38;5;66;03m# Acquire a lock on the shared font cache.[39;00m
+[1;32m    385[0m [38;5;28;01mwith[39;00m ([38;5;28mself[39m[38;5;241m.[39mtoolbar[38;5;241m.[39m_wait_cursor_for_draw_cm() [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mtoolbar
+[1;32m    386[0m       [38;5;28;01melse[39;00m nullcontext()):
+[0;32m--> 387[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfigure[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mrenderer[49m[43m)[49m
+[1;32m    388[0m     [38;5;66;03m# A GUI class may be need to update a window using this draw, so[39;00m
+[1;32m    389[0m     [38;5;66;03m# don't forget to call the superclass.[39;00m
+[1;32m    390[0m     [38;5;28msuper[39m()[38;5;241m.[39mdraw()
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:95[0m, in [0;36m_finalize_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer, *args, **kwargs)[0m
+[1;32m     93[0m [38;5;129m@wraps[39m(draw)
+[1;32m     94[0m [38;5;28;01mdef[39;00m [38;5;21mdraw_wrapper[39m(artist, renderer, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m---> 95[0m     result [38;5;241m=[39m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m     96[0m     [38;5;28;01mif[39;00m renderer[38;5;241m.[39m_rasterizing:
+[1;32m     97[0m         renderer[38;5;241m.[39mstop_rasterizing()
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/figure.py:3162[0m, in [0;36mFigure.draw[0;34m(self, renderer)[0m
+[1;32m   3159[0m             [38;5;66;03m# ValueError can occur when resizing a window.[39;00m
+[1;32m   3161[0m     [38;5;28mself[39m[38;5;241m.[39mpatch[38;5;241m.[39mdraw(renderer)
+[0;32m-> 3162[0m     [43mmimage[49m[38;5;241;43m.[39;49m[43m_draw_list_compositing_images[49m[43m([49m
+[1;32m   3163[0m [43m        [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43martists[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msuppressComposite[49m[43m)[49m
+[1;32m   3165[0m     renderer[38;5;241m.[39mclose_group([38;5;124m'[39m[38;5;124mfigure[39m[38;5;124m'[39m)
+[1;32m   3166[0m [38;5;28;01mfinally[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/image.py:132[0m, in [0;36m_draw_list_compositing_images[0;34m(renderer, parent, artists, suppress_composite)[0m
+[1;32m    130[0m [38;5;28;01mif[39;00m not_composite [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m has_images:
+[1;32m    131[0m     [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m artists:
+[0;32m--> 132[0m         [43ma[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m    133[0m [38;5;28;01melse[39;00m:
+[1;32m    134[0m     [38;5;66;03m# Composite any adjacent images together[39;00m
+[1;32m    135[0m     image_group [38;5;241m=[39m []
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/mpl/geoaxes.py:525[0m, in [0;36mGeoAxes.draw[0;34m(self, renderer, **kwargs)[0m
+[1;32m    520[0m         [38;5;28mself[39m[38;5;241m.[39mimshow(img, extent[38;5;241m=[39mextent, origin[38;5;241m=[39morigin,
+[1;32m    521[0m                     transform[38;5;241m=[39mfactory[38;5;241m.[39mcrs, [38;5;241m*[39mfactory_args[[38;5;241m1[39m:],
+[1;32m    522[0m                     [38;5;241m*[39m[38;5;241m*[39mfactory_kwargs)
+[1;32m    523[0m [38;5;28mself[39m[38;5;241m.[39m_done_img_factory [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m--> 525[0m [38;5;28;01mreturn[39;00m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[38;5;241;43m=[39;49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/axes/_base.py:3137[0m, in [0;36m_AxesBase.draw[0;34m(self, renderer)[0m
+[1;32m   3134[0m [38;5;28;01mif[39;00m artists_rasterized:
+[1;32m   3135[0m     _draw_rasterized([38;5;28mself[39m[38;5;241m.[39mfigure, artists_rasterized, renderer)
+[0;32m-> 3137[0m [43mmimage[49m[38;5;241;43m.[39;49m[43m_draw_list_compositing_images[49m[43m([49m
+[1;32m   3138[0m [43m    [49m[43mrenderer[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43martists[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfigure[49m[38;5;241;43m.[39;49m[43msuppressComposite[49m[43m)[49m
+[1;32m   3140[0m renderer[38;5;241m.[39mclose_group([38;5;124m'[39m[38;5;124maxes[39m[38;5;124m'[39m)
+[1;32m   3141[0m [38;5;28mself[39m[38;5;241m.[39mstale [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/image.py:132[0m, in [0;36m_draw_list_compositing_images[0;34m(renderer, parent, artists, suppress_composite)[0m
+[1;32m    130[0m [38;5;28;01mif[39;00m not_composite [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m has_images:
+[1;32m    131[0m     [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m artists:
+[0;32m--> 132[0m         [43ma[49m[38;5;241;43m.[39;49m[43mdraw[49m[43m([49m[43mrenderer[49m[43m)[49m
+[1;32m    133[0m [38;5;28;01melse[39;00m:
+[1;32m    134[0m     [38;5;66;03m# Composite any adjacent images together[39;00m
+[1;32m    135[0m     image_group [38;5;241m=[39m []
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/artist.py:72[0m, in [0;36mallow_rasterization.<locals>.draw_wrapper[0;34m(artist, renderer)[0m
+[1;32m     69[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m     70[0m         renderer[38;5;241m.[39mstart_filter()
+[0;32m---> 72[0m     [38;5;28;01mreturn[39;00m [43mdraw[49m[43m([49m[43martist[49m[43m,[49m[43m [49m[43mrenderer[49m[43m)[49m
+[1;32m     73[0m [38;5;28;01mfinally[39;00m:
+[1;32m     74[0m     [38;5;28;01mif[39;00m artist[38;5;241m.[39mget_agg_filter() [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/mpl/feature_artist.py:185[0m, in [0;36mFeatureArtist.draw[0;34m(self, renderer)[0m
+[1;32m    180[0m     geoms [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_feature[38;5;241m.[39mgeometries()
+[1;32m    181[0m [38;5;28;01melse[39;00m:
+[1;32m    182[0m     [38;5;66;03m# For efficiency on local maps with high resolution features (e.g[39;00m
+[1;32m    183[0m     [38;5;66;03m# from Natural Earth), only create paths for geometries that are[39;00m
+[1;32m    184[0m     [38;5;66;03m# in view.[39;00m
+[0;32m--> 185[0m     geoms [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_feature[49m[38;5;241;43m.[39;49m[43mintersecting_geometries[49m[43m([49m[43mextent[49m[43m)[49m
+[1;32m    187[0m stylised_paths [38;5;241m=[39m {}
+[1;32m    188[0m [38;5;66;03m# Make an empty placeholder style dictionary for when styler is not[39;00m
+[1;32m    189[0m [38;5;66;03m# used.  Freeze it so that we can use it as a dict key.  We will need[39;00m
+[1;32m    190[0m [38;5;66;03m# to unfreeze all style dicts with dict(frozen) before passing to mpl.[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/feature/__init__.py:309[0m, in [0;36mNaturalEarthFeature.intersecting_geometries[0;34m(self, extent)[0m
+[1;32m    302[0m [38;5;250m[39m[38;5;124;03m"""[39;00m
+[1;32m    303[0m [38;5;124;03mReturns an iterator of shapely geometries that intersect with[39;00m
+[1;32m    304[0m [38;5;124;03mthe given extent.[39;00m
+[1;32m    305[0m [38;5;124;03mThe extent is assumed to be in the CRS of the feature.[39;00m
+[1;32m    306[0m [38;5;124;03mIf extent is None, the method returns all geometries for this dataset.[39;00m
+[1;32m    307[0m [38;5;124;03m"""[39;00m
+[1;32m    308[0m [38;5;28mself[39m[38;5;241m.[39mscaler[38;5;241m.[39mscale_from_extent(extent)
+[0;32m--> 309[0m [38;5;28;01mreturn[39;00m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mintersecting_geometries[49m[43m([49m[43mextent[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/feature/__init__.py:112[0m, in [0;36mFeature.intersecting_geometries[0;34m(self, extent)[0m
+[1;32m    109[0m [38;5;28;01mif[39;00m extent [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m np[38;5;241m.[39misnan(extent[[38;5;241m0[39m]):
+[1;32m    110[0m     extent_geom [38;5;241m=[39m sgeom[38;5;241m.[39mbox(extent[[38;5;241m0[39m], extent[[38;5;241m2[39m],
+[1;32m    111[0m                             extent[[38;5;241m1[39m], extent[[38;5;241m3[39m])
+[0;32m--> 112[0m     [38;5;28;01mreturn[39;00m (geom [38;5;28;01mfor[39;00m geom [38;5;129;01min[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mgeometries[49m[43m([49m[43m)[49m [38;5;28;01mif[39;00m
+[1;32m    113[0m             geom [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m extent_geom[38;5;241m.[39mintersects(geom))
+[1;32m    114[0m [38;5;28;01melse[39;00m:
+[1;32m    115[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mgeometries()
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/feature/__init__.py:291[0m, in [0;36mNaturalEarthFeature.geometries[0;34m(self)[0m
+[1;32m    289[0m key [38;5;241m=[39m ([38;5;28mself[39m[38;5;241m.[39mname, [38;5;28mself[39m[38;5;241m.[39mcategory, [38;5;28mself[39m[38;5;241m.[39mscale)
+[1;32m    290[0m [38;5;28;01mif[39;00m key [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m _NATURAL_EARTH_GEOM_CACHE:
+[0;32m--> 291[0m     path [38;5;241m=[39m [43mshapereader[49m[38;5;241;43m.[39;49m[43mnatural_earth[49m[43m([49m[43mresolution[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mscale[49m[43m,[49m
+[1;32m    292[0m [43m                                     [49m[43mcategory[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcategory[49m[43m,[49m
+[1;32m    293[0m [43m                                     [49m[43mname[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mname[49m[43m)[49m
+[1;32m    294[0m     geometries [38;5;241m=[39m [38;5;28mtuple[39m(shapereader[38;5;241m.[39mReader(path)[38;5;241m.[39mgeometries())
+[1;32m    295[0m     _NATURAL_EARTH_GEOM_CACHE[key] [38;5;241m=[39m geometries
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/shapereader.py:306[0m, in [0;36mnatural_earth[0;34m(resolution, category, name)[0m
+[1;32m    302[0m ne_downloader [38;5;241m=[39m Downloader[38;5;241m.[39mfrom_config(([38;5;124m'[39m[38;5;124mshapefiles[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mnatural_earth[39m[38;5;124m'[39m,
+[1;32m    303[0m                                         resolution, category, name))
+[1;32m    304[0m format_dict [38;5;241m=[39m {[38;5;124m'[39m[38;5;124mconfig[39m[38;5;124m'[39m: config, [38;5;124m'[39m[38;5;124mcategory[39m[38;5;124m'[39m: category,
+[1;32m    305[0m                [38;5;124m'[39m[38;5;124mname[39m[38;5;124m'[39m: name, [38;5;124m'[39m[38;5;124mresolution[39m[38;5;124m'[39m: resolution}
+[0;32m--> 306[0m [38;5;28;01mreturn[39;00m [43mne_downloader[49m[38;5;241;43m.[39;49m[43mpath[49m[43m([49m[43mformat_dict[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:203[0m, in [0;36mDownloader.path[0;34m(self, format_dict)[0m
+[1;32m    200[0m     result_path [38;5;241m=[39m target_path
+[1;32m    201[0m [38;5;28;01melse[39;00m:
+[1;32m    202[0m     [38;5;66;03m# we need to download the file[39;00m
+[0;32m--> 203[0m     result_path [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43macquire_resource[49m[43m([49m[43mtarget_path[49m[43m,[49m[43m [49m[43mformat_dict[49m[43m)[49m
+[1;32m    205[0m [38;5;28;01mreturn[39;00m result_path
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/shapereader.py:359[0m, in [0;36mNEShpDownloader.acquire_resource[0;34m(self, target_path, format_dict)[0m
+[1;32m    355[0m target_dir[38;5;241m.[39mmkdir(parents[38;5;241m=[39m[38;5;28;01mTrue[39;00m, exist_ok[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[1;32m    357[0m url [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39murl(format_dict)
+[0;32m--> 359[0m shapefile_online [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_urlopen[49m[43m([49m[43murl[49m[43m)[49m
+[1;32m    361[0m zfh [38;5;241m=[39m ZipFile(io[38;5;241m.[39mBytesIO(shapefile_online[38;5;241m.[39mread()), [38;5;124m'[39m[38;5;124mr[39m[38;5;124m'[39m)
+[1;32m    363[0m [38;5;28;01mfor[39;00m member_path [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mzip_file_contents(format_dict):
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:242[0m, in [0;36mDownloader._urlopen[0;34m(self, url)[0m
+[1;32m    235[0m [38;5;250m[39m[38;5;124;03m"""[39;00m
+[1;32m    236[0m [38;5;124;03mReturns a file handle to the given HTTP resource URL.[39;00m
+[1;32m    237[0m 
+[1;32m    238[0m [38;5;124;03mCaller should close the file handle when finished with it.[39;00m
+[1;32m    239[0m 
+[1;32m    240[0m [38;5;124;03m"""[39;00m
+[1;32m    241[0m warnings[38;5;241m.[39mwarn([38;5;124mf[39m[38;5;124m'[39m[38;5;124mDownloading: [39m[38;5;132;01m{[39;00murl[38;5;132;01m}[39;00m[38;5;124m'[39m, DownloadWarning)
+[0;32m--> 242[0m [38;5;28;01mreturn[39;00m [43murlopen[49m[43m([49m[43murl[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
+[1;32m    214[0m [38;5;28;01melse[39;00m:
+[1;32m    215[0m     opener [38;5;241m=[39m _opener
+[0;32m--> 216[0m [38;5;28;01mreturn[39;00m [43mopener[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:525[0m, in [0;36mOpenerDirector.open[0;34m(self, fullurl, data, timeout)[0m
+[1;32m    523[0m [38;5;28;01mfor[39;00m processor [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mprocess_response[38;5;241m.[39mget(protocol, []):
+[1;32m    524[0m     meth [38;5;241m=[39m [38;5;28mgetattr[39m(processor, meth_name)
+[0;32m--> 525[0m     response [38;5;241m=[39m [43mmeth[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mresponse[49m[43m)[49m
+[1;32m    527[0m [38;5;28;01mreturn[39;00m response
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:634[0m, in [0;36mHTTPErrorProcessor.http_response[0;34m(self, request, response)[0m
+[1;32m    631[0m [38;5;66;03m# According to RFC 2616, "2xx" code indicates that the client's[39;00m
+[1;32m    632[0m [38;5;66;03m# request was successfully received, understood, and accepted.[39;00m
+[1;32m    633[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m ([38;5;241m200[39m [38;5;241m<[39m[38;5;241m=[39m code [38;5;241m<[39m [38;5;241m300[39m):
+[0;32m--> 634[0m     response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mparent[49m[38;5;241;43m.[39;49m[43merror[49m[43m([49m
+[1;32m    635[0m [43m        [49m[38;5;124;43m'[39;49m[38;5;124;43mhttp[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mrequest[49m[43m,[49m[43m [49m[43mresponse[49m[43m,[49m[43m [49m[43mcode[49m[43m,[49m[43m [49m[43mmsg[49m[43m,[49m[43m [49m[43mhdrs[49m[43m)[49m
+[1;32m    637[0m [38;5;28;01mreturn[39;00m response
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:563[0m, in [0;36mOpenerDirector.error[0;34m(self, proto, *args)[0m
+[1;32m    561[0m [38;5;28;01mif[39;00m http_err:
+[1;32m    562[0m     args [38;5;241m=[39m ([38;5;28mdict[39m, [38;5;124m'[39m[38;5;124mdefault[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mhttp_error_default[39m[38;5;124m'[39m) [38;5;241m+[39m orig_args
+[0;32m--> 563[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_call_chain[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496[0m, in [0;36mOpenerDirector._call_chain[0;34m(self, chain, kind, meth_name, *args)[0m
+[1;32m    494[0m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
+[1;32m    495[0m     func [38;5;241m=[39m [38;5;28mgetattr[39m(handler, meth_name)
+[0;32m--> 496[0m     result [38;5;241m=[39m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+[1;32m    497[0m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    498[0m         [38;5;28;01mreturn[39;00m result
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:643[0m, in [0;36mHTTPDefaultErrorHandler.http_error_default[0;34m(self, req, fp, code, msg, hdrs)[0m
+[1;32m    642[0m [38;5;28;01mdef[39;00m [38;5;21mhttp_error_default[39m([38;5;28mself[39m, req, fp, code, msg, hdrs):
+[0;32m--> 643[0m     [38;5;28;01mraise[39;00m HTTPError(req[38;5;241m.[39mfull_url, code, msg, hdrs, fp)
+
+[0;31mHTTPError[0m: HTTP Error 503: Service Unavailable
 
