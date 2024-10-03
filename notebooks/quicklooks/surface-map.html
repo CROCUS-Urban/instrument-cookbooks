@@ -736,77 +736,79 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;airport-codes.csv&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.3/staticdata/airport-codes.csv&#39; to &#39;/home/runner/.cache/metpy/v1.6.3&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3426/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3398/812442133.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3426/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3398/812442133.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3426/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3426/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3398/812442133.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3426/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3398/812442133.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3426/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3426/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3398/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
-/tmp/ipykernel_3426/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3426/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3398/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
+/tmp/ipykernel_3398/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
+/tmp/ipykernel_3398/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3398/812442133.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3426/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3398/812442133.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3426/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3426/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3398/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 /home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/dataset.py:4802: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords(&#39;site&#39;)` on this object.
   warnings.warn(
@@ -918,7 +920,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
 </pre></div>
 </div>
-<img alt="../../_images/1d7f1e1a0ea501d13a6b50dded8c707b0a8f3e7e8742633549a940d567e15bb0.png" src="../../_images/1d7f1e1a0ea501d13a6b50dded8c707b0a8f3e7e8742633549a940d567e15bb0.png" />
+<img alt="../../_images/9ccf31c939df9225bcca25a31c098e9a906b98ec68aee5ae69d81cae46121d45.png" src="../../_images/9ccf31c939df9225bcca25a31c098e9a906b98ec68aee5ae69d81cae46121d45.png" />
 </div>
 </div>
 </section>
