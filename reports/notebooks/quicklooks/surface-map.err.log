@@ -100,10 +100,10 @@ plt.savefig("current-conditions-crocus.png", dpi=300)
 /home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_ocean.zip
   warnings.warn(f'Downloading: {url}', DownloadWarning)
 ----- stderr -----
-/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_ocean.zip
   warnings.warn(f'Downloading: {url}', DownloadWarning)
 ----- stderr -----
-/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_boundary_lines_land.zip
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
   warnings.warn(f'Downloading: {url}', DownloadWarning)
 ----- stderr -----
 /home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_boundary_lines_land.zip
@@ -365,5 +365,5 @@ File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/req
 [1;32m    642[0m [38;5;28;01mdef[39;00m [38;5;21mhttp_error_default[39m([38;5;28mself[39m, req, fp, code, msg, hdrs):
 [0;32m--> 643[0m     [38;5;28;01mraise[39;00m HTTPError(req[38;5;241m.[39mfull_url, code, msg, hdrs, fp)
 
-[0;31mHTTPError[0m: HTTP Error 503: Service Unavailable
+[0;31mHTTPError[0m: HTTP Error 500: Internal Server Error
 
