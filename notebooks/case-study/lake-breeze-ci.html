@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -65,6 +68,7 @@
     <link rel="prev" title="&lt;no title&gt;" href="../mrr/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,21 +148,17 @@
     
     
     <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
-    <script>document.write(`<img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
+    <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark pst-js-only" alt="CROCUS Instrument Cookbooks - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -381,24 +370,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -852,101 +833,107 @@ document.write(`
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_160329_V06
-Downloaded KLOT20230507_162536_V06
 Downloaded KLOT20230507_161726_V06
-Downloaded KLOT20230507_161027_V06
-Downloaded KLOT20230507_163235_V06
+Downloaded KLOT20230507_162536_V06
+Downloaded KLOT20230507_163934_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_165332_V06_MDM
-Downloaded KLOT20230507_165332_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_163235_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_164633_V06
-Downloaded KLOT20230507_170729_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_165332_V06
 Downloaded KLOT20230507_170031_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_171428_V06
-Downloaded KLOT20230507_172127_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_165332_V06_MDM
+Downloaded KLOT20230507_164633_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_161027_V06
+Downloaded KLOT20230507_170729_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_172827_V06
+Downloaded KLOT20230507_172127_V06
 Downloaded KLOT20230507_173525_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_174224_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_175622_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_174923_V06
 Downloaded KLOT20230507_175622_V06_MDM
-Downloaded KLOT20230507_163934_V06
-Downloaded KLOT20230507_174923_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_181020_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_175622_V06
+Downloaded KLOT20230507_180321_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_183817_V06
-Downloaded KLOT20230507_182419_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_181719_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_182419_V06
 Downloaded KLOT20230507_183117_V06
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_183817_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_171428_V06
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_184517_V06
+Downloaded KLOT20230507_185917_V06_MDM
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_185917_V06_MDM
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_185917_V06
-Downloaded KLOT20230507_185217_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_185217_V06
+Downloaded KLOT20230507_185917_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_190617_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_191316_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_180321_V06
 Downloaded KLOT20230507_192015_V06
-Downloaded KLOT20230507_192714_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_181719_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_192714_V06
+Downloaded KLOT20230507_193413_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_193413_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_181020_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_194112_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_195509_V06_MDM
-Downloaded KLOT20230507_194112_V06
+Downloaded KLOT20230507_194811_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_194811_V06
-Downloaded KLOT20230507_195509_V06
-Downloaded KLOT20230507_200209_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_195509_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_200908_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_202307_V06
-Downloaded KLOT20230507_203704_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_204403_V06
-Downloaded KLOT20230507_203006_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205801_V06_MDM
-Downloaded KLOT20230507_205801_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205103_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_200209_V06
+Downloaded KLOT20230507_200908_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_201607_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_202307_V06
+Downloaded KLOT20230507_203006_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_203704_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205103_V06
+Downloaded KLOT20230507_204403_V06
+Downloaded KLOT20230507_205801_V06_MDM
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205801_V06
 48 out of 48 files downloaded...0 errors
 </pre></div>
 </div>
@@ -1217,7 +1204,7 @@ Downloaded KLOT20230507_205801_V06
 <img alt="../../_images/04727f0cc2368a44ae94f5866010a580c6e54da92f165c860b35736227577aa2.png" src="../../_images/04727f0cc2368a44ae94f5866010a580c6e54da92f165c860b35736227577aa2.png" />
 <img alt="../../_images/236bf809db837377851b203bf34195be19451dffb23a6d5637f6e5f23e773468.png" src="../../_images/236bf809db837377851b203bf34195be19451dffb23a6d5637f6e5f23e773468.png" />
 <img alt="../../_images/88d4edd974f1b2ad221f64ca12f9df926e6a4ece8a0320f5e7e7adf8f8976ac6.png" src="../../_images/88d4edd974f1b2ad221f64ca12f9df926e6a4ece8a0320f5e7e7adf8f8976ac6.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function flush_figures at 0x7f8094b94ca0&gt; (for post_execute), with arguments args (),kwargs {}:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function flush_figures at 0x7f5d24be6a70&gt; (for post_execute), with arguments args (),kwargs {}:
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -1413,32 +1400,19 @@ Downloaded KLOT20230507_205801_V06
 <span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="k">finally</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="k">if</span> <span class="n">artist</span><span class="o">.</span><span class="n">get_agg_filter</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/collections.py:2179,</span> in <span class="ni">QuadMesh.draw</span><span class="nt">(self, renderer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2176</span>     <span class="n">ys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_yunits</span><span class="p">(</span><span class="n">offsets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="g g-Whitespace">   </span><span class="mi">2177</span>     <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">])</span>
-<span class="ne">-&gt; </span><span class="mi">2179</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_scalarmappable</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">2181</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">transform</span><span class="o">.</span><span class="n">is_affine</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2182</span>     <span class="n">coordinates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coordinates</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/collections.py:920,</span> in <span class="ni">Collection.update_scalarmappable</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">918</span>         <span class="c1"># pcolormesh, scatter, maybe others flatten their _A</span>
-<span class="g g-Whitespace">    </span><span class="mi">919</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">920</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_mapped_colors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">922</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_face_is_mapped</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">923</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_facecolors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mapped_colors</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/cm.py:431,</span> in <span class="ni">ScalarMappable.to_rgba</span><span class="nt">(self, x, alpha, bytes, norm)</span>
-<span class="g g-Whitespace">    </span><span class="mi">429</span> <span class="k">if</span> <span class="n">norm</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">430</span>     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">431</span> <span class="n">rgba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">432</span> <span class="k">return</span> <span class="n">rgba</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/colors.py:761,</span> in <span class="ni">Colormap.__call__</span><span class="nt">(self, X, alpha, bytes)</span>
-<span class="g g-Whitespace">    </span><span class="mi">758</span> <span class="n">xa</span><span class="p">[</span><span class="n">mask_bad</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_i_bad</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span> <span class="n">lut</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lut</span>
-<span class="ne">--&gt; </span><span class="mi">761</span> <span class="k">if</span> <span class="nb">bytes</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">762</span>     <span class="n">lut</span> <span class="o">=</span> <span class="p">(</span><span class="n">lut</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">764</span> <span class="n">rgba</span> <span class="o">=</span> <span class="n">lut</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;clip&#39;</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/collections.py:2203,</span> in <span class="ni">QuadMesh.draw</span><span class="nt">(self, renderer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2200</span>     <span class="n">renderer</span><span class="o">.</span><span class="n">draw_gouraud_triangles</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2201</span>         <span class="n">gc</span><span class="p">,</span> <span class="n">triangles</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">transform</span><span class="o">.</span><span class="n">frozen</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">2202</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2203</span>     <span class="n">renderer</span><span class="o">.</span><span class="n">draw_quad_mesh</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2204</span>         <span class="n">gc</span><span class="p">,</span> <span class="n">transform</span><span class="o">.</span><span class="n">frozen</span><span class="p">(),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2205</span>         <span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2206</span>         <span class="n">coordinates</span><span class="p">,</span> <span class="n">offsets</span><span class="p">,</span> <span class="n">offset_trf</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2207</span>         <span class="c1"># Backends expect flattened rgba arrays (n*m, 4) for fc and ec</span>
+<span class="g g-Whitespace">   </span><span class="mi">2208</span>         <span class="bp">self</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2209</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_antialiased</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_edgecolors</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="g g-Whitespace">   </span><span class="mi">2210</span> <span class="n">gc</span><span class="o">.</span><span class="n">restore</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2211</span> <span class="n">renderer</span><span class="o">.</span><span class="n">close_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1526,7 +1500,8 @@ Downloaded KLOT20230507_205801_V06
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1593,8 +1568,8 @@ By CROCUS Measurement Strategy Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
