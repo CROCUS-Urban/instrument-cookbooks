@@ -1,15 +1,4 @@
 Traceback (most recent call last):
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 782, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
-    result = await obj
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_client/channels.py", line 313, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
@@ -20,18 +9,117 @@ Traceback (most recent call last):
     return future.result()
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1005, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 600 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-['for i, scan in enumerate(results.iter_success(), start=1):', '    ## skip the files ending in "MDM"', '    if scan.filename[-3:] != "MDM":', '        if i > 1:', '            # define what file you are working on']
-...
-['                               aqvals, ', '                               rad_time,', '                               templocation=templocation)', '            # close the radar file', '            del radar']
--------------------
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import glob
+import os
+import tempfile
+import warnings
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+
+from math import atan2 as atan2
+from datetime import datetime
+
+from metpy.plots import USCOUNTIES
+from metpy.calc import dewpoint_from_relative_humidity
+from metpy.units import units
+import imageio
+import pyart
+import nexradaws
+
+import sage_data_client
+
+templocation = tempfile.mkdtemp()
+
+warnings.filterwarnings("ignore")
+------------------
+
+----- stdout -----
+
+## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[1], line 19[0m
+[1;32m     17[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmetpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01munits[39;00m [38;5;28;01mimport[39;00m units
+[1;32m     18[0m [38;5;28;01mimport[39;00m [38;5;21;01mimageio[39;00m
+[0;32m---> 19[0m [38;5;28;01mimport[39;00m [38;5;21;01mpyart[39;00m
+[1;32m     20[0m [38;5;28;01mimport[39;00m [38;5;21;01mnexradaws[39;00m
+[1;32m     22[0m [38;5;28;01mimport[39;00m [38;5;21;01msage_data_client[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pyart/__init__.py:29[0m
+[1;32m     25[0m [38;5;28;01mimport[39;00m [38;5;21;01mimportlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetadata[39;00m [38;5;28;01mas[39;00m [38;5;21;01m_importlib_metadata[39;00m
+[1;32m     27[0m [38;5;66;03m# import subpackages[39;00m
+[1;32m     28[0m [38;5;66;03m# print out helpful message if build fails or importing from source tree[39;00m
+[0;32m---> 29[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m (
+[1;32m     30[0m     __check_build,  [38;5;66;03m# noqa[39;00m
+[1;32m     31[0m     aux_io,  [38;5;66;03m# noqa[39;00m
+[1;32m     32[0m     bridge,  [38;5;66;03m# noqa[39;00m
+[1;32m     33[0m     config,  [38;5;66;03m# noqa[39;00m
+[1;32m     34[0m     core,  [38;5;66;03m# noqa[39;00m
+[1;32m     35[0m     correct,  [38;5;66;03m# noqa[39;00m
+[1;32m     36[0m     filters,  [38;5;66;03m# noqa[39;00m
+[1;32m     37[0m     graph,  [38;5;66;03m# noqa[39;00m
+[1;32m     38[0m     io,  [38;5;66;03m# noqa[39;00m
+[1;32m     39[0m     [38;5;28mmap[39m,  [38;5;66;03m# noqa[39;00m
+[1;32m     40[0m     retrieve,  [38;5;66;03m# noqa[39;00m
+[1;32m     41[0m     testing,  [38;5;66;03m# noqa[39;00m
+[1;32m     42[0m     util,  [38;5;66;03m# noqa[39;00m
+[1;32m     43[0m     xradar,  [38;5;66;03m# noqa[39;00m
+[1;32m     44[0m )
+[1;32m     45[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_debug_info[39;00m [38;5;28;01mimport[39;00m _debug_info  [38;5;66;03m# noqa[39;00m
+[1;32m     47[0m [38;5;66;03m# root level functions[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pyart/xradar/__init__.py:1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01maccessor[39;00m [38;5;28;01mimport[39;00m Xradar, Xgrid  [38;5;66;03m# noqa[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pyart/xradar/accessor.py:8[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03mUtilities for interfacing between xradar and Py-ART[39;00m
+[1;32m      3[0m 
+[1;32m      4[0m [38;5;124;03m"""[39;00m
+[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mcopy[39;00m
+[0;32m----> 8[0m [38;5;28;01mimport[39;00m [38;5;21;01mdatatree[39;00m
+[1;32m      9[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m     10[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/datatree/__init__.py:2[0m
+[1;32m      1[0m [38;5;66;03m# import public API[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mdatatree[39;00m [38;5;28;01mimport[39;00m DataTree
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mextensions[39;00m [38;5;28;01mimport[39;00m register_datatree_accessor
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mio[39;00m [38;5;28;01mimport[39;00m open_datatree
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/datatree/datatree.py:33[0m
+[1;32m     31[0m [38;5;28;01mfrom[39;00m [38;5;21;01mxarray[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmerge[39;00m [38;5;28;01mimport[39;00m dataset_update_method
+[1;32m     32[0m [38;5;28;01mfrom[39;00m [38;5;21;01mxarray[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m[38;5;21;01m.[39;00m[38;5;21;01moptions[39;00m [38;5;28;01mimport[39;00m OPTIONS [38;5;28;01mas[39;00m XR_OPTS
+[0;32m---> 33[0m [38;5;28;01mfrom[39;00m [38;5;21;01mxarray[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m [38;5;28;01mimport[39;00m (
+[1;32m     34[0m     Default,
+[1;32m     35[0m     Frozen,
+[1;32m     36[0m     HybridMappingProxy,
+[1;32m     37[0m     _default,
+[1;32m     38[0m     either_dict_or_kwargs,
+[1;32m     39[0m     maybe_wrap_array,
+[1;32m     40[0m )
+[1;32m     41[0m [38;5;28;01mfrom[39;00m [38;5;21;01mxarray[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m[38;5;21;01m.[39;00m[38;5;21;01mvariable[39;00m [38;5;28;01mimport[39;00m Variable
+[1;32m     43[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m formatting, formatting_html
+
+[0;31mImportError[0m: cannot import name 'HybridMappingProxy' from 'xarray.core.utils' (/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py)
 

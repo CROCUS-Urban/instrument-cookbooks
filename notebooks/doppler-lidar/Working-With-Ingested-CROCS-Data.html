@@ -464,38 +464,80 @@ Max Grover mgrover&#64;anl.gov</p>
 ##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
 </pre></div>
 </div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LogNorm</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">import</span> <span class="nn">pyart</span> <span class="c1">#This will be replaced by cmweather in the future</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">import</span> <span class="nn">act</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pyart</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">29</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="kn">import</span> <span class="nn">importlib.metadata</span> <span class="k">as</span> <span class="nn">_importlib_metadata</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="c1"># import subpackages</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># print out helpful message if build fails or importing from source tree</span>
+<span class="ne">---&gt; </span><span class="mi">29</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span>     <span class="n">__check_build</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">aux_io</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="n">bridge</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>     <span class="n">config</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="n">core</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">correct</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">filters</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="n">graph</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">io</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>     <span class="nb">map</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="n">retrieve</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="n">testing</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="n">util</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>     <span class="n">xradar</span><span class="p">,</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="kn">from</span> <span class="nn">._debug_info</span> <span class="kn">import</span> <span class="n">_debug_info</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="c1"># root level functions</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pyart</span><span class="o">/</span><span class="n">xradar</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.accessor</span> <span class="kn">import</span> <span class="n">Xradar</span><span class="p">,</span> <span class="n">Xgrid</span>  <span class="c1"># noqa</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pyart</span><span class="o">/</span><span class="n">xradar</span><span class="o">/</span><span class="n">accessor</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> Utilities for interfacing between xradar and Py-ART</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> </span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">copy</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">datatree</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">datatree</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># import public API</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.datatree</span> <span class="kn">import</span> <span class="n">DataTree</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.extensions</span> <span class="kn">import</span> <span class="n">register_datatree_accessor</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">open_datatree</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">datatree</span><span class="o">/</span><span class="n">datatree</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">33</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="kn">from</span> <span class="nn">xarray.core.merge</span> <span class="kn">import</span> <span class="n">dataset_update_method</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="kn">from</span> <span class="nn">xarray.core.options</span> <span class="kn">import</span> <span class="n">OPTIONS</span> <span class="k">as</span> <span class="n">XR_OPTS</span>
+<span class="ne">---&gt; </span><span class="mi">33</span> <span class="kn">from</span> <span class="nn">xarray.core.utils</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="n">Default</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">Frozen</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">HybridMappingProxy</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="n">_default</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">either_dict_or_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>     <span class="n">maybe_wrap_array</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="kn">from</span> <span class="nn">xarray.core.variable</span> <span class="kn">import</span> <span class="n">Variable</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">formatting</span><span class="p">,</span> <span class="n">formatting_html</span>
+
+<span class="ne">ImportError</span>: cannot import name &#39;HybridMappingProxy&#39; from &#39;xarray.core.utils&#39; (/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py)
+</pre></div>
+</div>
 </div>
 </div>
 <p>Open the dataset - This will be replaced with a THREDDS call</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_ingested</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_arm_netcdf</span><span class="p">(</span><span class="s1">&#39;/Volumes/T7/data/DL_ingested/crocus-neiu-dlvpt-a1-202308020000.nc&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds_ingested</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_arm_netcdf</span><span class="p">(</span><span class="s1">&#39;/Volumes/T7/data/DL_ingested/crocus-neiu-dlvpt-a1-202308020000.nc&#39;</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/act/io/arm.py:147,</span> in <span class="ni">read_arm_netcdf</span><span class="nt">(filenames, concat_dim, return_None, combine, decode_times, use_cftime, use_base_time, combine_attrs, cleanup_qc, keep_variables, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="n">except_tuple</span> <span class="o">=</span> <span class="n">except_tuple</span> <span class="o">+</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span>     <span class="c1"># Read data file with Xarray function</span>
-<span class="ne">--&gt; </span><span class="mi">147</span>     <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span> <span class="k">except</span> <span class="n">except_tuple</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="c1"># If requested return None for File not found error</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;FileNotFoundError&#39;</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/backends/api.py:1102,</span> in <span class="ni">open_mfdataset</span><span class="nt">(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1099</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">_find_absolute_paths</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1101</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1102</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;no files to open&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1104</span> <span class="k">if</span> <span class="n">combine</span> <span class="o">==</span> <span class="s2">&quot;nested&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1105</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">DataArray</span><span class="p">)</span> <span class="ow">or</span> <span class="n">concat_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">OSError</span>: no files to open
 </pre></div>
 </div>
 </div>
