@@ -475,7 +475,7 @@
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">19</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <span class="n">units</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">import</span> <span class="nn">imageio</span>
@@ -519,27 +519,7 @@
 <span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">datatree</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># import public API</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.datatree</span> <span class="kn">import</span> <span class="n">DataTree</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.extensions</span> <span class="kn">import</span> <span class="n">register_datatree_accessor</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">open_datatree</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">instrument</span><span class="o">-</span><span class="n">cookbooks</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">datatree</span><span class="o">/</span><span class="n">datatree</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">33</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="kn">from</span> <span class="nn">xarray.core.merge</span> <span class="kn">import</span> <span class="n">dataset_update_method</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="kn">from</span> <span class="nn">xarray.core.options</span> <span class="kn">import</span> <span class="n">OPTIONS</span> <span class="k">as</span> <span class="n">XR_OPTS</span>
-<span class="ne">---&gt; </span><span class="mi">33</span> <span class="kn">from</span> <span class="nn">xarray.core.utils</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="n">Default</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">Frozen</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">HybridMappingProxy</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="n">_default</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">either_dict_or_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span>     <span class="n">maybe_wrap_array</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="kn">from</span> <span class="nn">xarray.core.variable</span> <span class="kn">import</span> <span class="n">Variable</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">formatting</span><span class="p">,</span> <span class="n">formatting_html</span>
-
-<span class="ne">ImportError</span>: cannot import name &#39;HybridMappingProxy&#39; from &#39;xarray.core.utils&#39; (/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py)
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;datatree&#39;
 </pre></div>
 </div>
 </div>
