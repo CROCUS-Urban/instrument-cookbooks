@@ -1,0 +1,224 @@
+Traceback (most recent call last):
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import act
+import glob
+import matplotlib.pyplot as plt
+import matplotlib
+
+files = glob.glob('../../data/ceilometer/sgp*')
+
+ds = act.io.read_arm_netcdf(files)
+
+# apply range correction
+ds = act.corrections.correct_ceil(ds)
+
+ds.attrs['datastream'] = 'ceilometer.b1'
+
+# variables=['p_pol', 'x_pol', 'linear_depol_ratio']
+
+variables = ['backscatter', 'first_cbh']
+
+for variable in variables:
+    display = act.plotting.TimeSeriesDisplay(ds, figsize=(8,4))
+    if variable == 'backscatter':
+        display.plot(variable,
+                     cmap='rainbow',
+                     vmin=0,
+                     vmax=4,
+                     y_rng=(0, ds.range.max().values))
+    else:
+        display.plot(variable,
+                     cmap='rainbow',
+                     y_rng=(0, ds.range.max().values))
+
+    plt.show()
+    plt.close()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mact[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mglob[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/act/__init__.py:17[0m
+[1;32m     14[0m register_matplotlib_converters()
+[1;32m     16[0m [38;5;66;03m# Import early so these classes are available to the object[39;00m
+[0;32m---> 17[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mqc[39;00m [38;5;28;01mimport[39;00m QCFilter, QCTests, clean  [38;5;66;03m# noqa[39;00m
+[1;32m     19[0m [38;5;66;03m# Import the lazy loaded modules[39;00m
+[1;32m     20[0m submodules [38;5;241m=[39m [
+[1;32m     21[0m     [38;5;124m'[39m[38;5;124mcorrections[39m[38;5;124m'[39m,
+[1;32m     22[0m     [38;5;124m'[39m[38;5;124mdiscovery[39m[38;5;124m'[39m,
+[0;32m   (...)[0m
+[1;32m     28[0m     [38;5;124m'[39m[38;5;124mtests[39m[38;5;124m'[39m,
+[1;32m     29[0m ]
+
+File [0;32m<frozen importlib._bootstrap>:1075[0m, in [0;36m_handle_fromlist[0;34m(module, fromlist, import_, recursive)[0m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/lazy_loader/__init__.py:82[0m, in [0;36mattach.<locals>.__getattr__[0;34m(name)[0m
+[1;32m     80[0m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m attr_to_modules:
+[1;32m     81[0m     submod_path [38;5;241m=[39m [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mpackage_name[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;132;01m{[39;00mattr_to_modules[name][38;5;132;01m}[39;00m[38;5;124m"[39m
+[0;32m---> 82[0m     submod [38;5;241m=[39m [43mimportlib[49m[38;5;241;43m.[39;49m[43mimport_module[49m[43m([49m[43msubmod_path[49m[43m)[49m
+[1;32m     83[0m     attr [38;5;241m=[39m [38;5;28mgetattr[39m(submod, name)
+[1;32m     85[0m     [38;5;66;03m# If the attribute lives in a file (module) with the same[39;00m
+[1;32m     86[0m     [38;5;66;03m# name as the attribute, ensure that the attribute and *not*[39;00m
+[1;32m     87[0m     [38;5;66;03m# the module is accessible on the package.[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/importlib/__init__.py:126[0m, in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    124[0m             [38;5;28;01mbreak[39;00m
+[1;32m    125[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m--> 126[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/act/qc/qcfilter.py:12[0m
+[1;32m      9[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m     10[0m [38;5;28;01mimport[39;00m [38;5;21;01mxarray[39;00m [38;5;28;01mas[39;00m [38;5;21;01mxr[39;00m
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mact[39;00m[38;5;21;01m.[39;00m[38;5;21;01mqc[39;00m [38;5;28;01mimport[39;00m comparison_tests, qctests, bsrn_tests, qc_summary
+[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01mact[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdata_utils[39;00m [38;5;28;01mimport[39;00m get_missing_value
+[1;32m     16[0m [38;5;129m@xr[39m[38;5;241m.[39mregister_dataset_accessor([38;5;124m'[39m[38;5;124mqcfilter[39m[38;5;124m'[39m)
+[1;32m     17[0m [38;5;28;01mclass[39;00m [38;5;21;01mQCFilter[39;00m(qctests[38;5;241m.[39mQCTests, comparison_tests[38;5;241m.[39mQCTests, bsrn_tests[38;5;241m.[39mQCTests, qc_summary[38;5;241m.[39mQCSummary):
+
+File [0;32m<frozen importlib._bootstrap>:1075[0m, in [0;36m_handle_fromlist[0;34m(module, fromlist, import_, recursive)[0m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/lazy_loader/__init__.py:79[0m, in [0;36mattach.<locals>.__getattr__[0;34m(name)[0m
+[1;32m     77[0m [38;5;28;01mdef[39;00m [38;5;21m__getattr__[39m(name):
+[1;32m     78[0m     [38;5;28;01mif[39;00m name [38;5;129;01min[39;00m submodules:
+[0;32m---> 79[0m         [38;5;28;01mreturn[39;00m [43mimportlib[49m[38;5;241;43m.[39;49m[43mimport_module[49m[43m([49m[38;5;124;43mf[39;49m[38;5;124;43m"[39;49m[38;5;132;43;01m{[39;49;00m[43mpackage_name[49m[38;5;132;43;01m}[39;49;00m[38;5;124;43m.[39;49m[38;5;132;43;01m{[39;49;00m[43mname[49m[38;5;132;43;01m}[39;49;00m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m     80[0m     [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m attr_to_modules:
+[1;32m     81[0m         submod_path [38;5;241m=[39m [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mpackage_name[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;132;01m{[39;00mattr_to_modules[name][38;5;132;01m}[39;00m[38;5;124m"[39m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/importlib/__init__.py:126[0m, in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    124[0m             [38;5;28;01mbreak[39;00m
+[1;32m    125[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m--> 126[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/act/qc/comparison_tests.py:10[0m
+[1;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mxarray[39;00m [38;5;28;01mas[39;00m [38;5;21;01mxr[39;00m
+[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mact[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdata_utils[39;00m [38;5;28;01mimport[39;00m convert_units
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mact[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdatetime_utils[39;00m [38;5;28;01mimport[39;00m determine_time_delta
+[1;32m     14[0m [38;5;28;01mclass[39;00m [38;5;21;01mQCTests[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/act/utils/data_utils.py:10[0m
+[1;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mwarnings[39;00m
+[1;32m      9[0m [38;5;28;01mimport[39;00m [38;5;21;01mjson[39;00m
+[0;32m---> 10[0m [38;5;28;01mimport[39;00m [38;5;21;01mmetpy[39;00m
+[1;32m     11[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m     12[0m [38;5;28;01mimport[39;00m [38;5;21;01mpint[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/__init__.py:13[0m
+[1;32m     10[0m warnings[38;5;241m.[39mfilterwarnings([38;5;124m'[39m[38;5;124mignore[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mnumpy.dtype size changed[39m[38;5;124m'[39m)
+[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_version[39;00m [38;5;28;01mimport[39;00m get_version  [38;5;66;03m# noqa: E402[39;00m
+[0;32m---> 13[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mxarray[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m  [38;5;66;03m# noqa: F401, F403, E402[39;00m
+[1;32m     15[0m __version__ [38;5;241m=[39m get_version()
+[1;32m     16[0m [38;5;28;01mdel[39;00m get_version
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/xarray.py:31[0m
+[1;32m     29[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m _warnings
+[1;32m     30[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_vendor[39;00m[38;5;21;01m.[39;00m[38;5;21;01mxarray[39;00m [38;5;28;01mimport[39;00m either_dict_or_kwargs, expanded_indexer, is_dict_like
+[0;32m---> 31[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01munits[39;00m [38;5;28;01mimport[39;00m (_mutate_arguments, DimensionalityError, is_quantity, UndefinedUnitError,
+[1;32m     32[0m                     units)
+[1;32m     34[0m __all__ [38;5;241m=[39m ([38;5;124m'[39m[38;5;124mMetPyDataArrayAccessor[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mMetPyDatasetAccessor[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mgrid_deltas_from_dataarray[39m[38;5;124m'[39m)
+[1;32m     35[0m metpy_axes [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mtime[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mvertical[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124my[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mlatitude[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mx[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mlongitude[39m[38;5;124m'[39m]
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/units.py:26[0m
+[1;32m     23[0m [38;5;28;01mimport[39;00m [38;5;21;01mwarnings[39;00m
+[1;32m     25[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m---> 26[0m [38;5;28;01mimport[39;00m [38;5;21;01mpint[39;00m
+[1;32m     28[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mpackage_tools[39;00m [38;5;28;01mimport[39;00m Exporter
+[1;32m     30[0m exporter [38;5;241m=[39m Exporter([38;5;28mglobals[39m())
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/__init__.py:18[0m
+[1;32m     14[0m [38;5;28;01mfrom[39;00m [38;5;21;01m__future__[39;00m [38;5;28;01mimport[39;00m annotations
+[1;32m     16[0m [38;5;28;01mfrom[39;00m [38;5;21;01mimportlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetadata[39;00m [38;5;28;01mimport[39;00m version
+[0;32m---> 18[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mdelegates[39;00m[38;5;21;01m.[39;00m[38;5;21;01mformatter[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_format_helpers[39;00m [38;5;28;01mimport[39;00m formatter
+[1;32m     19[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01merrors[39;00m [38;5;28;01mimport[39;00m (  [38;5;66;03m# noqa: F401[39;00m
+[1;32m     20[0m     DefinitionSyntaxError,
+[1;32m     21[0m     DimensionalityError,
+[0;32m   (...)[0m
+[1;32m     27[0m     UnitStrippedWarning,
+[1;32m     28[0m )
+[1;32m     29[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mformatting[39;00m [38;5;28;01mimport[39;00m register_unit_format
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/__init__.py:12[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m    pint.delegates[39;00m
+[1;32m      3[0m [38;5;124;03m    ~~~~~~~~~~~~~~[39;00m
+[0;32m   (...)[0m
+[1;32m      8[0m [38;5;124;03m    :license: BSD, see LICENSE for more details.[39;00m
+[1;32m      9[0m [38;5;124;03m"""[39;00m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m__future__[39;00m [38;5;28;01mimport[39;00m annotations
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m txt_defparser
+[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mbase_defparser[39;00m [38;5;28;01mimport[39;00m ParserConfig, build_disk_cache_class
+[1;32m     14[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mformatter[39;00m [38;5;28;01mimport[39;00m Formatter
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/txt_defparser/__init__.py:12[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m    pint.delegates.txt_defparser[39;00m
+[1;32m      3[0m [38;5;124;03m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39;00m
+[0;32m   (...)[0m
+[1;32m      8[0m [38;5;124;03m    :license: BSD, see LICENSE for more details.[39;00m
+[1;32m      9[0m [38;5;124;03m"""[39;00m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m__future__[39;00m [38;5;28;01mimport[39;00m annotations
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mdefparser[39;00m [38;5;28;01mimport[39;00m DefParser
+[1;32m     14[0m __all__ [38;5;241m=[39m [
+[1;32m     15[0m     [38;5;124m"[39m[38;5;124mDefParser[39m[38;5;124m"[39m,
+[1;32m     16[0m ]
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/txt_defparser/defparser.py:10[0m
+[1;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mflexparser[39;00m [38;5;28;01mas[39;00m [38;5;21;01mfp[39;00m
+[1;32m      9[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbase_defparser[39;00m [38;5;28;01mimport[39;00m ParserConfig
+[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m block, common, context, defaults, group, plain, system
+[1;32m     13[0m [38;5;28;01mclass[39;00m [38;5;21;01mPintRootBlock[39;00m(
+[1;32m     14[0m     fp[38;5;241m.[39mRootBlock[
+[1;32m     15[0m         ty[38;5;241m.[39mUnion[
+[0;32m   (...)[0m
+[1;32m     29[0m     ]
+[1;32m     30[0m ):
+[1;32m     31[0m     [38;5;28;01mpass[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/txt_defparser/common.py:24[0m
+[1;32m     19[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m errors
+[1;32m     20[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbase_defparser[39;00m [38;5;28;01mimport[39;00m ParserConfig
+[1;32m     23[0m [38;5;129;43m@dataclass[39;49m[43m([49m[43mfrozen[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
+[0;32m---> 24[0m [38;5;28;43;01mclass[39;49;00m[43m [49m[38;5;21;43;01mDefinitionSyntaxError[39;49;00m[43m([49m[43merrors[49m[38;5;241;43m.[39;49m[43mDefinitionSyntaxError[49m[43m,[49m[43m [49m[43mfp[49m[38;5;241;43m.[39;49m[43mParsingError[49m[43m)[49m[43m:[49m
+[1;32m     25[0m [38;5;250;43m    [39;49m[38;5;124;43;03m"""A syntax error was found in a definition. Combines:[39;49;00m
+[1;32m     26[0m 
+[1;32m     27[0m [38;5;124;43;03m    DefinitionSyntaxError: which provides a message placeholder.[39;49;00m
+[0;32m   (...)[0m
+[1;32m     30[0m [38;5;124;43;03m    and an extra location attribute in which the filename or reseource is stored.[39;49;00m
+[1;32m     31[0m [38;5;124;43;03m    """[39;49;00m
+[1;32m     33[0m [43m    [49m[43mlocation[49m[43m:[49m[43m [49m[38;5;28;43mstr[39;49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43mfield[49m[43m([49m[43minit[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43mdefault[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/dataclasses.py:1175[0m, in [0;36mdataclass.<locals>.wrap[0;34m(cls)[0m
+[1;32m   1174[0m [38;5;28;01mdef[39;00m [38;5;21mwrap[39m([38;5;28mcls[39m):
+[0;32m-> 1175[0m     [38;5;28;01mreturn[39;00m [43m_process_class[49m[43m([49m[38;5;28;43mcls[39;49m[43m,[49m[43m [49m[43minit[49m[43m,[49m[43m [49m[38;5;28;43mrepr[39;49m[43m,[49m[43m [49m[43meq[49m[43m,[49m[43m [49m[43morder[49m[43m,[49m[43m [49m[43munsafe_hash[49m[43m,[49m
+[1;32m   1176[0m [43m                          [49m[43mfrozen[49m[43m,[49m[43m [49m[43mmatch_args[49m[43m,[49m[43m [49m[43mkw_only[49m[43m,[49m[43m [49m[43mslots[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/dataclasses.py:990[0m, in [0;36m_process_class[0;34m(cls, init, repr, eq, order, unsafe_hash, frozen, match_args, kw_only, slots)[0m
+[1;32m    988[0m     [38;5;66;03m# Raise an exception if we're frozen, but none of our bases are.[39;00m
+[1;32m    989[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m any_frozen_base [38;5;129;01mand[39;00m frozen:
+[0;32m--> 990[0m         [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124m'[39m[38;5;124mcannot inherit frozen dataclass from a [39m[38;5;124m'[39m
+[1;32m    991[0m                         [38;5;124m'[39m[38;5;124mnon-frozen one[39m[38;5;124m'[39m)
+[1;32m    993[0m [38;5;66;03m# Remember all of the fields on our class (including bases).  This[39;00m
+[1;32m    994[0m [38;5;66;03m# also marks this class as being a dataclass.[39;00m
+[1;32m    995[0m [38;5;28msetattr[39m([38;5;28mcls[39m, _FIELDS, fields)
+
+[0;31mTypeError[0m: cannot inherit frozen dataclass from a non-frozen one
+

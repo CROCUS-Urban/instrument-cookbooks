@@ -15,20 +15,165 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-def convert_to_hours_minutes_seconds(decimal_hour, initial_time=initial_time):
-    delta = timedelta(hours=decimal_hour)
-    return datetime(initial_time.year, initial_time.month, initial_time.day) + delta
-
-
+ds.radial_velocity.plot(ylim=(0, 1000), vmin=-2, vmax=2, cmap='coolwarm')
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[10], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mdef[39;00m [38;5;21mconvert_to_hours_minutes_seconds[39m(decimal_hour, initial_time[38;5;241m=[39m[43minitial_time[49m):
-[1;32m      2[0m     delta [38;5;241m=[39m timedelta(hours[38;5;241m=[39mdecimal_hour)
-[1;32m      3[0m     [38;5;28;01mreturn[39;00m datetime(initial_time[38;5;241m.[39myear, initial_time[38;5;241m.[39mmonth, initial_time[38;5;241m.[39mday) [38;5;241m+[39m delta
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[9], line 1[0m
+[0;32m----> 1[0m [43mds[49m[38;5;241;43m.[39;49m[43mradial_velocity[49m[38;5;241;43m.[39;49m[43mplot[49m[43m([49m[43mylim[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[38;5;241;43m1000[39;49m[43m)[49m[43m,[49m[43m [49m[43mvmin[49m[38;5;241;43m=[39;49m[38;5;241;43m-[39;49m[38;5;241;43m2[39;49m[43m,[49m[43m [49m[43mvmax[49m[38;5;241;43m=[39;49m[38;5;241;43m2[39;49m[43m,[49m[43m [49m[43mcmap[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mcoolwarm[39;49m[38;5;124;43m'[39;49m[43m)[49m
 
-[0;31mNameError[0m: name 'initial_time' is not defined
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/plot/accessor.py:48[0m, in [0;36mDataArrayPlotAccessor.__call__[0;34m(self, **kwargs)[0m
+[1;32m     46[0m [38;5;129m@functools[39m[38;5;241m.[39mwraps(dataarray_plot[38;5;241m.[39mplot, assigned[38;5;241m=[39m([38;5;124m"[39m[38;5;124m__doc__[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m__annotations__[39m[38;5;124m"[39m))
+[1;32m     47[0m [38;5;28;01mdef[39;00m [38;5;21m__call__[39m([38;5;28mself[39m, [38;5;241m*[39m[38;5;241m*[39mkwargs) [38;5;241m-[39m[38;5;241m>[39m Any:
+[0;32m---> 48[0m     [38;5;28;01mreturn[39;00m [43mdataarray_plot[49m[38;5;241;43m.[39;49m[43mplot[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_da[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/plot/dataarray_plot.py:309[0m, in [0;36mplot[0;34m(darray, row, col, col_wrap, ax, hue, subplot_kws, **kwargs)[0m
+[1;32m    305[0m     plotfunc [38;5;241m=[39m hist
+[1;32m    307[0m kwargs[[38;5;124m"[39m[38;5;124max[39m[38;5;124m"[39m] [38;5;241m=[39m ax
+[0;32m--> 309[0m [38;5;28;01mreturn[39;00m [43mplotfunc[49m[43m([49m[43mdarray[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/plot/dataarray_plot.py:1561[0m, in [0;36m_plot2d.<locals>.newplotfunc[0;34m(***failed resolving arguments***)[0m
+[1;32m   1558[0m     darray [38;5;241m=[39m darray[38;5;241m.[39mtranspose([38;5;241m*[39mdims, transpose_coords[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[1;32m   1560[0m [38;5;66;03m# better to pass the ndarrays directly to plotting functions[39;00m
+[0;32m-> 1561[0m xvalnp [38;5;241m=[39m [43mxval[49m[38;5;241;43m.[39;49m[43mto_numpy[49m[43m([49m[43m)[49m
+[1;32m   1562[0m yvalnp [38;5;241m=[39m yval[38;5;241m.[39mto_numpy()
+[1;32m   1564[0m [38;5;66;03m# Pass the data as a masked ndarray too[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/dataarray.py:828[0m, in [0;36mDataArray.to_numpy[0;34m(self)[0m
+[1;32m    817[0m [38;5;28;01mdef[39;00m [38;5;21mto_numpy[39m([38;5;28mself[39m) [38;5;241m-[39m[38;5;241m>[39m np[38;5;241m.[39mndarray:
+[1;32m    818[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m    819[0m [38;5;124;03m    Coerces wrapped data to numpy and returns a numpy.ndarray.[39;00m
+[1;32m    820[0m 
+[0;32m   (...)[0m
+[1;32m    826[0m [38;5;124;03m    DataArray.data[39;00m
+[1;32m    827[0m [38;5;124;03m    """[39;00m
+[0;32m--> 828[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mvariable[49m[38;5;241;43m.[39;49m[43mto_numpy[49m[43m([49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/namedarray/core.py:857[0m, in [0;36mNamedArray.to_numpy[0;34m(self)[0m
+[1;32m    855[0m [38;5;250m[39m[38;5;124;03m"""Coerces wrapped data to numpy and returns a numpy.ndarray"""[39;00m
+[1;32m    856[0m [38;5;66;03m# TODO an entrypoint so array libraries can choose coercion method?[39;00m
+[0;32m--> 857[0m [38;5;28;01mreturn[39;00m [43mto_numpy[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_data[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/namedarray/pycompat.py:115[0m, in [0;36mto_numpy[0;34m(data, **kwargs)[0m
+[1;32m    113[0m     data [38;5;241m=[39m data[38;5;241m.[39mget()
+[1;32m    114[0m [38;5;66;03m# pint has to be imported dynamically as pint imports xarray[39;00m
+[0;32m--> 115[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data, [43marray_type[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mpint[39;49m[38;5;124;43m"[39;49m[43m)[49m):
+[1;32m    116[0m     data [38;5;241m=[39m data[38;5;241m.[39mmagnitude
+[1;32m    117[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data, array_type([38;5;124m"[39m[38;5;124msparse[39m[38;5;124m"[39m)):
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/namedarray/pycompat.py:83[0m, in [0;36marray_type[0;34m(mod)[0m
+[1;32m     81[0m [38;5;28;01mdef[39;00m [38;5;21marray_type[39m(mod: ModType) [38;5;241m-[39m[38;5;241m>[39m DuckArrayTypes:
+[1;32m     82[0m [38;5;250m    [39m[38;5;124;03m"""Quick wrapper to get the array class of the module."""[39;00m
+[0;32m---> 83[0m     [38;5;28;01mreturn[39;00m [43m_get_cached_duck_array_module[49m[43m([49m[43mmod[49m[43m)[49m[38;5;241m.[39mtype
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/namedarray/pycompat.py:74[0m, in [0;36m_get_cached_duck_array_module[0;34m(mod)[0m
+[1;32m     72[0m [38;5;28;01mdef[39;00m [38;5;21m_get_cached_duck_array_module[39m(mod: ModType) [38;5;241m-[39m[38;5;241m>[39m DuckArrayModule:
+[1;32m     73[0m     [38;5;28;01mif[39;00m mod [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m _cached_duck_array_modules:
+[0;32m---> 74[0m         duckmod [38;5;241m=[39m [43mDuckArrayModule[49m[43m([49m[43mmod[49m[43m)[49m
+[1;32m     75[0m         _cached_duck_array_modules[mod] [38;5;241m=[39m duckmod
+[1;32m     76[0m         [38;5;28;01mreturn[39;00m duckmod
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/namedarray/pycompat.py:39[0m, in [0;36mDuckArrayModule.__init__[0;34m(self, mod)[0m
+[1;32m     37[0m duck_array_type: DuckArrayTypes
+[1;32m     38[0m [38;5;28;01mtry[39;00m:
+[0;32m---> 39[0m     duck_array_module [38;5;241m=[39m [43mimport_module[49m[43m([49m[43mmod[49m[43m)[49m
+[1;32m     40[0m     duck_array_version [38;5;241m=[39m Version(duck_array_module[38;5;241m.[39m__version__)
+[1;32m     42[0m     [38;5;28;01mif[39;00m mod [38;5;241m==[39m [38;5;124m"[39m[38;5;124mdask[39m[38;5;124m"[39m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/importlib/__init__.py:126[0m, in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    124[0m             [38;5;28;01mbreak[39;00m
+[1;32m    125[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m--> 126[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
+
+File [0;32m<frozen importlib._bootstrap>:1050[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1027[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1006[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:688[0m, in [0;36m_load_unlocked[0;34m(spec)[0m
+
+File [0;32m<frozen importlib._bootstrap_external>:883[0m, in [0;36mexec_module[0;34m(self, module)[0m
+
+File [0;32m<frozen importlib._bootstrap>:241[0m, in [0;36m_call_with_frames_removed[0;34m(f, *args, **kwds)[0m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/__init__.py:18[0m
+[1;32m     14[0m [38;5;28;01mfrom[39;00m [38;5;21;01m__future__[39;00m [38;5;28;01mimport[39;00m annotations
+[1;32m     16[0m [38;5;28;01mfrom[39;00m [38;5;21;01mimportlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetadata[39;00m [38;5;28;01mimport[39;00m version
+[0;32m---> 18[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mdelegates[39;00m[38;5;21;01m.[39;00m[38;5;21;01mformatter[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_format_helpers[39;00m [38;5;28;01mimport[39;00m formatter
+[1;32m     19[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01merrors[39;00m [38;5;28;01mimport[39;00m (  [38;5;66;03m# noqa: F401[39;00m
+[1;32m     20[0m     DefinitionSyntaxError,
+[1;32m     21[0m     DimensionalityError,
+[0;32m   (...)[0m
+[1;32m     27[0m     UnitStrippedWarning,
+[1;32m     28[0m )
+[1;32m     29[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mformatting[39;00m [38;5;28;01mimport[39;00m register_unit_format
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/__init__.py:12[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m    pint.delegates[39;00m
+[1;32m      3[0m [38;5;124;03m    ~~~~~~~~~~~~~~[39;00m
+[0;32m   (...)[0m
+[1;32m      8[0m [38;5;124;03m    :license: BSD, see LICENSE for more details.[39;00m
+[1;32m      9[0m [38;5;124;03m"""[39;00m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m__future__[39;00m [38;5;28;01mimport[39;00m annotations
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m txt_defparser
+[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mbase_defparser[39;00m [38;5;28;01mimport[39;00m ParserConfig, build_disk_cache_class
+[1;32m     14[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mformatter[39;00m [38;5;28;01mimport[39;00m Formatter
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/txt_defparser/__init__.py:12[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m    pint.delegates.txt_defparser[39;00m
+[1;32m      3[0m [38;5;124;03m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39;00m
+[0;32m   (...)[0m
+[1;32m      8[0m [38;5;124;03m    :license: BSD, see LICENSE for more details.[39;00m
+[1;32m      9[0m [38;5;124;03m"""[39;00m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m__future__[39;00m [38;5;28;01mimport[39;00m annotations
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mdefparser[39;00m [38;5;28;01mimport[39;00m DefParser
+[1;32m     14[0m __all__ [38;5;241m=[39m [
+[1;32m     15[0m     [38;5;124m"[39m[38;5;124mDefParser[39m[38;5;124m"[39m,
+[1;32m     16[0m ]
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/txt_defparser/defparser.py:10[0m
+[1;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mflexparser[39;00m [38;5;28;01mas[39;00m [38;5;21;01mfp[39;00m
+[1;32m      9[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbase_defparser[39;00m [38;5;28;01mimport[39;00m ParserConfig
+[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m block, common, context, defaults, group, plain, system
+[1;32m     13[0m [38;5;28;01mclass[39;00m [38;5;21;01mPintRootBlock[39;00m(
+[1;32m     14[0m     fp[38;5;241m.[39mRootBlock[
+[1;32m     15[0m         ty[38;5;241m.[39mUnion[
+[0;32m   (...)[0m
+[1;32m     29[0m     ]
+[1;32m     30[0m ):
+[1;32m     31[0m     [38;5;28;01mpass[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pint/delegates/txt_defparser/common.py:24[0m
+[1;32m     19[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m errors
+[1;32m     20[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbase_defparser[39;00m [38;5;28;01mimport[39;00m ParserConfig
+[1;32m     23[0m [38;5;129;43m@dataclass[39;49m[43m([49m[43mfrozen[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
+[0;32m---> 24[0m [38;5;28;43;01mclass[39;49;00m[43m [49m[38;5;21;43;01mDefinitionSyntaxError[39;49;00m[43m([49m[43merrors[49m[38;5;241;43m.[39;49m[43mDefinitionSyntaxError[49m[43m,[49m[43m [49m[43mfp[49m[38;5;241;43m.[39;49m[43mParsingError[49m[43m)[49m[43m:[49m
+[1;32m     25[0m [38;5;250;43m    [39;49m[38;5;124;43;03m"""A syntax error was found in a definition. Combines:[39;49;00m
+[1;32m     26[0m 
+[1;32m     27[0m [38;5;124;43;03m    DefinitionSyntaxError: which provides a message placeholder.[39;49;00m
+[0;32m   (...)[0m
+[1;32m     30[0m [38;5;124;43;03m    and an extra location attribute in which the filename or reseource is stored.[39;49;00m
+[1;32m     31[0m [38;5;124;43;03m    """[39;49;00m
+[1;32m     33[0m [43m    [49m[43mlocation[49m[43m:[49m[43m [49m[38;5;28;43mstr[39;49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43mfield[49m[43m([49m[43minit[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m[43m [49m[43mdefault[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/dataclasses.py:1175[0m, in [0;36mdataclass.<locals>.wrap[0;34m(cls)[0m
+[1;32m   1174[0m [38;5;28;01mdef[39;00m [38;5;21mwrap[39m([38;5;28mcls[39m):
+[0;32m-> 1175[0m     [38;5;28;01mreturn[39;00m [43m_process_class[49m[43m([49m[38;5;28;43mcls[39;49m[43m,[49m[43m [49m[43minit[49m[43m,[49m[43m [49m[38;5;28;43mrepr[39;49m[43m,[49m[43m [49m[43meq[49m[43m,[49m[43m [49m[43morder[49m[43m,[49m[43m [49m[43munsafe_hash[49m[43m,[49m
+[1;32m   1176[0m [43m                          [49m[43mfrozen[49m[43m,[49m[43m [49m[43mmatch_args[49m[43m,[49m[43m [49m[43mkw_only[49m[43m,[49m[43m [49m[43mslots[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/dataclasses.py:990[0m, in [0;36m_process_class[0;34m(cls, init, repr, eq, order, unsafe_hash, frozen, match_args, kw_only, slots)[0m
+[1;32m    988[0m     [38;5;66;03m# Raise an exception if we're frozen, but none of our bases are.[39;00m
+[1;32m    989[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m any_frozen_base [38;5;129;01mand[39;00m frozen:
+[0;32m--> 990[0m         [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124m'[39m[38;5;124mcannot inherit frozen dataclass from a [39m[38;5;124m'[39m
+[1;32m    991[0m                         [38;5;124m'[39m[38;5;124mnon-frozen one[39m[38;5;124m'[39m)
+[1;32m    993[0m [38;5;66;03m# Remember all of the fields on our class (including bases).  This[39;00m
+[1;32m    994[0m [38;5;66;03m# also marks this class as being a dataclass.[39;00m
+[1;32m    995[0m [38;5;28msetattr[39m([38;5;28mcls[39m, _FIELDS, fields)
+
+[0;31mTypeError[0m: cannot inherit frozen dataclass from a non-frozen one
 
