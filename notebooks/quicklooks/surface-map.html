@@ -764,104 +764,295 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;airport-codes.csv&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.3/staticdata/airport-codes.csv&#39; to &#39;/home/runner/.cache/metpy/v1.6.3&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3457/936454763.py:31: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RemoteDisconnected</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:787,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="c1"># Make the request on the HTTPConnection object</span>
+<span class="ne">--&gt; </span><span class="mi">787</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span>     <span class="n">conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">791</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">794</span>     <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="n">retries</span><span class="o">=</span><span class="n">retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">response_conn</span><span class="o">=</span><span class="n">response_conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">797</span>     <span class="n">preload_content</span><span class="o">=</span><span class="n">preload_content</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span>     <span class="n">decode_content</span><span class="o">=</span><span class="n">decode_content</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">799</span>     <span class="o">**</span><span class="n">response_kw</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">800</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">802</span> <span class="c1"># Everything went great!</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3457/936454763.py:46: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:534,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">534</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span> <span class="k">except</span> <span class="p">(</span><span class="n">BaseSSLError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3457/936454763.py:31: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connection.py:516,</span> in <span class="ni">HTTPConnection.getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">515</span> <span class="c1"># Get the response from http.client.HTTPConnection</span>
+<span class="ne">--&gt; </span><span class="mi">516</span> <span class="n">httplib_response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span> <span class="k">try</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3457/936454763.py:46: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1375,</span> in <span class="ni">HTTPConnection.getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1374</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1375</span>     <span class="n">response</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1376</span> <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3457/936454763.py:31: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:318,</span> in <span class="ni">HTTPResponse.begin</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">318</span>     <span class="n">version</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">CONTINUE</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3457/936454763.py:46: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:287,</span> in <span class="ni">HTTPResponse._read_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span>     <span class="c1"># Presumably, the server closed the connection before</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span>     <span class="c1"># sending a valid response.</span>
+<span class="ne">--&gt; </span><span class="mi">287</span>     <span class="k">raise</span> <span class="n">RemoteDisconnected</span><span class="p">(</span><span class="s2">&quot;Remote end closed connection without&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">288</span>                              <span class="s2">&quot; response&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="k">try</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3457/936454763.py:31: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="ne">RemoteDisconnected</span>: Remote end closed connection without response
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3457/936454763.py:46: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3457/936454763.py:31: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="ne">ProtocolError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/adapters.py:667,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">670</span>         <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span>         <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span>         <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>         <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3457/936454763.py:46: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:841,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">839</span>     <span class="n">new_e</span> <span class="o">=</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;Connection aborted.&quot;</span><span class="p">,</span> <span class="n">new_e</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">841</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">842</span>     <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">new_e</span><span class="p">,</span> <span class="n">_pool</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">843</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="n">retries</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3457/936454763.py:31: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/util/retry.py:474,</span> in <span class="ni">Retry.increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span> <span class="k">if</span> <span class="n">read</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">or</span> <span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_method_retryable</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">474</span>     <span class="k">raise</span> <span class="n">reraise</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">error</span><span class="p">),</span> <span class="n">error</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span> <span class="k">elif</span> <span class="n">read</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3457/936454763.py:46: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/util/util.py:38,</span> in <span class="ni">reraise</span><span class="nt">(tp, value, tb)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">__traceback__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">tb</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">38</span>     <span class="k">raise</span> <span class="n">value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="k">raise</span> <span class="n">value</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3457/936454763.py:31: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:787,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="c1"># Make the request on the HTTPConnection object</span>
+<span class="ne">--&gt; </span><span class="mi">787</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span>     <span class="n">conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">791</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">794</span>     <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="n">retries</span><span class="o">=</span><span class="n">retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">response_conn</span><span class="o">=</span><span class="n">response_conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">797</span>     <span class="n">preload_content</span><span class="o">=</span><span class="n">preload_content</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span>     <span class="n">decode_content</span><span class="o">=</span><span class="n">decode_content</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">799</span>     <span class="o">**</span><span class="n">response_kw</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">800</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">802</span> <span class="c1"># Everything went great!</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3457/936454763.py:46: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connectionpool.py:534,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">534</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span> <span class="k">except</span> <span class="p">(</span><span class="n">BaseSSLError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:540: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords(&#39;site&#39;)` on this object.
-  ds.expand_dims(dim_name, create_index_for_new_dim=create_index_for_new_dim)
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/urllib3/connection.py:516,</span> in <span class="ni">HTTPConnection.getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">515</span> <span class="c1"># Get the response from http.client.HTTPConnection</span>
+<span class="ne">--&gt; </span><span class="mi">516</span> <span class="n">httplib_response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1375,</span> in <span class="ni">HTTPConnection.getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1374</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1375</span>     <span class="n">response</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1376</span> <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:318,</span> in <span class="ni">HTTPResponse.begin</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">318</span>     <span class="n">version</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">CONTINUE</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:287,</span> in <span class="ni">HTTPResponse._read_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span>     <span class="c1"># Presumably, the server closed the connection before</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span>     <span class="c1"># sending a valid response.</span>
+<span class="ne">--&gt; </span><span class="mi">287</span>     <span class="k">raise</span> <span class="n">RemoteDisconnected</span><span class="p">(</span><span class="s2">&quot;Remote end closed connection without&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">288</span>                              <span class="s2">&quot; response&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="ne">ProtocolError</span>: (&#39;Connection aborted.&#39;, RemoteDisconnected(&#39;Remote end closed connection without response&#39;))
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ConnectionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">kord</span> <span class="o">=</span> <span class="n">parse_metar_to_dataframe</span><span class="p">(</span><span class="n">Metar</span><span class="p">(</span><span class="s1">&#39;KORD&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">kmdw</span> <span class="o">=</span> <span class="n">parse_metar_to_dataframe</span><span class="p">(</span><span class="n">Metar</span><span class="p">(</span><span class="s1">&#39;KMDW&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">klot</span> <span class="o">=</span> <span class="n">parse_metar_to_dataframe</span><span class="p">(</span><span class="n">Metar</span><span class="p">(</span><span class="s1">&#39;KLOT&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metar</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/io/metar.py:106,</span> in <span class="ni">parse_metar_to_dataframe</span><span class="nt">(metar_text, year, month)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="nd">@exporter</span><span class="o">.</span><span class="n">export</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">def</span> <span class="nf">parse_metar_to_dataframe</span><span class="p">(</span><span class="n">metar_text</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Parse a single METAR report into a Pandas DataFrame.</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span><span class="sd">     Takes a METAR string in a text form, and creates a `pandas.DataFrame` including the</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">106</span>     <span class="k">return</span> <span class="n">_metars_to_dataframe</span><span class="p">([</span><span class="n">metar_text</span><span class="p">],</span> <span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">month</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/io/metar.py:445,</span> in <span class="ni">_metars_to_dataframe</span><span class="nt">(metar_iter, year, month)</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span> <span class="k">for</span> <span class="n">metar</span> <span class="ow">in</span> <span class="n">metar_iter</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span>     <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="n">ParseError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>         <span class="c1"># Parse the string of text and assign to values within the named tuple</span>
+<span class="ne">--&gt; </span><span class="mi">445</span>         <span class="n">metars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_metar</span><span class="p">(</span><span class="n">metar</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">month</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span> <span class="c1"># Take the list of Metar objects and turn it into a DataFrame with appropriate columns</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metars</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/io/metar.py:178,</span> in <span class="ni">parse_metar</span><span class="nt">(metar_text, year, month, station_metadata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span> <span class="c1"># Extract the latitude and longitude values from &#39;master&#39; dictionary</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="n">info</span> <span class="o">=</span> <span class="n">station_metadata</span><span class="p">[</span><span class="n">station_id</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="n">lat</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">latitude</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="n">lon</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">longitude</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/io/station_data.py:156,</span> in <span class="ni">StationLookup.__getitem__</span><span class="nt">(self, stid)</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Lookup station information from the ID.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">156</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="n">stid</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span> <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No station information for </span><span class="si">{</span><span class="n">stid</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/functools.py:981,</span> in <span class="ni">cached_property.__get__</span><span class="nt">(self, instance, owner)</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span> <span class="n">val</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attrname</span><span class="p">,</span> <span class="n">_NOT_FOUND</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="n">_NOT_FOUND</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">981</span>     <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">983</span>         <span class="n">cache</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attrname</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/io/station_data.py:143,</span> in <span class="ni">StationLookup.tables</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span> <span class="nd">@cached_property</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="k">def</span> <span class="nf">tables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return an iterable mapping combining all the tables.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>     <span class="k">return</span> <span class="n">ChainMap</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">_read_station_table</span><span class="p">()),</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>                     <span class="nb">dict</span><span class="p">(</span><span class="n">_read_master_text_file</span><span class="p">()),</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>                     <span class="nb">dict</span><span class="p">(</span><span class="n">_read_station_text_file</span><span class="p">()),</span>
+<span class="ne">--&gt; </span><span class="mi">143</span>                     <span class="nb">dict</span><span class="p">(</span><span class="n">_read_airports_file</span><span class="p">()))</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/io/station_data.py:113,</span> in <span class="ni">_read_airports_file</span><span class="nt">(input_file)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Read the airports file.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="k">if</span> <span class="n">input_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">113</span>     <span class="n">input_file</span> <span class="o">=</span> <span class="n">get_test_data</span><span class="p">(</span><span class="s1">&#39;airport-codes.csv&#39;</span><span class="p">,</span> <span class="n">as_file_obj</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">ident</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;synop_id&#39;</span><span class="p">:</span> <span class="mi">99999</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>                      <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">latitude_deg</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>                      <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">longitude_deg</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>                      <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">input_file</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>                      <span class="p">})</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/cbook.py:34,</span> in <span class="ni">get_test_data</span><span class="nt">(fname, as_file_obj, mode)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="k">def</span> <span class="nf">get_test_data</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">as_file_obj</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Access a file from MetPy&#39;s collection of test data.&quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">34</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">POOCH</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="c1"># If we want a file object, open it, trying to guess whether this should be binary mode</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="c1"># or not</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="k">if</span> <span class="n">as_file_obj</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pooch/core.py:589,</span> in <span class="ni">Pooch.fetch</span><span class="nt">(self, fname, processor, downloader, progressbar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">586</span>     <span class="k">if</span> <span class="n">downloader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span>         <span class="n">downloader</span> <span class="o">=</span> <span class="n">choose_downloader</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">progressbar</span><span class="o">=</span><span class="n">progressbar</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">589</span>     <span class="n">stream_download</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">590</span>         <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span>         <span class="n">full_path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">592</span>         <span class="n">known_hash</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">593</span>         <span class="n">downloader</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">594</span>         <span class="n">pooch</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">595</span>         <span class="n">retry_if_failed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">retry_if_failed</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">596</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">598</span> <span class="k">if</span> <span class="n">processor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span>     <span class="k">return</span> <span class="n">processor</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">full_path</span><span class="p">),</span> <span class="n">action</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pooch/core.py:807,</span> in <span class="ni">stream_download</span><span class="nt">(url, fname, known_hash, downloader, pooch, retry_if_failed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">803</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">804</span>     <span class="c1"># Stream the file to a temporary so that we can safely check its</span>
+<span class="g g-Whitespace">    </span><span class="mi">805</span>     <span class="c1"># hash before overwriting the original.</span>
+<span class="g g-Whitespace">    </span><span class="mi">806</span>     <span class="k">with</span> <span class="n">temporary_file</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">fname</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span> <span class="k">as</span> <span class="n">tmp</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">807</span>         <span class="n">downloader</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">pooch</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">808</span>         <span class="n">hash_matches</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">known_hash</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">fname</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span>         <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pooch/downloaders.py:220,</span> in <span class="ni">HTTPDownloader.__call__</span><span class="nt">(self, url, output_file, pooch, check_only)</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="c1"># pylint: enable=consider-using-with</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">220</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span>     <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/api.py:73,</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="w">     </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a GET request.</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span><span class="sd">     :rtype: requests.Response</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">73</span>     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/api.py:59,</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="c1"># By using the &#39;with&#39; statement we are sure the session is closed, thus we</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="c1"># avoid leaving sockets open which can trigger a ResourceWarning in some</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="c1"># cases, and look like a memory leak in others.</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">with</span> <span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/sessions.py:589,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span>     <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">586</span>     <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">589</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="k">return</span> <span class="n">resp</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/sessions.py:703,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="c1"># Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/adapters.py:682,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">682</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span> <span class="k">except</span> <span class="n">MaxRetryError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">685</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">ConnectTimeoutError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span>         <span class="c1"># TODO: Remove this in 3.0.0: see #2811</span>
+
+<span class="ne">ConnectionError</span>: (&#39;Connection aborted.&#39;, RemoteDisconnected(&#39;Remote end closed connection without response&#39;))
 </pre></div>
 </div>
 </div>
@@ -954,23 +1145,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_land.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_ocean.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_boundary_lines_land.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<img alt="../../_images/ee2917c280c073a6769d045260c69575bd8f8400e8b729a3166361e38ba7308d.png" src="../../_images/ee2917c280c073a6769d045260c69575bd8f8400e8b729a3166361e38ba7308d.png" />
+<img alt="../../_images/43203aefd834b5ce2c39a4e8bd0e5764e155a89941fce919ce134b9315b4c485.png" src="../../_images/43203aefd834b5ce2c39a4e8bd0e5764e155a89941fce919ce134b9315b4c485.png" />
 </div>
 </div>
 </section>
