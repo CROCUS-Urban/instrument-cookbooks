@@ -26,7 +26,7 @@ def convert_to_hours_minutes_seconds(decimal_hour, initial_time=initial_time):
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
 Cell [0;32mIn[10], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mdef[39;00m [38;5;21mconvert_to_hours_minutes_seconds[39m(decimal_hour, initial_time[38;5;241m=[39m[43minitial_time[49m):
+[0;32m----> 1[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mconvert_to_hours_minutes_seconds[39m(decimal_hour, initial_time[38;5;241m=[39m[43minitial_time[49m):
 [1;32m      2[0m     delta [38;5;241m=[39m timedelta(hours[38;5;241m=[39mdecimal_hour)
 [1;32m      3[0m     [38;5;28;01mreturn[39;00m datetime(initial_time[38;5;241m.[39myear, initial_time[38;5;241m.[39mmonth, initial_time[38;5;241m.[39mday) [38;5;241m+[39m delta
 

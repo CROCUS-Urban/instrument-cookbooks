@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -630,10 +630,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import standard python libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>            <span class="c1"># Numerical Python: scientific </span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>           <span class="c1"># tabular data and timeseries package</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>            <span class="c1"># Numerical Python: scientific </span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>           <span class="c1"># tabular data and timeseries package</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span> 
 </pre></div>
 </div>
 </div>
@@ -956,7 +956,7 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a function to fetch and wrangle realtime data. Stdmet data is saved under the .txt extension.</span>
 
-<span class="k">def</span> <span class="nf">get_rt_data</span><span class="p">(</span><span class="n">stationid</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_rt_data</span><span class="p">(</span><span class="n">stationid</span><span class="p">):</span>
     
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.ndbc.noaa.gov/data/realtime2/&#39;</span> <span class="o">+</span> <span class="n">stationid</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;\s+&quot;</span><span class="p">)</span>
@@ -1023,27 +1023,27 @@ is not case sensitive, but various NDBC filenames use both lower and uppercase s
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Harrison-Dever Crib, Chicago, IL
                       #YY  MM  DD  hh  mm   WDIR  WSPD  GST  WVHT  DPD  APD  \
 datetime                                                                      
-2025-01-07 09:20:00  2025   1   7   9  20  300.0   6.7  7.7   NaN  NaN  NaN   
-2025-01-07 09:10:00  2025   1   7   9  10  310.0   7.7  8.2   NaN  NaN  NaN   
-2025-01-07 09:00:00  2025   1   7   9   0  310.0   7.7  8.2   NaN  NaN  NaN   
-2025-01-07 08:50:00  2025   1   7   8  50  300.0   7.2  7.7   NaN  NaN  NaN   
-2025-01-07 08:40:00  2025   1   7   8  40  310.0   8.2  8.8   NaN  NaN  NaN   
+2025-01-07 10:20:00  2025   1   7  10  20  290.0   7.2  8.2   NaN  NaN  NaN   
+2025-01-07 10:10:00  2025   1   7  10  10  280.0   7.2  7.7   NaN  NaN  NaN   
+2025-01-07 10:00:00  2025   1   7  10   0  290.0   7.2  8.2   NaN  NaN  NaN   
+2025-01-07 09:50:00  2025   1   7   9  50  310.0   7.2  7.7   NaN  NaN  NaN   
+2025-01-07 09:40:00  2025   1   7   9  40  300.0   6.2  7.2   NaN  NaN  NaN   
 
                      MWD  PRES  ATMP  WTMP  DEWP  VIS  PTDY  TIDE  
 datetime                                                           
-2025-01-07 09:20:00  NaN   NaN  -3.5   NaN  -7.9  NaN   NaN   NaN  
-2025-01-07 09:10:00  NaN   NaN  -3.7   NaN  -8.3  NaN   NaN   NaN  
-2025-01-07 09:00:00  NaN   NaN  -3.5   NaN  -7.9  NaN   NaN   NaN  
-2025-01-07 08:50:00  NaN   NaN  -3.4   NaN  -7.6  NaN   NaN   NaN  
-2025-01-07 08:40:00  NaN   NaN  -3.3   NaN  -7.6  NaN   NaN   NaN  
+2025-01-07 10:20:00  NaN   NaN  -4.4   NaN  -7.8  NaN   NaN   NaN  
+2025-01-07 10:10:00  NaN   NaN  -4.1   NaN  -7.9  NaN   NaN   NaN  
+2025-01-07 10:00:00  NaN   NaN  -3.7   NaN  -7.7  NaN   NaN   NaN  
+2025-01-07 09:50:00  NaN   NaN  -3.3   NaN  -7.3  NaN   NaN   NaN  
+2025-01-07 09:40:00  NaN   NaN  -3.5   NaN  -7.7  NaN   NaN   NaN  
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mcolors</span>
 
 <span class="n">pad</span> <span class="o">=</span> <span class="mf">1.05</span>
 <span class="n">my_ytick_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;W&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">]</span>
@@ -1110,13 +1110,13 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0b577b85577a8cf20f33cef21a929546d414483e119d46fc3f28b18695c7cc88.png" src="../../_images/0b577b85577a8cf20f33cef21a929546d414483e119d46fc3f28b18695c7cc88.png" />
+<img alt="../../_images/21a7994717030b79713b025d2a4836a0dcaec1c2bbcfb79462a5e5730ff50f60.png" src="../../_images/21a7994717030b79713b025d2a4836a0dcaec1c2bbcfb79462a5e5730ff50f60.png" />
 </div>
 </div>
 <p>Distribution of Wind Speeds</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="n">rtdf</span><span class="p">[</span><span class="s2">&quot;GST&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="n">num</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>  <span class="c1"># return evenly spaced numbers over an interval</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rtdf</span><span class="p">[</span><span class="s2">&quot;GST&quot;</span><span class="p">],</span><span class="n">bins</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gusts&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rtdf</span><span class="p">[</span><span class="s2">&quot;WSPD&quot;</span><span class="p">],</span><span class="n">bins</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wind Speed&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
@@ -1129,7 +1129,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/571572791156fd4af8eeb5905cbcf6f7eba3ab263229b1d43e87a3ea0a658475.png" src="../../_images/571572791156fd4af8eeb5905cbcf6f7eba3ab263229b1d43e87a3ea0a658475.png" />
+<img alt="../../_images/d7159696a9c8abf9ab62bc0c562203a670909a7b5760813385f629200d6f5801.png" src="../../_images/d7159696a9c8abf9ab62bc0c562203a670909a7b5760813385f629200d6f5801.png" />
 </div>
 </div>
 <p>Get data from nearby stations for comparison</p>
@@ -1150,7 +1150,7 @@ datetime
 <p>The windroses below show a prominent windshadow for the Oak St. station.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">windrose</span> <span class="kn">import</span> <span class="n">WindroseAxes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">windrose</span><span class="w"> </span><span class="kn">import</span> <span class="n">WindroseAxes</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">subplot_kw</span> <span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="s1">&#39;windrose&#39;</span><span class="p">})</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Windroses from Three Nearby Stations&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
@@ -1176,7 +1176,7 @@ datetime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c7fb7f6c1d45e640e95fe409740359ccbb99d86d274c7b637ca90a4d9fcf39d0.png" src="../../_images/c7fb7f6c1d45e640e95fe409740359ccbb99d86d274c7b637ca90a4d9fcf39d0.png" />
+<img alt="../../_images/77aecfaf6295fa5b5b29581a2eea673a9a77efbf826b37e616b9a4aa1892c881.png" src="../../_images/77aecfaf6295fa5b5b29581a2eea673a9a77efbf826b37e616b9a4aa1892c881.png" />
 </div>
 </div>
 </section>
@@ -1190,7 +1190,7 @@ Standard meteoroligical data (smet) if found in the directory https://www.ndbc.n
 https://www.ndbc.noaa.gov/data/historical/stdmet/chii2h2023.txt.gz</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_hdata</span><span class="p">(</span><span class="n">station</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_hdata</span><span class="p">(</span><span class="n">station</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.ndbc.noaa.gov/data/historical/stdmet/&#39;</span> <span class="o">+</span> <span class="n">station</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;h&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.txt.gz&#39;</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;\s+&quot;</span><span class="p">,</span><span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">,</span><span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1283,8 +1283,8 @@ datetime
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mcolors</span>
 
 <span class="n">pad</span> <span class="o">=</span> <span class="mf">1.05</span>
 <span class="n">my_ytick_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;W&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">]</span>
@@ -1378,10 +1378,10 @@ datetime
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the example scripts in https://windrose.readthedocs.io/en/latest/usage.html</span>
 
-<span class="kn">from</span> <span class="nn">windrose</span> <span class="kn">import</span> <span class="n">WindroseAxes</span><span class="p">,</span> <span class="n">plot_windrose</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">windrose</span><span class="w"> </span><span class="kn">import</span> <span class="n">WindroseAxes</span><span class="p">,</span> <span class="n">plot_windrose</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 
-<span class="k">def</span> <span class="nf">plot_windrose_subplots</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_windrose_subplots</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;wrapper function to create subplots per axis&quot;&quot;&quot;</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">WindroseAxes</span><span class="o">.</span><span class="n">from_ax</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -1437,7 +1437,7 @@ datetime
 <p>Historical Radiation Data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_hrdata</span><span class="p">(</span><span class="n">station</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_hrdata</span><span class="p">(</span><span class="n">station</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
     
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.ndbc.noaa.gov/data/historical/srad/&#39;</span> <span class="o">+</span> <span class="n">station</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;r&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.txt.gz&#39;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -1498,8 +1498,8 @@ datetime
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mcolors</span>
 
 <span class="n">pad</span> <span class="o">=</span> <span class="mf">1.01</span>
 
