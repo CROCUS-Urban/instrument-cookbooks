@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="&lt;no title&gt;" href="../mrr/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
-    <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark pst-js-only" alt="CROCUS Instrument Cookbooks - Home"/>
+    <script>document.write(`<img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -222,14 +233,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -375,16 +381,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -839,88 +853,80 @@
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_162536_V06
 Downloaded KLOT20230507_163934_V06
-Downloaded KLOT20230507_161726_V06
 Downloaded KLOT20230507_160329_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_163235_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_161726_V06
+Downloaded KLOT20230507_163235_V06
+Downloaded KLOT20230507_165332_V06_MDM
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_164633_V06
+Downloaded KLOT20230507_165332_V06
 Downloaded KLOT20230507_161027_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_165332_V06_MDM
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_165332_V06
-Downloaded KLOT20230507_170031_V06
-Downloaded KLOT20230507_164633_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_170729_V06
-Downloaded KLOT20230507_171428_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_172127_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_170031_V06
+Downloaded KLOT20230507_170729_V06
 Downloaded KLOT20230507_172827_V06
+Downloaded KLOT20230507_172127_V06
+Downloaded KLOT20230507_173525_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_171428_V06
 Downloaded KLOT20230507_174224_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_173525_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_175622_V06
-Downloaded KLOT20230507_174923_V06
 Downloaded KLOT20230507_175622_V06_MDM
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_180321_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_174923_V06
+Downloaded KLOT20230507_180321_V06
 Downloaded KLOT20230507_181020_V06
-Downloaded KLOT20230507_181719_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_182419_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_175622_V06
+Downloaded KLOT20230507_181719_V06
+Downloaded KLOT20230507_182419_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_183117_V06
 Downloaded KLOT20230507_183817_V06
-Downloaded KLOT20230507_183117_V06
+Downloaded KLOT20230507_185917_V06_MDM
+Downloaded KLOT20230507_185917_V06
+Downloaded KLOT20230507_184517_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_185217_V06
-Downloaded KLOT20230507_184517_V06
-Downloaded KLOT20230507_185917_V06
-Downloaded KLOT20230507_185917_V06_MDM
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_190617_V06
+Downloaded KLOT20230507_193413_V06
 Downloaded KLOT20230507_191316_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_192714_V06
-Downloaded KLOT20230507_192015_V06
-Downloaded KLOT20230507_193413_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_192015_V06
+Downloaded KLOT20230507_192714_V06
 Downloaded KLOT20230507_194112_V06
+Downloaded KLOT20230507_195509_V06_MDM
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_195509_V06
 Downloaded KLOT20230507_194811_V06
-Downloaded KLOT20230507_195509_V06_MDM
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_200209_V06
 Downloaded KLOT20230507_200908_V06
-Downloaded KLOT20230507_201607_V06
+Downloaded KLOT20230507_200209_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_202307_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_201607_V06
+Downloaded KLOT20230507_202307_V06
 Downloaded KLOT20230507_203704_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_203006_V06
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_204403_V06
-Downloaded KLOT20230507_205103_V06
-Downloaded KLOT20230507_205801_V06
+Downloaded KLOT20230507_205801_V06_MDM
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205801_V06_MDM
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205103_V06
+Downloaded KLOT20230507_203006_V06
+Downloaded KLOT20230507_205801_V06
 48 out of 48 files downloaded...0 errors
 </pre></div>
 </div>
@@ -1190,8 +1196,7 @@ Downloaded KLOT20230507_205801_V06
 <img alt="../../_images/fd71d156117ce06c70a7f11768b97f5e421f5a58da152e46c0cc144eeff7f615.png" src="../../_images/fd71d156117ce06c70a7f11768b97f5e421f5a58da152e46c0cc144eeff7f615.png" />
 <img alt="../../_images/54dea5903e2e67baeb9389cedf5616b4d92b8b01cc46de2bc06c0b84ecd1a7a0.png" src="../../_images/54dea5903e2e67baeb9389cedf5616b4d92b8b01cc46de2bc06c0b84ecd1a7a0.png" />
 <img alt="../../_images/29ad6ba0f40dd20961b9b901ffcbb58c4e13b288315607386b83e245b50bafc7.png" src="../../_images/29ad6ba0f40dd20961b9b901ffcbb58c4e13b288315607386b83e245b50bafc7.png" />
-<img alt="../../_images/cebbaf18de39b00dcc91758cacd943ae623a97b72542edf75cb90300f634829a.png" src="../../_images/cebbaf18de39b00dcc91758cacd943ae623a97b72542edf75cb90300f634829a.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function flush_figures at 0x7f216878ce50&gt; (for post_execute), with arguments args (),kwargs {}:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function flush_figures at 0x7f7b101bd6c0&gt; (for post_execute), with arguments args (),kwargs {}:
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -1340,69 +1345,49 @@ Downloaded KLOT20230507_205801_V06
 <span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="k">finally</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="k">if</span> <span class="n">artist</span><span class="o">.</span><span class="n">get_agg_filter</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/collections.py:2436,</span> in <span class="ni">QuadMesh.draw</span><span class="nt">(self, renderer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2434</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">transform</span><span class="o">.</span><span class="n">is_affine</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2435</span>     <span class="n">coordinates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coordinates</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="ne">-&gt; </span><span class="mi">2436</span>     <span class="n">coordinates</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2437</span>     <span class="n">coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_coordinates</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2438</span>     <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">IdentityTransform</span><span class="p">()</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/mpl/feature_artist.py:185,</span> in <span class="ni">FeatureArtist.draw</span><span class="nt">(self, renderer)</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="n">geoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_feature</span><span class="o">.</span><span class="n">geometries</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">181</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span>     <span class="c1"># For efficiency on local maps with high resolution features (e.g</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>     <span class="c1"># from Natural Earth), only create paths for geometries that are</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span>     <span class="c1"># in view.</span>
+<span class="ne">--&gt; </span><span class="mi">185</span>     <span class="n">geoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_feature</span><span class="o">.</span><span class="n">intersecting_geometries</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span> <span class="n">stylised_paths</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span> <span class="c1"># Make an empty placeholder style dictionary for when styler is not</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="c1"># used.  Freeze it so that we can use it as a dict key.  We will need</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span> <span class="c1"># to unfreeze all style dicts with dict(frozen) before passing to mpl.</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/transforms.py:1495,</span> in <span class="ni">Transform.transform</span><span class="nt">(self, values)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1492</span> <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_dims</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1494</span> <span class="c1"># Transform the values</span>
-<span class="ne">-&gt; </span><span class="mi">1495</span> <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_affine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transform_non_affine</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1497</span> <span class="c1"># Convert the result back to the shape of the input values.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span> <span class="k">if</span> <span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/plots/cartopy_utils.py:38,</span> in <span class="ni">MetPyMapFeature.intersecting_geometries</span><span class="nt">(self, extent)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Return geometries that intersect the extent.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="bp">self</span><span class="o">.</span><span class="n">scaler</span><span class="o">.</span><span class="n">scale_from_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">38</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">intersecting_geometries</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/matplotlib/transforms.py:2417,</span> in <span class="ni">CompositeGenericTransform.transform_non_affine</span><span class="nt">(self, values)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2415</span>     <span class="k">return</span> <span class="n">values</span>
-<span class="g g-Whitespace">   </span><span class="mi">2416</span> <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span><span class="o">.</span><span class="n">is_affine</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b</span><span class="o">.</span><span class="n">is_affine</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2417</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span><span class="o">.</span><span class="n">transform_non_affine</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2418</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2419</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b</span><span class="o">.</span><span class="n">transform_non_affine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_a</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/feature/__init__.py:112,</span> in <span class="ni">Feature.intersecting_geometries</span><span class="nt">(self, extent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">extent_geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>                             <span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="p">(</span><span class="n">geom</span> <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">()</span> <span class="k">if</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>             <span class="n">geom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">extent_geom</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">()</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/mpl/geoaxes.py:126,</span> in <span class="ni">InterProjectionTransform.transform_non_affine</span><span class="nt">(self, xy)</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="n">prj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_projection</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">126</span>     <span class="k">return</span> <span class="n">prj</span><span class="o">.</span><span class="n">transform_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_projection</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>                                 <span class="n">xy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">129</span>     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/metpy/plots/cartopy_utils.py:33,</span> in <span class="ni">MetPyMapFeature.geometries</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">get_test_data</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="n">extension</span><span class="p">,</span> <span class="n">as_file_obj</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">path</span> <span class="o">=</span> <span class="n">get_test_data</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s1">&#39;.shp&#39;</span><span class="p">,</span> <span class="n">as_file_obj</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">33</span> <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">shapereader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">geometries</span><span class="p">()))</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/crs.py:425,</span> in <span class="ni">CRS.transform_points</span><span class="nt">(self, src_crs, x, y, z, trap)</span>
-<span class="g g-Whitespace">    </span><span class="mi">422</span>     <span class="n">x</span><span class="p">[</span><span class="n">to_180</span><span class="p">]</span> <span class="o">=</span> <span class="p">(((</span><span class="n">x</span><span class="p">[</span><span class="n">to_180</span><span class="p">]</span> <span class="o">+</span> <span class="mi">180</span><span class="p">)</span> <span class="o">%</span> <span class="mi">360</span><span class="p">)</span> <span class="o">-</span> <span class="mi">180</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">423</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">424</span>     <span class="n">result</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">result</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> \
-<span class="ne">--&gt; </span><span class="mi">425</span>         <span class="n">_safe_pj_transform</span><span class="p">(</span><span class="n">src_crs</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">trap</span><span class="o">=</span><span class="n">trap</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">426</span> <span class="k">except</span> <span class="n">ProjError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">427</span>     <span class="n">msg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/shapereader.py:225,</span> in <span class="ni">FionaReader.__init__</span><span class="nt">(self, filename, bbox, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span>      <span class="k">if</span> <span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">}</span>
+<span class="ne">--&gt; </span><span class="mi">225</span> <span class="n">d</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/crs.py:65,</span> in <span class="ni">_safe_pj_transform</span><span class="nt">(src_crs, tgt_crs, x, y, z, trap)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="c1"># pyproj implicitly converts size-1 arrays to scalars, which is</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="c1"># deprecated in numpy 1.25, but *also* handles the future error</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="c1"># see https://github.com/numpy/numpy/pull/10615</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="c1"># and https://github.com/SciTools/cartopy/pull/2194</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>         <span class="s2">&quot;ignore&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Conversion of an array with ndim &gt; 0&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">65</span>     <span class="k">return</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">errcheck</span><span class="o">=</span><span class="n">trap</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pyproj/transformer.py:840,</span> in <span class="ni">Transformer.transform</span><span class="nt">(self, xx, yy, zz, tt, radians, errcheck, direction, inplace)</span>
-<span class="g g-Whitespace">    </span><span class="mi">838</span>     <span class="n">intime</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">839</span> <span class="c1"># call pj_transform.  inx,iny,inz buffers modified in place.</span>
-<span class="ne">--&gt; </span><span class="mi">840</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">_transform</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">841</span>     <span class="n">inx</span><span class="o">=</span><span class="n">inx</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">842</span>     <span class="n">iny</span><span class="o">=</span><span class="n">iny</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">843</span>     <span class="n">inz</span><span class="o">=</span><span class="n">inz</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">844</span>     <span class="n">intime</span><span class="o">=</span><span class="n">intime</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">845</span>     <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">846</span>     <span class="n">radians</span><span class="o">=</span><span class="n">radians</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">847</span>     <span class="n">errcheck</span><span class="o">=</span><span class="n">errcheck</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">848</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">849</span> <span class="c1"># if inputs were lists, tuples or floats, convert back.</span>
-<span class="g g-Whitespace">    </span><span class="mi">850</span> <span class="n">outx</span> <span class="o">=</span> <span class="n">_convertback</span><span class="p">(</span><span class="n">x_data_type</span><span class="p">,</span> <span class="n">inx</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/fiona/model.py:142,</span> in <span class="ni">Object.__getitem__</span><span class="nt">(self, item)</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">142</span>     <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delegated_properties</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delegate</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>     <span class="k">else</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1490,8 +1475,7 @@ Downloaded KLOT20230507_205801_V06
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1558,8 +1542,8 @@ By CROCUS Measurement Strategy Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
