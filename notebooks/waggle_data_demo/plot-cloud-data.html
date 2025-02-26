@@ -612,159 +612,66 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">sage_data_client</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2025-01-01T06:00:00Z&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2025-01-01T10:00:00.000Z&quot;</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/bhupendraraut/cloud-motion:1.24.11.8a.*&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W08B&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:115,</span> in <span class="ni">query</span><span class="nt">(start, end, head, tail, filter, endpoint, bucket, experimental_func, experimental_window)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Accept-Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip&quot;</span><span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">115</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">content_encoding</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Encoding&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="k">if</span> <span class="s2">&quot;gzip&quot;</span> <span class="ow">in</span> <span class="n">content_encoding</span><span class="p">:</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>timestamp</th>
-      <th>name</th>
-      <th>value</th>
-      <th>meta.channel</th>
-      <th>meta.host</th>
-      <th>meta.image_frac</th>
-      <th>meta.input</th>
-      <th>meta.job</th>
-      <th>meta.node</th>
-      <th>meta.nsegments_asked</th>
-      <th>meta.nsegments_found</th>
-      <th>meta.plugin</th>
-      <th>meta.quality</th>
-      <th>meta.seg_id</th>
-      <th>meta.seg_rank</th>
-      <th>meta.seg_size</th>
-      <th>meta.task</th>
-      <th>meta.vsn</th>
-      <th>meta.zone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2025-01-01 07:49:56.421996959+00:00</td>
-      <td>cmv.mean.dir.degn</td>
-      <td>160</td>
-      <td>0</td>
-      <td>0000dca632ed7151.ws-rpi</td>
-      <td>0.9</td>
-      <td>top_camera</td>
-      <td>cloud-motion-v1-368</td>
-      <td>000048b02d3ae2f5</td>
-      <td>100</td>
-      <td>65</td>
-      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
-      <td>2</td>
-      <td>1</td>
-      <td>1</td>
-      <td>382266</td>
-      <td>cloud-motion-v1</td>
-      <td>W08B</td>
-      <td>shield</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2025-01-01 07:49:56.421996959+00:00</td>
-      <td>cmv.mean.dir.degn</td>
-      <td>189</td>
-      <td>0</td>
-      <td>0000dca632ed7151.ws-rpi</td>
-      <td>0.9</td>
-      <td>top_camera</td>
-      <td>cloud-motion-v1-368</td>
-      <td>000048b02d3ae2f5</td>
-      <td>100</td>
-      <td>65</td>
-      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
-      <td>2</td>
-      <td>18</td>
-      <td>6</td>
-      <td>67587</td>
-      <td>cloud-motion-v1</td>
-      <td>W08B</td>
-      <td>shield</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2025-01-01 07:49:56.421996959+00:00</td>
-      <td>cmv.mean.dir.degn</td>
-      <td>247</td>
-      <td>0</td>
-      <td>0000dca632ed7151.ws-rpi</td>
-      <td>0.9</td>
-      <td>top_camera</td>
-      <td>cloud-motion-v1-368</td>
-      <td>000048b02d3ae2f5</td>
-      <td>100</td>
-      <td>65</td>
-      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
-      <td>2</td>
-      <td>23</td>
-      <td>8</td>
-      <td>53762</td>
-      <td>cloud-motion-v1</td>
-      <td>W08B</td>
-      <td>shield</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2025-01-01 07:49:56.421996959+00:00</td>
-      <td>cmv.mean.dir.degn</td>
-      <td>164</td>
-      <td>0</td>
-      <td>0000dca632ed7151.ws-rpi</td>
-      <td>0.9</td>
-      <td>top_camera</td>
-      <td>cloud-motion-v1-368</td>
-      <td>000048b02d3ae2f5</td>
-      <td>100</td>
-      <td>65</td>
-      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
-      <td>2</td>
-      <td>24</td>
-      <td>7</td>
-      <td>62273</td>
-      <td>cloud-motion-v1</td>
-      <td>W08B</td>
-      <td>shield</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2025-01-01 07:49:56.421996959+00:00</td>
-      <td>cmv.mean.dir.degn</td>
-      <td>205</td>
-      <td>0</td>
-      <td>0000dca632ed7151.ws-rpi</td>
-      <td>0.9</td>
-      <td>top_camera</td>
-      <td>cloud-motion-v1-368</td>
-      <td>000048b02d3ae2f5</td>
-      <td>100</td>
-      <td>65</td>
-      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
-      <td>2</td>
-      <td>3</td>
-      <td>2</td>
-      <td>178222</td>
-      <td>cloud-motion-v1</td>
-      <td>W08B</td>
-      <td>shield</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216,</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
+<span class="ne">--&gt; </span><span class="mi">216</span> <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:525,</span> in <span class="ni">OpenerDirector.open</span><span class="nt">(self, fullurl, data, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="k">for</span> <span class="n">processor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="p">[]):</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">meth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">processor</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">525</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">meth</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="k">return</span> <span class="n">response</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:634,</span> in <span class="ni">HTTPErrorProcessor.http_response</span><span class="nt">(self, request, response)</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="c1"># According to RFC 2616, &quot;2xx&quot; code indicates that the client&#39;s</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="c1"># request was successfully received, understood, and accepted.</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">200</span> <span class="o">&lt;=</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">634</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">return</span> <span class="n">response</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:563,</span> in <span class="ni">OpenerDirector.error</span><span class="nt">(self, proto, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="k">if</span> <span class="n">http_err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;http_error_default&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">orig_args</span>
+<span class="ne">--&gt; </span><span class="mi">563</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496,</span> in <span class="ni">OpenerDirector._call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">495</span>     <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">496</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:643,</span> in <span class="ni">HTTPDefaultErrorHandler.http_error_default</span><span class="nt">(self, req, fp, code, msg, hdrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="k">def</span><span class="w"> </span><span class="nf">http_error_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">643</span>     <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+
+<span class="ne">HTTPError</span>: HTTP Error 504: Gateway Time-out
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -965,7 +872,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5036821821a93dced7c1fabd642da8a59ec6cba05c6052f4b97e5c9178aed389.png" src="../../_images/5036821821a93dced7c1fabd642da8a59ec6cba05c6052f4b97e5c9178aed389.png" />
+<img alt="../../_images/475e87536e321caadc82532780bd6dc1ff8dcf1c5f5e3b315a710d79b7ceb405.png" src="../../_images/475e87536e321caadc82532780bd6dc1ff8dcf1c5f5e3b315a710d79b7ceb405.png" />
 </div>
 </div>
 <p>Cloud direction is too noisy fluctuating between 150 to 250 degrees for most of the time. So we will plot smoothed line.</p>
@@ -1009,7 +916,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c45bab8f60c22e64c5877f14f511e83433fb279e7be0a8d9b9b60b48aa2222d2.png" src="../../_images/c45bab8f60c22e64c5877f14f511e83433fb279e7be0a8d9b9b60b48aa2222d2.png" />
+<img alt="../../_images/5a6314f0798c794282dc37f81aba5582fb1321a1e160030c2a5a32d161fa4a36.png" src="../../_images/5a6314f0798c794282dc37f81aba5582fb1321a1e160030c2a5a32d161fa4a36.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1043,7 +950,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/483f3f96cb4383a26429883f722486b2c046ecd5c160625a458451be4e9fd93e.png" src="../../_images/483f3f96cb4383a26429883f722486b2c046ecd5c160625a458451be4e9fd93e.png" />
+<img alt="../../_images/e67bb9902cf5a1ba77ec30bc22663ed9f3d0b262ce5d5eb83009473088e25b3a.png" src="../../_images/e67bb9902cf5a1ba77ec30bc22663ed9f3d0b262ce5d5eb83009473088e25b3a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1080,7 +987,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b1f2e94fdec9960c0bce5f0005e9d718dca9b838a1caac3a331d10af722c35dc.png" src="../../_images/b1f2e94fdec9960c0bce5f0005e9d718dca9b838a1caac3a331d10af722c35dc.png" />
+<img alt="../../_images/e76e77d05ce29140330446277c0b978483d58784c77ab5984242c2671e0b4d0d.png" src="../../_images/e76e77d05ce29140330446277c0b978483d58784c77ab5984242c2671e0b4d0d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1122,7 +1029,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8e90f3b65d964fc8c2f63dba68677258f45b6404060af2dae5c66d89df5b0d7a.png" src="../../_images/8e90f3b65d964fc8c2f63dba68677258f45b6404060af2dae5c66d89df5b0d7a.png" />
+<img alt="../../_images/e649ac38996cae086598c68ddc656ccf18df7466e23702b042e42c62e89ab271.png" src="../../_images/e649ac38996cae086598c68ddc656ccf18df7466e23702b042e42c62e89ab271.png" />
 </div>
 </div>
 </section>
