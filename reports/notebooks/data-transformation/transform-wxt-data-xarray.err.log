@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 782, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
+    result = await obj
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_client/channels.py", line 313, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
@@ -9,37 +20,21 @@ Traceback (most recent call last):
     return future.result()
   File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-wxt_ds = generate_dataset(wxt_df, wxt_variables).squeeze()
-wxt_ds
-------------------
-
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mKeyError[0m                                  Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3171/1563727890.py[0m in [0;36m?[0;34m()[0m
-[0;32m----> 1[0;31m [0mwxt_ds[0m [0;34m=[0m [0mgenerate_dataset[0m[0;34m([0m[0mwxt_df[0m[0;34m,[0m [0mwxt_variables[0m[0;34m)[0m[0;34m.[0m[0msqueeze[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0mwxt_ds[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/tmp/ipykernel_3171/4226391414.py[0m in [0;36m?[0;34m(df, variables, rename_variable_dict)[0m
-[1;32m     24[0m [0;32mdef[0m [0mgenerate_dataset[0m[0;34m([0m[0mdf[0m[0;34m,[0m [0mvariables[0m[0;34m,[0m [0mrename_variable_dict[0m[0;34m=[0m[0mvariable_rename_dict[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 25[0;31m     [0mreindexed[0m [0;34m=[0m [0mdf[0m[0;34m.[0m[0mset_index[0m[0;34m([0m[0;34m[[0m[0;34m'meta.vsn'[0m[0;34m,[0m [0;34m'timestamp'[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     26[0m     [0;32mreturn[0m [0mxr[0m[0;34m.[0m[0mmerge[0m[0;34m([0m[0;34m[[0m[0mgenerate_data_array[0m[0;34m([0m[0mreindexed[0m[0;34m,[0m [0mvariable[0m[0;34m)[0m [0;32mfor[0m [0mvariable[0m [0;32min[0m [0mvariables[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py[0m in [0;36m?[0;34m(self, keys, drop, append, inplace, verify_integrity)[0m
-[1;32m   6118[0m                     [0;32mif[0m [0;32mnot[0m [0mfound[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6119[0m                         [0mmissing[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mcol[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6120[0m [0;34m[0m[0m
-[1;32m   6121[0m         [0;32mif[0m [0mmissing[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 6122[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0;34mf"None of {missing} are in the columns"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   6123[0m [0;34m[0m[0m
-[1;32m   6124[0m         [0;32mif[0m [0minplace[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6125[0m             [0mframe[0m [0;34m=[0m [0mself[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mKeyError[0m: "None of ['meta.vsn'] are in the columns"
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1005, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
+    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 600 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+wxt_df = sage_data_client.query(
+    start="-3h",
+    filter={
+        "sensor": "vaisala-wxt536"
+    }
+)
+-------------------
 
