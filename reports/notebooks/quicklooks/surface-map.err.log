@@ -154,117 +154,117 @@ Downloading file 'stations.txt' from 'https://github.com/Unidata/MetPy/raw/v1.6.
 ----- stderr -----
 Downloading file 'airport-codes.csv' from 'https://github.com/Unidata/MetPy/raw/v1.6.3/staticdata/airport-codes.csv' to '/home/runner/.cache/metpy/v1.6.3'.
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
 ----- stderr -----
-/tmp/ipykernel_3548/936454763.py:31: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3548/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3564/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
