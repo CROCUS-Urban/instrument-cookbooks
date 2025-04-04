@@ -1,0 +1,148 @@
+Traceback (most recent call last):
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Query the SAGE data client to access the data
+# Note: We need to know the time period we are interested in
+df = sage_data_client.query(start="2023-07-02T12:00:00Z",
+                            end="2023-07-02T13:00:00Z", 
+                            filter={
+                                "vsn": "W08D",
+                                "sensor": "vaisala-wxt536"
+                            }
+)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTimeoutError[0m                              Traceback (most recent call last)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:1348[0m, in [0;36mAbstractHTTPHandler.do_open[0;34m(self, http_class, req, **http_conn_args)[0m
+[1;32m   1347[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 1348[0m     [43mh[49m[38;5;241;43m.[39;49m[43mrequest[49m[43m([49m[43mreq[49m[38;5;241;43m.[39;49m[43mget_method[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mselector[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mdata[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m
+[1;32m   1349[0m [43m              [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mreq[49m[38;5;241;43m.[39;49m[43mhas_header[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mTransfer-encoding[39;49m[38;5;124;43m'[39;49m[43m)[49m[43m)[49m
+[1;32m   1350[0m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1283[0m, in [0;36mHTTPConnection.request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1282[0m [38;5;250m[39m[38;5;124;03m"""Send a complete request to the server."""[39;00m
+[0;32m-> 1283[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_request[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mbody[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1329[0m, in [0;36mHTTPConnection._send_request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1328[0m     body [38;5;241m=[39m _encode(body, [38;5;124m'[39m[38;5;124mbody[39m[38;5;124m'[39m)
+[0;32m-> 1329[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mendheaders[49m[43m([49m[43mbody[49m[43m,[49m[43m [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mencode_chunked[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1278[0m, in [0;36mHTTPConnection.endheaders[0;34m(self, message_body, encode_chunked)[0m
+[1;32m   1277[0m     [38;5;28;01mraise[39;00m CannotSendHeader()
+[0;32m-> 1278[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_output[49m[43m([49m[43mmessage_body[49m[43m,[49m[43m [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mencode_chunked[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1038[0m, in [0;36mHTTPConnection._send_output[0;34m(self, message_body, encode_chunked)[0m
+[1;32m   1037[0m [38;5;28;01mdel[39;00m [38;5;28mself[39m[38;5;241m.[39m_buffer[:]
+[0;32m-> 1038[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msend[49m[43m([49m[43mmsg[49m[43m)[49m
+[1;32m   1040[0m [38;5;28;01mif[39;00m message_body [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m   1041[0m 
+[1;32m   1042[0m     [38;5;66;03m# create a consistent interface to message_body[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:976[0m, in [0;36mHTTPConnection.send[0;34m(self, data)[0m
+[1;32m    975[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mauto_open:
+[0;32m--> 976[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+[1;32m    977[0m [38;5;28;01melse[39;00m:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:1448[0m, in [0;36mHTTPSConnection.connect[0;34m(self)[0m
+[1;32m   1446[0m [38;5;124m"[39m[38;5;124mConnect to a host on a given (SSL) port.[39m[38;5;124m"[39m
+[0;32m-> 1448[0m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+[1;32m   1450[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_tunnel_host:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/http/client.py:942[0m, in [0;36mHTTPConnection.connect[0;34m(self)[0m
+[1;32m    941[0m sys[38;5;241m.[39maudit([38;5;124m"[39m[38;5;124mhttp.client.connect[39m[38;5;124m"[39m, [38;5;28mself[39m, [38;5;28mself[39m[38;5;241m.[39mhost, [38;5;28mself[39m[38;5;241m.[39mport)
+[0;32m--> 942[0m [38;5;28mself[39m[38;5;241m.[39msock [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_create_connection[49m[43m([49m
+[1;32m    943[0m [43m    [49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhost[49m[43m,[49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mport[49m[43m)[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mtimeout[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msource_address[49m[43m)[49m
+[1;32m    944[0m [38;5;66;03m# Might fail in OSs that don't implement TCP_NODELAY[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/socket.py:857[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address)[0m
+[1;32m    856[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 857[0m     [38;5;28;01mraise[39;00m err
+[1;32m    858[0m [38;5;28;01mfinally[39;00m:
+[1;32m    859[0m     [38;5;66;03m# Break explicitly a reference cycle[39;00m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/socket.py:845[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address)[0m
+[1;32m    844[0m     sock[38;5;241m.[39mbind(source_address)
+[0;32m--> 845[0m [43msock[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43msa[49m[43m)[49m
+[1;32m    846[0m [38;5;66;03m# Break explicitly a reference cycle[39;00m
+
+[0;31mTimeoutError[0m: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+[0;31mURLError[0m                                  Traceback (most recent call last)
+Cell [0;32mIn[2], line 3[0m
+[1;32m      1[0m [38;5;66;03m# Query the SAGE data client to access the data[39;00m
+[1;32m      2[0m [38;5;66;03m# Note: We need to know the time period we are interested in[39;00m
+[0;32m----> 3[0m df [38;5;241m=[39m [43msage_data_client[49m[38;5;241;43m.[39;49m[43mquery[49m[43m([49m[43mstart[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-07-02T12:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      4[0m [43m                            [49m[43mend[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m2023-07-02T13:00:00Z[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m
+[1;32m      5[0m [43m                            [49m[38;5;28;43mfilter[39;49m[38;5;241;43m=[39;49m[43m{[49m
+[1;32m      6[0m [43m                                [49m[38;5;124;43m"[39;49m[38;5;124;43mvsn[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mW08D[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      7[0m [43m                                [49m[38;5;124;43m"[39;49m[38;5;124;43msensor[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mvaisala-wxt536[39;49m[38;5;124;43m"[39;49m
+[1;32m      8[0m [43m                            [49m[43m}[49m
+[1;32m      9[0m [43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/sage_data_client/query.py:115[0m, in [0;36mquery[0;34m(start, end, head, tail, filter, endpoint, bucket, experimental_func, experimental_window)[0m
+[1;32m    112[0m headers [38;5;241m=[39m {[38;5;124m"[39m[38;5;124mAccept-Encoding[39m[38;5;124m"[39m: [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m}
+[1;32m    113[0m req [38;5;241m=[39m Request(endpoint, data, headers[38;5;241m=[39mheaders)
+[0;32m--> 115[0m [38;5;28;01mwith[39;00m [43murlopen[49m[43m([49m[43mreq[49m[43m)[49m [38;5;28;01mas[39;00m f:
+[1;32m    116[0m     content_encoding [38;5;241m=[39m f[38;5;241m.[39mheaders[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mContent-Encoding[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m"[39m)
+[1;32m    117[0m     [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mgzip[39m[38;5;124m"[39m [38;5;129;01min[39;00m content_encoding:
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:216[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
+[1;32m    214[0m [38;5;28;01melse[39;00m:
+[1;32m    215[0m     opener [38;5;241m=[39m _opener
+[0;32m--> 216[0m [38;5;28;01mreturn[39;00m [43mopener[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:519[0m, in [0;36mOpenerDirector.open[0;34m(self, fullurl, data, timeout)[0m
+[1;32m    516[0m     req [38;5;241m=[39m meth(req)
+[1;32m    518[0m sys[38;5;241m.[39maudit([38;5;124m'[39m[38;5;124murllib.Request[39m[38;5;124m'[39m, req[38;5;241m.[39mfull_url, req[38;5;241m.[39mdata, req[38;5;241m.[39mheaders, req[38;5;241m.[39mget_method())
+[0;32m--> 519[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_open[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mdata[49m[43m)[49m
+[1;32m    521[0m [38;5;66;03m# post-process response[39;00m
+[1;32m    522[0m meth_name [38;5;241m=[39m protocol[38;5;241m+[39m[38;5;124m"[39m[38;5;124m_response[39m[38;5;124m"[39m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:536[0m, in [0;36mOpenerDirector._open[0;34m(self, req, data)[0m
+[1;32m    533[0m     [38;5;28;01mreturn[39;00m result
+[1;32m    535[0m protocol [38;5;241m=[39m req[38;5;241m.[39mtype
+[0;32m--> 536[0m result [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_call_chain[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhandle_open[49m[43m,[49m[43m [49m[43mprotocol[49m[43m,[49m[43m [49m[43mprotocol[49m[43m [49m[38;5;241;43m+[39;49m
+[1;32m    537[0m [43m                          [49m[38;5;124;43m'[39;49m[38;5;124;43m_open[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mreq[49m[43m)[49m
+[1;32m    538[0m [38;5;28;01mif[39;00m result:
+[1;32m    539[0m     [38;5;28;01mreturn[39;00m result
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:496[0m, in [0;36mOpenerDirector._call_chain[0;34m(self, chain, kind, meth_name, *args)[0m
+[1;32m    494[0m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
+[1;32m    495[0m     func [38;5;241m=[39m [38;5;28mgetattr[39m(handler, meth_name)
+[0;32m--> 496[0m     result [38;5;241m=[39m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+[1;32m    497[0m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    498[0m         [38;5;28;01mreturn[39;00m result
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:1391[0m, in [0;36mHTTPSHandler.https_open[0;34m(self, req)[0m
+[1;32m   1390[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mhttps_open[39m([38;5;28mself[39m, req):
+[0;32m-> 1391[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdo_open[49m[43m([49m[43mhttp[49m[38;5;241;43m.[39;49m[43mclient[49m[38;5;241;43m.[39;49m[43mHTTPSConnection[49m[43m,[49m[43m [49m[43mreq[49m[43m,[49m
+[1;32m   1392[0m [43m        [49m[43mcontext[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_context[49m[43m,[49m[43m [49m[43mcheck_hostname[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_check_hostname[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/urllib/request.py:1351[0m, in [0;36mAbstractHTTPHandler.do_open[0;34m(self, http_class, req, **http_conn_args)[0m
+[1;32m   1348[0m         h[38;5;241m.[39mrequest(req[38;5;241m.[39mget_method(), req[38;5;241m.[39mselector, req[38;5;241m.[39mdata, headers,
+[1;32m   1349[0m                   encode_chunked[38;5;241m=[39mreq[38;5;241m.[39mhas_header([38;5;124m'[39m[38;5;124mTransfer-encoding[39m[38;5;124m'[39m))
+[1;32m   1350[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+[0;32m-> 1351[0m         [38;5;28;01mraise[39;00m URLError(err)
+[1;32m   1352[0m     r [38;5;241m=[39m h[38;5;241m.[39mgetresponse()
+[1;32m   1353[0m [38;5;28;01mexcept[39;00m:
+
+[0;31mURLError[0m: <urlopen error [Errno 110] Connection timed out>
+
